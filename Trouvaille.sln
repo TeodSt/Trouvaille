@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.MVC", "Trouvaille.MVC\Trouvaille.MVC.csproj", "{831BC403-60A1-4E8F-A852-2E2DEB56C544}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Trouvaille.Data", "Trouvaille.Data", "{C3DFE9FF-2F37-4915-B727-9313EED2CF03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.Models", "Trouvaille.Models\Trouvaille.Models.csproj", "{979D3388-28F2-4929-883C-047CBAE5721E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{831BC403-60A1-4E8F-A852-2E2DEB56C544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{831BC403-60A1-4E8F-A852-2E2DEB56C544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{831BC403-60A1-4E8F-A852-2E2DEB56C544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{831BC403-60A1-4E8F-A852-2E2DEB56C544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{979D3388-28F2-4929-883C-047CBAE5721E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{979D3388-28F2-4929-883C-047CBAE5721E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{979D3388-28F2-4929-883C-047CBAE5721E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{979D3388-28F2-4929-883C-047CBAE5721E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{979D3388-28F2-4929-883C-047CBAE5721E} = {C3DFE9FF-2F37-4915-B727-9313EED2CF03}
+	EndGlobalSection
+EndGlobal
