@@ -1,0 +1,14 @@
+/* YOUR CUSTOM STYLES */
+html,
+body,
+.view {
+    height: 90%;
+}
+
+.view {
+    background: url("../bigstock-White-Architecture-On-Santorin-81970817.jpg")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

@@ -1,33 +1,103 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    @*<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+
+        <script type="text/javascript">
+
+            var map = null;
+
+            function GetMap() {
+                // Initialize the map
+                map = new Microsoft.Maps.Map(document.getElementById("myMap"),
+                             { credentials: "Bing Maps Key" });
+
+                // Retrieve the location of the map center
+                var center = map.getCenter();
+
+                // Add a pin to the center of the map
+                var pin = new Microsoft.Maps.Pushpin(center, { draggable: true });
+
+                // Add a handler to the pushpin drag
+                Microsoft.Maps.Events.addHandler(pin, 'mouseup', DisplayLoc);
+
+                map.entities.push(pin);
+            }
+
+            function DisplayLoc(e) {
+                if (e.targetType == 'pushpin') {
+
+                    var pinLoc = e.target.getLocation();
+                    alert("The location of the pushpin is now " + pinLoc.latitude + ", " + pinLoc.longitude);
+
+                }
+            }
+
+        </script>*@
 </head>
+
+@*<body onload="GetMap();">*@
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-               <img src="~/Trouvaille.png"/>
-                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="~/Trouvaille.png" />
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Trouvailles", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Destinations", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Trouvailles", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Destinations", "Contact", "Home")</li>
+        </div>*@
+    <nav class="navbar navbar-toggleable-md navbar-dark scrolling-navbar fixed-top">
+        @*<nav class="navbar navbar-toggleable-md navbar-dark rgba-lime-light">*@
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav1">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", new { controller = "Home" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("About", "About", new { controller = "Home" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Trouvailles", "Contact", new { controller = "Home" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Destinations", "Contact", new { controller = "Home" }, new { @class = "nav-link" })
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="view hm-black-strong">
+        <div class="full-bg-img flex-center">
+            <div class="center">
+                <img src="~/Trouvaille.png" />
+                @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-lime wow fadeInLeft waves-effect waves-light" })
+                @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn wow fadeInLeft waves-effect waves-light   red lighten-3" })
             </div>
         </div>
     </div>
