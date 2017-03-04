@@ -21,8 +21,8 @@ namespace Trouvaille.MVC
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/js/mdb.min.js",
-                      "~/Scripts/js/tether.min.js",
+                      "~/Scripts/mdb.js",
+                      "~/Scripts/tether.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

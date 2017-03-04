@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{979D3388-28F2-4929-883C-047CBAE5721E}</ProjectGuid>
+    <ProjectGuid>{ED4447BC-CEC2-4667-915C-D79809487025}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Trouvaille.Models</RootNamespace>
-    <AssemblyName>Trouvaille.Models</AssemblyName>
+    <RootNamespace>Trouvaille.Data</RootNamespace>
+    <AssemblyName>Trouvaille.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,19 +57,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Article.cs" />
-    <Compile Include="Continent.cs" />
-    <Compile Include="Country.cs" />
-    <Compile Include="Picture.cs" />
-    <Compile Include="Post.cs" />
-    <Compile Include="Enums\PrivacyType.cs" />
-    <Compile Include="Place.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="TrouvailleContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Trouvaille.Models\Trouvaille.Models.csproj">
+      <Project>{979D3388-28F2-4929-883C-047CBAE5721E}</Project>
+      <Name>Trouvaille.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
