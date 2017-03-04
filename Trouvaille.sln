@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.Models", "Trouva
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.Data", "Trouvaille.Data\Trouvaille.Data.csproj", "{ED4447BC-CEC2-4667-915C-D79809487025}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Trouvaille.Services", "Trouvaille.Services", "{1ED0FA86-0C9F-46E6-AC46-993AA3825D81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.Services", "Trouvaille.Services\Trouvaille.Services.csproj", "{52ACE4FF-3AE7-4DBB-9A9B-181DD22F74B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,10 @@ Global
 		{ED4447BC-CEC2-4667-915C-D79809487025}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED4447BC-CEC2-4667-915C-D79809487025}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED4447BC-CEC2-4667-915C-D79809487025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52ACE4FF-3AE7-4DBB-9A9B-181DD22F74B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52ACE4FF-3AE7-4DBB-9A9B-181DD22F74B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52ACE4FF-3AE7-4DBB-9A9B-181DD22F74B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52ACE4FF-3AE7-4DBB-9A9B-181DD22F74B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,5 +44,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{979D3388-28F2-4929-883C-047CBAE5721E} = {C3DFE9FF-2F37-4915-B727-9313EED2CF03}
 		{ED4447BC-CEC2-4667-915C-D79809487025} = {C3DFE9FF-2F37-4915-B727-9313EED2CF03}
+		{52ACE4FF-3AE7-4DBB-9A9B-181DD22F74B4} = {1ED0FA86-0C9F-46E6-AC46-993AA3825D81}
 	EndGlobalSection
 EndGlobal

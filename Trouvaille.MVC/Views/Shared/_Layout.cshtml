@@ -8,43 +8,59 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-    @*<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
-
+   <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrFFeTMMLaOj49X29A_qeVbsMDs97rAfQ&callback=initMap">
+    </script>
         <script type="text/javascript">
+            var map;
+            var marker;
+            var infowindow;
+            var messagewindow;
+            
+            function initMap() {
+                var uluru = { lat: -25.363, lng: 131.044 };
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 4,
+                    center: uluru
+                });
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
 
-            var map = null;
+                infowindow = new google.maps.InfoWindow({
+                    content: document.getElementById('form')
+                });
 
-            function GetMap() {
-                // Initialize the map
-                map = new Microsoft.Maps.Map(document.getElementById("myMap"),
-                             { credentials: "Bing Maps Key" });
+                messagewindow = new google.maps.InfoWindow({
+                    content: document.getElementById('message')
+                });
 
-                // Retrieve the location of the map center
-                var center = map.getCenter();
+                google.maps.event.addListener(map, 'click', function (event) {
+                    debugger;
+                    marker = new google.maps.Marker({
+                        position: event.latLng,
+                        map: map
+                    });
 
-                // Add a pin to the center of the map
-                var pin = new Microsoft.Maps.Pushpin(center, { draggable: true });
+                    $("#lat").val(marker.getPosition().lat());
+                    $("#long").val(marker.getPosition().lng());
 
-                // Add a handler to the pushpin drag
-                Microsoft.Maps.Events.addHandler(pin, 'mouseup', DisplayLoc);
-
-                map.entities.push(pin);
+                    google.maps.event.addListener(marker, 'click', function () {
+                        debugger;
+                        infowindow.open(map, marker);
+                    });
+                });
             }
 
-            function DisplayLoc(e) {
-                if (e.targetType == 'pushpin') {
+            
 
-                    var pinLoc = e.target.getLocation();
-                    alert("The location of the pushpin is now " + pinLoc.latitude + ", " + pinLoc.longitude);
-
-                }
-            }
-
-        </script>*@
+        </script>
 </head>
 
-@*<body onload="GetMap();">*@
 <body>
+@*<body>  *@
 <nav class="navbar navbar-toggleable-md navbar-dark scrolling-navbar fixed-top">
      @*   <nav class="navbar navbar-toggleable-md navbar-dark rgba-lime-light">*@
         <div class="container">
@@ -79,13 +95,17 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+<div class="container body-content">
+    <div id='map' style="position: relative; width: 400px; height: 400px;">
+
     </div>
+    <b>Drag the pushpin to a new location.</b>       
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -11,9 +11,13 @@ namespace Trouvaille.Data
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<TrouvailleContext>());
         }
 
+        public IDbSet<Place> Places { get; set; }
+
         public static TrouvailleContext Create()
         {
             return new TrouvailleContext();
         }
+
+        public System.Data.Entity.DbSet<Trouvaille.Models.Country> Countries { get; set; }
     }
 }
