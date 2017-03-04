@@ -16,6 +16,10 @@
 
         public string Address { get; set; }
 
+        public double Longtitude { get; set; }
+
+        public double Latitude { get; set; }
+
         // TODO: See if I can give map location somehow
     }
 }
