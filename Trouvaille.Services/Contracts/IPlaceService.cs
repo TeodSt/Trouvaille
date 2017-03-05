@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Trouvaille.Models;
 
 namespace Trouvaille.Services.Contracts
 {
     public interface IPlaceService
     {
+        IEnumerable<Place> GetAllPlaces();
+
+        Place GetPlaceById(int id); 
+
         void AddPlace(Place place);
+
+        void DeletePlace(Place place);
     }
 }

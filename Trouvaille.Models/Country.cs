@@ -1,9 +1,14 @@
-﻿namespace Trouvaille.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Trouvaille.Models
 {
     public class Country
     {
         public int Id { get; set; }
 
+        [Required]
+        [MinLength(3)]
+        [MaxLength(15)]
         public string Name { get; set; }
 
         public int ContinentId { get; set; }

@@ -5,7 +5,7 @@ namespace Trouvaille.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Trouvaille.Data.TrouvailleContext>
+    public sealed class Configuration : DbMigrationsConfiguration<Trouvaille.Data.TrouvailleContext>
     {
         public Configuration()
         {

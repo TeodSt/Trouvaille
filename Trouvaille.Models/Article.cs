@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Trouvaille.Models.Enums;
 
 namespace Trouvaille.Models
 {
@@ -13,13 +15,22 @@ namespace Trouvaille.Models
 
         public int Id { get; set; }
 
-        public int AuthorId { get; set; }
-
-        public virtual User Author { get; set; }
-
+        [Required]
+        [MinLength(5)]
+        [MaxLength(40)]
         public string Title { get; set; }
 
+        [Required]
+        [MinLength(5)]
         public string Content { get; set; }
+
+        public string Subheader { get; set; }
+
+        public int CreatorId { get; set; }
+
+        public virtual User Creator { get; set; }
+
+        public PrivacyType PrivacyType { get; set; }
 
         public virtual ICollection<Tag> Tags
         {
