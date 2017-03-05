@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 using Trouvaille.Data;
-using Trouvaille.Data.Contracts;
 
-namespace Trouvaille.MVC.App_Start
+namespace Trouvaille.MVC
 {
     public class DbConfig
     {

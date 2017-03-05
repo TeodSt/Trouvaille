@@ -62,10 +62,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticleService.cs" />
+    <Compile Include="ContinentService.cs" />
     <Compile Include="Contracts\IArticleService.cs" />
+    <Compile Include="Contracts\IContinentService.cs" />
+    <Compile Include="Contracts\ICountryService.cs" />
+    <Compile Include="Contracts\IPictureService.cs" />
     <Compile Include="Contracts\IPlaceService.cs" />
+    <Compile Include="Contracts\ITagService.cs" />
+    <Compile Include="Contracts\IUserService.cs" />
+    <Compile Include="CountryService.cs" />
+    <Compile Include="PictureService.cs" />
     <Compile Include="PlaceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagService.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trouvaille.Data\Trouvaille.Data.csproj">

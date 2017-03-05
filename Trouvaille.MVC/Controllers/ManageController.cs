@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Trouvaille.MVC.Models;
+using Trouvaille.MVC.Models.Manage;
 
 namespace Trouvaille.MVC.Controllers
 {

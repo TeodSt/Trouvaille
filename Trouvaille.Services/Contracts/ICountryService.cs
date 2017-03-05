@@ -5,7 +5,7 @@ namespace Trouvaille.Services.Contracts
 {
     public interface ICountryService
     {
-        ICollection<Country> GetAllCountries();
+        IEnumerable<Country> GetAllCountries();
 
         Country GetCountryById(int id);
     }

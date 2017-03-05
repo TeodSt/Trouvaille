@@ -5,7 +5,7 @@ using Trouvaille.Data.Contracts;
 using Trouvaille.Services;
 using Trouvaille.Services.Contracts;
 
-namespace Trouvaille.MVC.App_Start
+namespace Trouvaille.MVC
 {
     public class ServicesModule : NinjectModule
     {

@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Trouvaille.Models;
 using Trouvaille.MVC.Models;
+using Trouvaille.MVC.Models.AccountViewModels;
 
 namespace Trouvaille.MVC.Controllers
 {
