@@ -1,23 +1,17 @@
 ﻿using Trouvaille.Data;
 using Trouvaille.Models;
+using Trouvaille.Services.Contracts;
 
 namespace Trouvaille.Services
 {
-    public class PlaceService
+    public class PlaceService : IPlaceService
     {
         // TODO: DI
         private static TrouvailleContext context = new TrouvailleContext();
 
-        public void AddPlace(double longtitude, double latitude)
+        public void AddPlace(Place place)
         {
-            context.Places.Add(new Place()
-            {
-                FounderId = 1,
-                Address = "need to find by coords",
-                Description = "pretty place",
-                Longtitude = longtitude,
-                Latitude = latitude
-            });
+            context.Places.Add(place);
 
             context.SaveChanges();
         }

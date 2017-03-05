@@ -8,59 +8,10 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-   <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrFFeTMMLaOj49X29A_qeVbsMDs97rAfQ&callback=initMap">
-    </script>
-        <script type="text/javascript">
-            var map;
-            var marker;
-            var infowindow;
-            var messagewindow;
-            
-            function initMap() {
-                var uluru = { lat: -25.363, lng: 131.044 };
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 4,
-                    center: uluru
-                });
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: map
-                });
-
-                infowindow = new google.maps.InfoWindow({
-                    content: document.getElementById('form')
-                });
-
-                messagewindow = new google.maps.InfoWindow({
-                    content: document.getElementById('message')
-                });
-
-                google.maps.event.addListener(map, 'click', function (event) {
-                    debugger;
-                    marker = new google.maps.Marker({
-                        position: event.latLng,
-                        map: map
-                    });
-
-                    $("#lat").val(marker.getPosition().lat());
-                    $("#long").val(marker.getPosition().lng());
-
-                    google.maps.event.addListener(marker, 'click', function () {
-                        debugger;
-                        infowindow.open(map, marker);
-                    });
-                });
-            }
-
-            
-
-        </script>
+  
 </head>
 
 <body>
-@*<body>  *@
 <nav class="navbar navbar-toggleable-md navbar-dark scrolling-navbar fixed-top">
      @*   <nav class="navbar navbar-toggleable-md navbar-dark rgba-lime-light">*@
         <div class="container">
@@ -95,11 +46,7 @@
             </div>
         </div>
     </div>
-<div class="container body-content">
-    <div id='map' style="position: relative; width: 400px; height: 400px;">
-
-    </div>
-    <b>Drag the pushpin to a new location.</b>       
+<div class="container body-content">     
     @RenderBody()
     <hr/>
     <footer>

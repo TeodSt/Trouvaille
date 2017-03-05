@@ -1,10 +1,11 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
 
 namespace Trouvaille.Data
 {
-    public class TrouvailleContext : IdentityDbContext<User>
+    public class TrouvailleContext : IdentityDbContext<User>, ITrouvailleContext
     {
         public TrouvailleContext() : base("Trouvaille")
         {

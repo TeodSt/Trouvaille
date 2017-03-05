@@ -6,8 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Bytes2you.Validation;
 using Trouvaille.Data;
 using Trouvaille.Models;
+using Trouvaille.Services;
+using Trouvaille.Services.Contracts;
 
 namespace Trouvaille.MVC.Controllers
 {
@@ -15,26 +18,12 @@ namespace Trouvaille.MVC.Controllers
     {
         private TrouvailleContext db = new TrouvailleContext();
 
-        // GET: Places
-        public ActionResult Index()
-        {
-            var places = db.Places.Include(p => p.Country);
-            return View(places.ToList());
-        }
+        private readonly IPlaceService placeService;
 
-        // GET: Places/Details/5
-        public ActionResult Details(int? id)
+        public PlacesController(IPlaceService placeService)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Place place = db.Places.Find(id);
-            if (place == null)
-            {
-                return HttpNotFound();
-            }
-            return View(place);
+            Guard.WhenArgument(placeService, "placeService").IsNull().Throw();
+            this.placeService = placeService;
         }
 
         // GET: Places/Create
@@ -53,44 +42,10 @@ namespace Trouvaille.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Places.Add(place);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.placeService.AddPlace(place);
+                return RedirectToAction("Create");
             }
 
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", place.CountryId);
-            return View(place);
-        }
-
-        // GET: Places/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Place place = db.Places.Find(id);
-            if (place == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", place.CountryId);
-            return View(place);
-        }
-
-        // POST: Places/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FounderId,CountryId,Description,Address,Longtitude,Latitude")] Place place)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(place).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
             ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", place.CountryId);
             return View(place);
         }
@@ -118,7 +73,7 @@ namespace Trouvaille.MVC.Controllers
             Place place = db.Places.Find(id);
             db.Places.Remove(place);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Delete");
         }
 
         protected override void Dispose(bool disposing)
