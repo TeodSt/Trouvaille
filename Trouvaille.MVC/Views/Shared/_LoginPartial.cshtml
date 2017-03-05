@@ -3,7 +3,8 @@
 {
     <ul class="nav navbar-nav navbar-right">
         <li class="nav-item btn-group">
-            <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Hello, @User.Identity.GetUserName()!</a>
+            <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Hello, @User.Identity.GetUserName()!
+                <img src="http://i570.photobucket.com/albums/ss145/TJStepp99/BatmanUnicorn.jpg" alt="..." class="rounded-circle" width="30px"></a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <a class="dropdown-item">Your profile</a>
                 @Html.ActionLink("Manage your account", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "dropdown-item nav-link" })

@@ -44,7 +44,7 @@ namespace Trouvaille.Data
 
         public void Initialize()
         {
-            this.InitializeIdentity();
+            //this.InitializeIdentity();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

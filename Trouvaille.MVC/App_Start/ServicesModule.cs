@@ -11,7 +11,7 @@ namespace Trouvaille.MVC
     {
         public override void Load()
         {
-            this.Bind<ITrouvailleContext>().To<TrouvailleContext>().InRequestScope();
+            this.Bind<ITrouvailleContext>().To<TrouvailleContext>().InSingletonScope();
             this.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>));
             this.Bind<IUnitOfWork>().To<UnitOfWork>();
 
