@@ -11,9 +11,10 @@
   
 </head>
 
-<body>
-<nav class="navbar navbar-toggleable-md navbar-dark scrolling-navbar fixed-top">
-     @*   <nav class="navbar navbar-toggleable-md navbar-dark rgba-lime-light">*@
+<body><nav class="navbar navbar-toggleable-md navbar-dark fixed-top scrolling-navbar">
+
+    @*<nav class="navbar navbar-toggleable-md navbar-dark fixed-top evening-color">*@
+        @*   <nav class="navbar navbar-toggleable-md navbar-dark rgba-lime-light">*@
         <div class="container">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,7 +31,7 @@
                         @Html.ActionLink("Trouvailles", "Contact", new { controller = "Home" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Destinations", "Contact", new {controller = "Home"}, new {@class = "nav-link"})
+                        @Html.ActionLink("Destinations", "Contact", new { controller = "Home" }, new { @class = "nav-link" })
                     </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -41,19 +42,85 @@
         <div class="full-bg-img flex-center">
             <div class="center">
                 <img src="~/Trouvaille.png" />
-              @*  @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-lime wow fadeInLeft waves-effect waves-light" })*@
-             @*   @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn wow fadeInLeft waves-effect waves-light   red lighten-3" })*@
+                @*  @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-lime wow fadeInLeft waves-effect waves-light" })*@
+                @*   @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn wow fadeInLeft waves-effect waves-light   red lighten-3" })*@
             </div>
         </div>
     </div>
-<div class="container body-content">     
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
-</div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <footer class="page-footer center-on-small-only">
 
+        <!--Footer Links-->
+        <div class="container-fluid">
+            <div class="row">
+
+                <!--First column-->
+                <div class="col-md-3 offset-lg-1 hidden-lg-down">
+                    <h5 class="title">ABOUT MATERIAL DESIGN</h5>
+                    <p>Material Design (codenamed Quantum Paper) is a design language developed by Google. </p>
+
+                    <p>Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS, and JS framework - Bootstrap.</p>
+                </div>
+                <!--/.First column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Second column-->
+                <div class="col-lg-2 col-md-4 offset-lg-1">
+                    <h5 class="title">First column</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Second column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Third column-->
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="title">Second column</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Third column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Fourth column-->
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="title">Third column</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Fourth column-->
+
+            </div>
+        </div>
+
+        <hr>
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © ASP.NET MVC Course Project </a>
+
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

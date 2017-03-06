@@ -1,78 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@*<div class="view hm-black-strong">
-    <div class="full-bg-img flex-center">
-        <div class="center">
-            <img src="~/Trouvaille.png" />
-            @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-lime wow fadeInLeft waves-effect waves-light" })
-            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn wow fadeInLeft waves-effect waves-light   red lighten-3" })
-        </div>
-    </div>
-</div>*@
-
-
 <div class="row">
     <h3>Latest posts</h3>
     <form class="form-inline waves-effect waves-light">
         <input class="form-control" type="text" placeholder="Search">
     </form>
-
-    @*<form method="post">
-        <fieldset>
-            <div>
-                <label for="address">Address:</label>
-                <input style="width: 300px" type="text" name="address" value="@Request["address"]" />
-                <input type="submit" value="Map It!" />
-            </div>
-        </fieldset>
-    </form>
-    @if (IsPost)
-    {
-        @Microsoft.Web.Helpers.Maps.GetGoogleHtml(Request.Form["address"],
-            width: "400",
-            height: "400")
-    }*@
-
-    @*<script type="text/javascript">
-
-            function setText(val, e) {
-                document.getElementById(e).value = val;
-            }
-
-            function insertText(val, e) {
-                document.getElementById(e).value += val;
-            }
-
-            var nav = null;
-
-            function requestPosition() {
-                if (nav == null) {
-                    nav = window.navigator;
-                }
-                if (nav != null) {
-                    var geoloc = nav.geolocation;
-                    if (geoloc != null) {
-                        geoloc.getCurrentPosition(successCallback);
-                    } else {
-                        alert("geolocation not supported");
-                    }
-                } else {
-                    alert("Navigator not found");
-                }
-            }
-
-
-            function successCallback(position) {
-                setText(position.coords.latitude, "latitude");
-                setText(position.coords.longitude, "longitude");
-            }
-
-
-        </script>
-        <label for="latitude">Latitude: </label><input id="latitude" /> <br />
-        <label for="longitude">Longitude: </label><input id="longitude" /> <br />
-        <input type="button" onclick="requestPosition()" value="Get Latitude and Longitude"/>
-
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.495650723942!2d23.377242314681595!3d42.65085092468172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa86940322e46b%3A0x9dcf2a89d173b821!2sTelerik+Academy!5e0!3m2!1sen!2sbg!4v1488455309911" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>*@
 </div>

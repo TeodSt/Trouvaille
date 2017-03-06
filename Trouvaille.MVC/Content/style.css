@@ -5,13 +5,52 @@ body,
     height: 80%;
 }
 
-.view {
+        /* Navigation*/
+        
+        .navbar {
+            background-color: transparent;
+        }
+        
+        .scrolling-navbar {
+            -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+            -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+            transition: background .5s ease-in-out, padding .5s ease-in-out;
+        }
+        
+        .top-nav-collapse {
+            background-color: #985E6D;
+        }
+        
+        footer.page-footer {
+            background-color: #192231;
+            margin-top: 2rem;
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .navbar {
+                background-color: #192231;
+            }
+        }
+        /*Call to action*/
+        
+        .flex-center {
+            color: #fff;
+        }
+        
+        .view {
     background: url("../bigstock-White-Architecture-On-Santorin-81970817.jpg")no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
+        /*Contact section*/
+        
+        #contact .fa {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1C2331;
+        }
 
 button.dropdown-link {
     height: 50px;
@@ -29,17 +68,35 @@ button.dropdown-link {
         color: white;
     }
 
-ul.profile-menu {
-    background-color: rgba(22, 28, 29, 0.70);
-    min-width: 220px;
+
+
+.charcoal-color {
+    background: #985E6D !important;
 }
 
-    ul.profile-menu li a {
-        color: white;
-        text-shadow: 1px 1px 2px rgba(22, 28, 29, 0.70);
-    }
+.stormy-color {
+    background: #494E6B !important;
+}
 
-        ul.profile-menu li a:hover {
-            background-color: rgba(13, 13, 11, 0.68);
-            color: white;
-        }
+.cloud-color {
+    background: #98878F !important;
+}
+
+.sunset-color {
+    background: #985E6D !important;
+}
+
+.evening-color {
+    background: #192231 !important;
+}
+
+.btn-cloud {
+    background: #98878F !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px; 
+}
+  .btn-cloud:hover, .btn-cloud:focus, .btn-cloud:active {
+    background-color: #98878F !important; }
+  .btn-cloud.active {
+    background-color: #192231 !important; }

@@ -1,4 +1,4 @@
-/*!
+input/*!
  * Material Design for Bootstrap 4
  * Version: MDB FREE 4.3.1
  *
@@ -5708,8 +5708,8 @@ textarea.md-textarea {
   input[type=search-md]:focus:not([readonly]),
   input[type=search]:focus:not([readonly]),
   textarea.md-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid #cddc39;
-    box-shadow: 0 1px 0 0 #cddc39; }
+    border-bottom: 1px solid #98878F;
+    box-shadow: 0 1px 0 0 #98878F; }
   input[type=text]:focus:not([readonly]) + label,
   input[type=password]:focus:not([readonly]) + label,
   input[type=email]:focus:not([readonly]) + label,
@@ -5722,7 +5722,7 @@ textarea.md-textarea {
   input[type=search-md]:focus:not([readonly]) + label,
   input[type=search]:focus:not([readonly]) + label,
   textarea.md-textarea:focus:not([readonly]) + label {
-    color: #cddc39; }
+    color: #98878F; }
   input[type=text].valid, input[type=text]:focus.valid,
   input[type=password].valid,
   input[type=password]:focus.valid,
