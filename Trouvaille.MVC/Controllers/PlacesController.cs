@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
 using Bytes2you.Validation;
 using Trouvaille.Data;
 using Trouvaille.Models;
-using Trouvaille.Services;
 using Trouvaille.Services.Contracts;
 
 namespace Trouvaille.MVC.Controllers

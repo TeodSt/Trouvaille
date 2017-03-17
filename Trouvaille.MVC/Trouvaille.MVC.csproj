@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
       <HintPath>..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
       <Private>True</Private>
@@ -222,6 +226,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DbConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -230,6 +235,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\ServicesModule.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Private\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Private\PrivateAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -309,6 +315,7 @@
     <Content Include="Content\materialize-v0.97.5\font\material-design-icons\Material-Design-Icons.ttf" />
     <Content Include="Content\materialize-v0.97.5\font\material-design-icons\Material-Design-Icons.eot" />
     <Content Include="Areas\Private\Views\web.config" />
+    <Content Include="Areas\Private\Views\Profile\Profile.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -374,6 +381,14 @@
       <Project>{979D3388-28F2-4929-883C-047CBAE5721E}</Project>
       <Name>Trouvaille.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Trouvaille.Server.Common\Trouvaille.Server.Common.csproj">
+      <Project>{4d67aa4c-6492-40e1-b49e-16b318b21994}</Project>
+      <Name>Trouvaille.Server.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trouvaille.Services.Common\Trouvaille.Services.Common.csproj">
+      <Project>{dafe5655-198e-4e41-8d82-210b4305ee2e}</Project>
+      <Name>Trouvaille.Services.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Trouvaille.Services\Trouvaille.Services.csproj">
       <Project>{52ACE4FF-3AE7-4DBB-9A9B-181DD22F74B4}</Project>
       <Name>Trouvaille.Services</Name>
@@ -388,7 +403,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Private\Controllers\" />
     <Folder Include="Areas\Private\Models\" />
     <Folder Include="Areas\Private\Views\Shared\" />
   </ItemGroup>

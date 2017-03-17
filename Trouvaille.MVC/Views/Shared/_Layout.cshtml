@@ -22,16 +22,16 @@
             <div class="collapse navbar-collapse" id="navbarNav1">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        @Html.ActionLink("Home", "Index", new { controller = "Home" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Home", "Index", new { controller = "Home", area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("About", "About", new { controller = "Home" }, new { @class = "nav-link" })
+                        @Html.ActionLink("About", "About", new { controller = "Home", area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Trouvailles", "Contact", new { controller = "Home" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Trouvailles", "Contact", new { controller = "Home", area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Destinations", "Contact", new { controller = "Home" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Destinations", "Contact", new { controller = "Home", area = "" }, new { @class = "nav-link" })
                     </li>
                 </ul>
                 @Html.Partial("_LoginPartial")

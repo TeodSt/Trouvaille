@@ -44,7 +44,10 @@ namespace Trouvaille.Data
 
         public void Initialize()
         {
-            //this.InitializeIdentity();
+            this.InitializeIdentity();
+
+            this.SeedContinets();
+            this.SeedCountries();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -94,6 +97,48 @@ namespace Trouvaille.Data
                     userManager.AddToRole(newUser.Id, "Admin");
                 }
             }
+        }
+
+        private void SeedCountries()
+        {
+            var spain = new Country() { Name = "Spain", ContinentId = 3 };
+            var bulgaria = new Country() { Name = "Bulgaria", ContinentId = 3 };
+            var canada = new Country() { Name = "Canada", ContinentId = 5 };
+            var brazil = new Country() { Name = "Brazil", ContinentId = 4 };
+            var china = new Country() { Name = "China", ContinentId = 1 };
+            var australia = new Country() { Name = "Australia", ContinentId = 6 };
+            var kenya = new Country() { Name = "Kenya", ContinentId = 2 };
+
+            this.Countries.Add(spain);
+            this.Countries.Add(bulgaria);
+            this.Countries.Add(canada);
+            this.Countries.Add(brazil);
+            this.Countries.Add(china);
+            this.Countries.Add(australia);
+            this.Countries.Add(kenya);
+
+            this.SaveChanges();
+        }
+
+        private void SeedContinets()
+        {
+            var asia = new Continent() { Name = "Asia" };
+            var africa = new Continent() { Name = "Africa" };
+            var europe = new Continent() { Name = "Europe" };
+            var southAmerica = new Continent() { Name = "South America" };
+            var northAmerica = new Continent() { Name = "North America" };
+            var oceania = new Continent() { Name = "Oceania" };
+            var antartica = new Continent() { Name = "Antartica" };
+
+            this.Continents.Add(asia);
+            this.Continents.Add(africa);
+            this.Continents.Add(europe);
+            this.Continents.Add(southAmerica);
+            this.Continents.Add(northAmerica);
+            this.Continents.Add(oceania);
+            this.Continents.Add(antartica);
+
+            this.SaveChanges();
         }
     }
 }
