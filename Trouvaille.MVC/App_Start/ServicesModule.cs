@@ -19,6 +19,7 @@ namespace Trouvaille.MVC
 
             this.Bind<IPlaceService>().To<PlaceService>();
             this.Bind<ICountryService>().To<CountryService>();
+            this.Bind<IArticleService>().To<ArticleService>();
             this.Bind<IMappingService>().To<MappingService>();
         }
     }

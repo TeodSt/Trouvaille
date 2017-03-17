@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articles\AddArticleViewModel.cs" />
     <Compile Include="CountryViewModel.cs" />
     <Compile Include="Places\AddPlaceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

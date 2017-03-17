@@ -26,7 +26,13 @@
                     <a class="nav-link" data-toggle="tab" href="#panel12" role="tab"><i class="fa fa-heart"></i> Followers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fa fa-envelope"></i> Articles</a>
+                    @Ajax.ActionLink("Articles", "CreateArticle", new { controller = "profile" },
+                       new AjaxOptions
+                       {
+                           UpdateTargetId = "profile-container",
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.Replace
+                       }, new { @class = "nav-link", data_toggle = "tab" })
                 </li>
                
                 <li class="nav-item">

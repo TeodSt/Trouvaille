@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Trouvaille.Server.Models.Articles.AddArticleViewModel>
+
+@{ 
+    ViewBag.Title = "Articles";
+}
+
+@foreach(var article in Model)
+{
+    @Html.ActionLink(@article.Title, "ById", "Article", new { id = @article.Id }, new { @class = "some-class"} )
+    <h1>@article.Title</h1>
+}
+
+

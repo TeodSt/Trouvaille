@@ -3,6 +3,7 @@ using Bytes2you.Validation;
 using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
 using Trouvaille.Services.Contracts;
+using System;
 
 namespace Trouvaille.Services
 {
@@ -26,9 +27,10 @@ namespace Trouvaille.Services
             return articles;
         }
 
-        public Article GetArticleById(int id)
+        public Article GetArticleById(string id)
         {
-            Article article = this.articleRepository.GetById(id);
+            Guid guid = new Guid(id);
+            Article article = this.articleRepository.GetById(guid);
 
             return article;
         }
