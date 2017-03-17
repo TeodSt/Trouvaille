@@ -28,13 +28,30 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fa fa-envelope"></i> Articles</a>
                 </li>
+               
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fa fa-envelope"></i> Photos</a>
-                </li>
+                    @Ajax.ActionLink("Photos", "Photos", new { controller = "profile" },
+                       new AjaxOptions
+                       {
+                           UpdateTargetId = "profile-container",
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.Replace
+                       }, new { @class = "nav-link", data_toggle = "tab" })
+                </li>    
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fa fa-envelope"></i> Trouvaille</a>
+                    @Ajax.ActionLink("Trouvaille", "Place", new { controller = "profile"},
+                       new AjaxOptions
+                       {
+                           UpdateTargetId = "profile-container",
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.Replace
+                       }, new { @class = "nav-link", data_toggle = "tab" })
                 </li>
             </ul>
         </div>
+        <div id="profile-container" class="col-md-12"></div>
     </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -320,12 +320,16 @@
     <Content Include="Areas\Private\Views\Profile\Index.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Panel\Index.cshtml" />
+    <Content Include="Areas\Private\Views\Profile\_CreatePlace.cshtml" />
+    <Content Include="Areas\Private\Views\Profile\_Photos.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -388,6 +392,10 @@
     <ProjectReference Include="..\Trouvaille.Server.Common\Trouvaille.Server.Common.csproj">
       <Project>{4d67aa4c-6492-40e1-b49e-16b318b21994}</Project>
       <Name>Trouvaille.Server.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trouvaille.Server.Models\Trouvaille.Server.Models.csproj">
+      <Project>{04ec1652-b005-40b5-89a0-503f8b5e9aef}</Project>
+      <Name>Trouvaille.Server.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Trouvaille.Services.Common\Trouvaille.Services.Common.csproj">
       <Project>{dafe5655-198e-4e41-8d82-210b4305ee2e}</Project>

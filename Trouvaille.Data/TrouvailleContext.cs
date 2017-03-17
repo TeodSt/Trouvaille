@@ -44,10 +44,9 @@ namespace Trouvaille.Data
 
         public void Initialize()
         {
-            this.InitializeIdentity();
-
-            this.SeedContinets();
-            this.SeedCountries();
+            //this.InitializeIdentity();
+            //this.SeedContinets();
+            //this.SeedCountries();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

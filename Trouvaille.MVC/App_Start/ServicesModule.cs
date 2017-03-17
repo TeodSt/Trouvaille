@@ -3,6 +3,8 @@ using Ninject.Web.Common;
 using Trouvaille.Data;
 using Trouvaille.Data.Contracts;
 using Trouvaille.Services;
+using Trouvaille.Services.Common;
+using Trouvaille.Services.Common.Contracts;
 using Trouvaille.Services.Contracts;
 
 namespace Trouvaille.MVC
@@ -16,6 +18,8 @@ namespace Trouvaille.MVC
             this.Bind<IUnitOfWork>().To<UnitOfWork>();
 
             this.Bind<IPlaceService>().To<PlaceService>();
+            this.Bind<ICountryService>().To<CountryService>();
+            this.Bind<IMappingService>().To<MappingService>();
         }
     }
 }

@@ -8,6 +8,8 @@ namespace Trouvaille.MVC
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        private const string ServerModelsAssembly = "Trouvaille.Server.Models";
+
         protected void Application_Start()
         {
             DbConfig.InitializeDatabase();
@@ -15,7 +17,7 @@ namespace Trouvaille.MVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            AutoMapperConfig.Config(Assembly.GetCallingAssembly());
+            AutoMapperConfig.Config(Assembly.Load(ServerModelsAssembly));
         }
     }
 }

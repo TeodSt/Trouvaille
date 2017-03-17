@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Trouvaille.Services.Common.Contracts;
 
 namespace Trouvaille.Services.Common
@@ -7,7 +8,12 @@ namespace Trouvaille.Services.Common
     {
         public T Map<T>(object source)
         {
-            return Mapper.Map<T>(source);
+           return Mapper.Map<T>(source);
+        }
+
+        public TDestination Map<TSource, TDestination>(TSource source)
+        {
+            return Mapper.Map<TSource, TDestination>(source);
         }
 
         public TDestination Map<TSource, TDestination>(TSource source, TDestination destination)

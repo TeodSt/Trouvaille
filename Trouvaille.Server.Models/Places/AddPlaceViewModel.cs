@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Trouvaille.Models;
 using Trouvaille.Server.Common;
@@ -10,7 +11,7 @@ namespace Trouvaille.Server.Models.Places
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Username is required.")]
-        public string Username { get; set; }
+        public string FounderId { get; set; }
 
         [Required(ErrorMessage = "Longtitude is required.")]
         public double Longtitude { get; set; }
@@ -28,12 +29,15 @@ namespace Trouvaille.Server.Models.Places
         public string Description { get; set; }
 
         [Required]
-        public string CountryName { get; set; }
+        public int CountryId { get; set; }
+
+        public IEnumerable<CountryViewModel> Countries { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression congif)
         {
             congif.CreateMap<Place, AddPlaceViewModel>()
-                .ForMember(dest => dest.Username, opts => opts.MapFrom(src => src.Founder.FirstName));
+                .ForMember(dest => dest.FounderId, opts => opts.MapFrom(src => src.FounderId.ToString()))
+                .ForMember(dest => dest.Countries, opts => opts.Ignore());            
         }
     }
 }

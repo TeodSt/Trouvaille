@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Trouvaille.Models
 {
@@ -6,7 +7,7 @@ namespace Trouvaille.Models
     {
         public int Id { get; set; }
 
-        public int FounderId { get; set; }
+        public Guid FounderId { get; set; }
 
         public virtual User Founder { get; set; }
 
