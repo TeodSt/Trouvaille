@@ -1,7 +1,5 @@
 ﻿using Bytes2you.Validation;
 using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -73,11 +71,11 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult CreateArticle(AddArticleViewModel model)
         {
             model.CreatorId = this.User.Identity.GetUserId();
             model.PrivacyType = "Public";
-
             var article = this.mappingService.Map<AddArticleViewModel, Article>(model);
 
             this.articleService.AddArticle(article);

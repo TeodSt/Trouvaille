@@ -29,7 +29,8 @@ namespace Trouvaille.MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/mdb.css",
-                      "~/Content/style.css"));
+                      "~/Content/style.css",
+                      "~/Content/article.css"));
         }
     }
 }

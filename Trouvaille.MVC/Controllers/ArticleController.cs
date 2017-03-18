@@ -40,7 +40,6 @@ namespace Trouvaille.MVC.Controllers
         public ActionResult ById(string id)
         {
             var articleFromDb = this.articleService.GetArticleById(id);
-
             var model = this.mappingService.Map<Article, AddArticleViewModel>(articleFromDb);
 
             return this.View(model);

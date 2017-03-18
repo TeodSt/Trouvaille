@@ -3,6 +3,7 @@ using AutoMapper;
 using Trouvaille.Models;
 using Trouvaille.Server.Common;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Trouvaille.Server.Models.Articles
 {

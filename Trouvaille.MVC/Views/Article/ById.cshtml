@@ -1,10 +1,38 @@
 ﻿@model Trouvaille.Server.Models.Articles.AddArticleViewModel
 
-@{ 
+@{
     ViewBag.Title = Model.Title;
 }
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <div class="product-wrapper">
+            <div class="view overlay hm-white-light z-depth-1-half">
+                <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(109).jpg" class="img-fluid " alt="">
+                <div class="mask">
+                </div>
+            </div>
 
-<h1>@Model.Title</h1>
-<h3>@Model.Subheader</h3>
-<p>@Model.CreatorId</p>
-<p>@Model.Content</p>
+            <br>
+            <h2 class="h2-responsive">@Model.Title</h2>
+            <h5>by @Model.CreatorId</h5>
+            <hr>           
+            @Html.Raw(Model.Content)
+        </div>
+        <div class="row">
+            <div class="col comments">
+                <h2 class="h2-responsive">Comments</h2>
+            </div>
+            <div class="media">
+                <a class="media-left" href="#">
+                    <img class="rounded-circle" src="http://mdbootstrap.com/img//Photos/Avatars/avatar-7.jpg" alt="Generic placeholder image">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">John Doe</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus iure soluta. Quasi mollitia maxime nemo quam accusamus possimus, voluptatum expedita assumenda. Earum sit id ullam eum vel delectus!</p>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
