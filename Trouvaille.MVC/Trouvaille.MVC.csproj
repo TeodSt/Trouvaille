@@ -243,6 +243,7 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PicturesController.cs" />
     <Compile Include="Controllers\PlacesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -324,7 +325,7 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Panel\Index.cshtml" />
     <Content Include="Areas\Private\Views\Profile\_CreatePlace.cshtml" />
-    <Content Include="Areas\Private\Views\Profile\_Photos.cshtml" />
+    <Content Include="Areas\Private\Views\Profile\_UploadPicture.cshtml" />
     <Content Include="Areas\Private\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Private\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Private\Views\Profile\_CreateArticle.cshtml" />
@@ -556,6 +557,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Pictures\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trouvaille.Data\Trouvaille.Data.csproj">

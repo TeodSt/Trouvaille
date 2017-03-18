@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Trouvaille.Server.Models.Pictures.AddPictureViewModel>
+
+@{ 
+    ViewBag.Title = "Pictures";
+}
+
+@foreach(var picture in Model)
+{
+    <h1>@picture.Description</h1>
+    <img src=@picture.Path width="300"/>
+    <hr />
+}

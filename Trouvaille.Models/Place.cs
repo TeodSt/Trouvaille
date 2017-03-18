@@ -7,6 +7,7 @@ namespace Trouvaille.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public Guid FounderId { get; set; }
 
         public virtual User Founder { get; set; }

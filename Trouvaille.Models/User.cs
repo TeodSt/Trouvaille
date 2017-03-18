@@ -9,7 +9,7 @@ namespace Trouvaille.Models
 {
     public class User : IdentityUser
     {
-        private ICollection<Article> articles; 
+        private ICollection<Article> articles;
         private ICollection<Picture> pictures;
 
         public User()
@@ -29,7 +29,7 @@ namespace Trouvaille.Models
         public string LastName { get; set; }
 
         public string ImagePath { get; set; }
-
+        
         public virtual ICollection<Article> LikedArticles
         {
             get { return this.articles; }

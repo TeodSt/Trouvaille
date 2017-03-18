@@ -22,6 +22,7 @@ namespace Trouvaille.Models
         [Required]
         [MinLength(5)]
         [MaxLength(40)]
+        [Index(IsUnique = true)]
         public string Title { get; set; }
 
         [Required]
@@ -30,11 +31,16 @@ namespace Trouvaille.Models
 
         public string Subheader { get; set; }
 
+        [Required]
         public Guid CreatorId { get; set; }
 
         public virtual User Creator { get; set; }
 
         public PrivacyType PrivacyType { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public string ImagePath { get; set; }
 
         public virtual ICollection<Tag> Tags
         {

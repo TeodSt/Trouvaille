@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Trouvaille.Models.Enums;
 
 namespace Trouvaille.Models
@@ -13,16 +15,24 @@ namespace Trouvaille.Models
             this.tags = new HashSet<Tag>();
         }
 
-        public int Id { get; set; }
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
-        public int CreatorId { get; set; }
+        [Required]
+        public Guid CreatorId { get; set; }
 
         public virtual User Creator { get; set; }
 
         [Required]
         public string Path { get; set; }
 
+        [Required]
+        public string  Description { get; set; }
+
         public PrivacyType PrivacyType { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         public virtual ICollection<Tag> Tags
         {

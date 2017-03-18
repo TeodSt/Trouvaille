@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Trouvaille.Models
 {
@@ -19,6 +20,7 @@ namespace Trouvaille.Models
         [Required]
         [MinLength(3)]
         [MaxLength(20)]
+        [Index(IsUnique = true)]
         public string Name { get; set; }
 
         public virtual ICollection<Picture> Pictures

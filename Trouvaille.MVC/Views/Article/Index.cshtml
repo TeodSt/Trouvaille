@@ -11,29 +11,19 @@
             <h1>@article.Title</h1>*@
         <!--Post-->
         <div class="post-wrapper">
-            <!--Post data-->
             <h1 class="h1-responsive">@article.Title <small class="text-muted"></small></h1>
             <h5>Written by <a href="">@article.CreatorId</a>, 30.04.2016</h5>
 
             <br>
-
-            <!--Featured image -->
             <div class="view overlay hm-white-light z-depth-1-half">
                 <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(116).jpg" class="img-fluid " alt="">
                 <div class="mask">
                 </div>
             </div>
-
             <br>
-
-            <!--Post excerpt-->
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, officia omnis. Vero nihil neque dignissimos hic voluptas quisquam amet porro, similique libero ullam veritatis tempora cumque voluptates harum. Repellendus, impedit.</p>
-
-            <!--"Read more" button-->
+            <p>@article.Subheader</p>
             @Html.ActionLink("Read more", "ById", "Article", new { id = @article.Id }, new { @class = "btn sunset-color" })
-            
         </div>
-        <!--/.Post-->
         <hr>
     }
 </div>
