@@ -5,12 +5,14 @@ namespace Trouvaille.Services.Contracts
 {
     public interface IArticleService
     {
-        IEnumerable<Article> GetAllArticles();
+        IEnumerable<Article> GetAllArticles(int currentPage, int maxRows);
 
         Article GetArticleById(string id);
 
         void AddArticle(Article article);
 
         void DeleteArticle(Article article);
+
+        int GetCountOfArticles();
     }
 }

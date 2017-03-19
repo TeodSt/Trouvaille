@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
+using System;
 
 namespace Trouvaille.Data
 {
@@ -44,9 +45,10 @@ namespace Trouvaille.Data
 
         public void Initialize()
         {
-            //this.InitializeIdentity();
-            //this.SeedContinets();
-            //this.SeedCountries();
+            this.InitializeIdentity();
+            this.SeedContinets();
+            this.SeedCountries();
+            this.SeedArticles();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -100,44 +102,81 @@ namespace Trouvaille.Data
 
         private void SeedCountries()
         {
-            var spain = new Country() { Name = "Spain", ContinentId = 3 };
-            var bulgaria = new Country() { Name = "Bulgaria", ContinentId = 3 };
-            var canada = new Country() { Name = "Canada", ContinentId = 5 };
-            var brazil = new Country() { Name = "Brazil", ContinentId = 4 };
-            var china = new Country() { Name = "China", ContinentId = 1 };
-            var australia = new Country() { Name = "Australia", ContinentId = 6 };
-            var kenya = new Country() { Name = "Kenya", ContinentId = 2 };
+            if (!this.Countries.Any())
+            {
+                var spain = new Country() { Name = "Spain", ContinentId = 3 };
+                var bulgaria = new Country() { Name = "Bulgaria", ContinentId = 3 };
+                var canada = new Country() { Name = "Canada", ContinentId = 5 };
+                var brazil = new Country() { Name = "Brazil", ContinentId = 4 };
+                var china = new Country() { Name = "China", ContinentId = 1 };
+                var australia = new Country() { Name = "Australia", ContinentId = 6 };
+                var kenya = new Country() { Name = "Kenya", ContinentId = 2 };
 
-            this.Countries.Add(spain);
-            this.Countries.Add(bulgaria);
-            this.Countries.Add(canada);
-            this.Countries.Add(brazil);
-            this.Countries.Add(china);
-            this.Countries.Add(australia);
-            this.Countries.Add(kenya);
+                this.Countries.Add(spain);
+                this.Countries.Add(bulgaria);
+                this.Countries.Add(canada);
+                this.Countries.Add(brazil);
+                this.Countries.Add(china);
+                this.Countries.Add(australia);
+                this.Countries.Add(kenya);
 
-            this.SaveChanges();
+                this.SaveChanges();
+            }
         }
 
         private void SeedContinets()
         {
-            var asia = new Continent() { Name = "Asia" };
-            var africa = new Continent() { Name = "Africa" };
-            var europe = new Continent() { Name = "Europe" };
-            var southAmerica = new Continent() { Name = "South America" };
-            var northAmerica = new Continent() { Name = "North America" };
-            var oceania = new Continent() { Name = "Oceania" };
-            var antartica = new Continent() { Name = "Antartica" };
+            if (!this.Continents.Any())
+            {
+                var asia = new Continent() { Name = "Asia" };
+                var africa = new Continent() { Name = "Africa" };
+                var europe = new Continent() { Name = "Europe" };
+                var southAmerica = new Continent() { Name = "South America" };
+                var northAmerica = new Continent() { Name = "North America" };
+                var oceania = new Continent() { Name = "Oceania" };
+                var antartica = new Continent() { Name = "Antartica" };
 
-            this.Continents.Add(asia);
-            this.Continents.Add(africa);
-            this.Continents.Add(europe);
-            this.Continents.Add(southAmerica);
-            this.Continents.Add(northAmerica);
-            this.Continents.Add(oceania);
-            this.Continents.Add(antartica);
+                this.Continents.Add(asia);
+                this.Continents.Add(africa);
+                this.Continents.Add(europe);
+                this.Continents.Add(southAmerica);
+                this.Continents.Add(northAmerica);
+                this.Continents.Add(oceania);
+                this.Continents.Add(antartica);
 
-            this.SaveChanges();
+                this.SaveChanges();
+            }
+        }
+
+        private void SeedArticles()
+        {
+            if (!this.Articles.Any())
+            {
+                var creator = this.Users.FirstOrDefault();
+
+                var articleOne = new Article()
+                {
+                    Title = "Lorem Ipsum",
+                    Subheader = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+                    Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non risus quam. Aliquam eget dictum tortor. Nulla imperdiet elementum turpis vitae dapibus. Sed tempor lectus id facilisis molestie. Aenean dignissim vulputate tortor, sed imperdiet est aliquet dictum. Proin eu consectetur dui. Vestibulum ut auctor purus. Donec bibendum, turpis vitae dapibus consequat, magna nisl scelerisque justo, eget iaculis urna sem at lacus.",
+                    CreatedOn = DateTime.Now,
+                    Creator = creator
+                };
+
+                var articleTwo = new Article()
+                {
+                    Title = "Lorem Ipsum 2",
+                    Subheader = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+                    Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non risus quam. Aliquam eget dictum tortor. Nulla imperdiet elementum turpis vitae dapibus. Sed tempor lectus id facilisis molestie. Aenean dignissim vulputate tortor, sed imperdiet est aliquet dictum. Proin eu consectetur dui. Vestibulum ut auctor purus. Donec bibendum, turpis vitae dapibus consequat, magna nisl scelerisque justo, eget iaculis urna sem at lacus.",
+                    CreatedOn = DateTime.Now,
+                    Creator = creator
+                };
+
+                this.Articles.Add(articleOne);
+                this.Articles.Add(articleTwo);
+
+                this.SaveChanges();
+            }
         }
     }
 }

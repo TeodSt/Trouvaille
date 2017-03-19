@@ -4,6 +4,7 @@ using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
 using Trouvaille.Services.Contracts;
 using System;
+using System.Linq;
 
 namespace Trouvaille.Services
 {
@@ -20,11 +21,19 @@ namespace Trouvaille.Services
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<Article> GetAllArticles()
+        public IEnumerable<Article> GetAllArticles(int page, int maxRows)
         {
-            IEnumerable<Article> articles = this.articleRepository.GetAll();
+            IEnumerable<Article> articles = this.articleRepository.GetAll()
+                                                .Skip((page - 1) * maxRows)
+                                                .Take(maxRows);
 
             return articles;
+        }
+
+        public int GetCountOfArticles()
+        {
+            int count = this.articleRepository.GetAll().Count();
+            return count;
         }
 
         public Article GetArticleById(string id)

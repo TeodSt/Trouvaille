@@ -16,6 +16,8 @@ namespace Trouvaille.MVC.Controllers
         private readonly IMappingService mappingService;
         private readonly IArticleService articleService;
 
+        private const int MaxRows = 5;
+
         public ArticleController(IMappingService mappingService, IArticleService articleService)
         {
             Guard.WhenArgument(mappingService, "mappingService").IsNull().Throw();
@@ -25,16 +27,20 @@ namespace Trouvaille.MVC.Controllers
             this.articleService = articleService;
         }
 
-        // GET: Article
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-          //  AddArticleViewModel model = new AddArticleViewModel();
-
-            var articles = this.articleService.GetAllArticles();
+            var articles = this.articleService.GetAllArticles(page, MaxRows);
+            int  countOfArticles = this.articleService.GetCountOfArticles();
 
             var mappedModels = this.mappingService.Map<IEnumerable<AddArticleViewModel>>(articles);
+            ArticlesViewModel model = new ArticlesViewModel();
+            double pageCount = (double)(countOfArticles / Convert.ToDecimal(MaxRows));
 
-            return this.View(mappedModels);
+            model.PageCount = (int)Math.Ceiling(pageCount);
+            model.Articles = mappedModels;
+            model.CurrentPageIndex = page;
+
+            return this.View(model);
         }
 
         public ActionResult ById(string id)

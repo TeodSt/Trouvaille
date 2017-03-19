@@ -1,30 +1,37 @@
-﻿@model IEnumerable<Trouvaille.Server.Models.Articles.AddArticleViewModel>
+﻿@model Trouvaille.Server.Models.Articles.ArticlesViewModel
 
 @{
     ViewBag.Title = "Articles";
 }
 
 <div class="col-lg-8">
-    @foreach (var article in Model)
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
     {
-        @*@Html.ActionLink(@article.Title, "ById", "Article", new { id = @article.Id }, new { @class = "some-class" })
-            <h1>@article.Title</h1>*@
-        <!--Post-->
-        <div class="post-wrapper">
-            <h1 class="h1-responsive">@article.Title <small class="text-muted"></small></h1>
-            <h5>Written by <a href="">@article.CreatorId</a>, 30.04.2016</h5>
+        foreach (var article in Model.Articles)
+        {
+            <div class="post-wrapper">
+                <h1 class="h1-responsive">@article.Title <small class="text-muted"></small></h1>
+                <h5>Written by @Html.ActionLink(@article.CreatorUsername + "1", "ById", "User", new { id = @article.CreatorId }, new { }), @string.Format("{0:dd/MM/yyyy}", article.CreatedOn)</h5>
 
-            <br>
-            <div class="view overlay hm-white-light z-depth-1-half">
-                <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(116).jpg" class="img-fluid " alt="">
-                <div class="mask">
+                <br>
+                <div class="view overlay hm-white-light z-depth-1-half">
+                    <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(116).jpg" class="img-fluid " alt="">
+                    <div class="mask">
+                    </div>
                 </div>
+                <br>
+                <p>@article.Subheader</p>
+                @Html.ActionLink("Read more", "ById", "Article", new { id = @article.Id }, new { @class = "btn sunset-color" })
             </div>
-            <br>
-            <p>@article.Subheader</p>
-            @Html.ActionLink("Read more", "ById", "Article", new { id = @article.Id }, new { @class = "btn sunset-color" })
-        </div>
-        <hr>
+            <hr>
+        }
+        <nav>
+            <ul class="pagination">
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <li class="page-item"><a href="@Url.Action("Index","Article", new { page = i } )" class="page-link">@i</a></li>
+                }
+            </ul>
+        </nav>
     }
 </div>
-

@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articles\AddArticleViewModel.cs" />
+    <Compile Include="Articles\ArticlesViewModel.cs" />
     <Compile Include="CountryViewModel.cs" />
     <Compile Include="Pictures\AddPictureViewModel.cs" />
     <Compile Include="Places\AddPlaceViewModel.cs" />
