@@ -8,10 +8,10 @@ namespace Trouvaille.Services
 {
     public class PlaceService : IPlaceService
     {
-        private readonly IGenericRepository<Place> placeRepository;
+        private readonly IEfGenericRepository<Place> placeRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public PlaceService(IGenericRepository<Place> placeRepository, IUnitOfWork unitOfWork)
+        public PlaceService(IEfGenericRepository<Place> placeRepository, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(placeRepository, "placeRepository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();

@@ -10,10 +10,10 @@ namespace Trouvaille.Services
 {
     public class ArticleService : IArticleService
     {
-        private readonly IGenericRepository<Article> articleRepository;
+        private readonly IEfGenericRepository<Article> articleRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public ArticleService(IGenericRepository<Article> articleRepository, IUnitOfWork unitOfWork)
+        public ArticleService(IEfGenericRepository<Article> articleRepository, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(articleRepository, "articleRepository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();

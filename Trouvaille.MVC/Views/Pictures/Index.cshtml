@@ -1,12 +1,26 @@
 ﻿@model IEnumerable<Trouvaille.Server.Models.Pictures.AddPictureViewModel>
 
-@{ 
+@{
     ViewBag.Title = "Pictures";
 }
 
-@foreach(var picture in Model)
-{
-    <h1>@picture.Description</h1>
-    <img src=@picture.Path width="300"/>
-    <hr />
-}
+<h1>Pictures</h1>
+<div class="row">
+    @foreach (var picture in Model)
+    {
+        <div class="col-lg-6">
+            <div class="card" style="width: 500px;">
+                <div class="view overlay hm-white-slight">
+                    <img src=@picture.Path  class="img-fluid" alt=@picture.Description>
+                </div>
+                <div class="card-block">
+                    <!--Title-->
+                    <h5 class="card-title">Uploaded: @string.Format("{0:dd/MM/yyyy}", picture.CreatedOn)</h5>
+                    <!--Text-->
+                    <p class="card-text">Caption: @picture.Description</p>
+                    <p class="card-text">@picture.CreatorUsername</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

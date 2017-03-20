@@ -8,9 +8,9 @@ using Trouvaille.Data.Contracts;
 
 namespace Trouvaille.Data
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class EfGenericRepository<T> : IEfGenericRepository<T> where T : class
     {
-        public GenericRepository(ITrouvailleContext context)
+        public EfGenericRepository(ITrouvailleContext context)
         {
             this.Context = context;
             this.DbSet = this.Context.Set<T>();

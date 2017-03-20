@@ -14,13 +14,14 @@ namespace Trouvaille.MVC
         public override void Load()
         {
             this.Bind<ITrouvailleContext>().To<TrouvailleContext>().InSingletonScope();
-            this.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>));
+            this.Bind(typeof(IEfGenericRepository<>)).To(typeof(EfGenericRepository<>));
             this.Bind<IUnitOfWork>().To<UnitOfWork>();
 
             this.Bind<IPlaceService>().To<PlaceService>();
             this.Bind<ICountryService>().To<CountryService>();
             this.Bind<IArticleService>().To<ArticleService>();
             this.Bind<IPictureService>().To<PictureService>();
+            this.Bind<IUserService>().To<UserService>();
 
             this.Bind<IMappingService>().To<MappingService>();
         }

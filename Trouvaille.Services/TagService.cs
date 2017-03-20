@@ -8,10 +8,10 @@ namespace Trouvaille.Services
 {
     public class TagService : ITagService
     {
-        private readonly IGenericRepository<Tag> tagRepository;
+        private readonly IEfGenericRepository<Tag> tagRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public TagService(IGenericRepository<Tag> tagRepository, IUnitOfWork unitOfWork)
+        public TagService(IEfGenericRepository<Tag> tagRepository, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(tagRepository, "tagRepository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Trouvaille.Data.Contracts
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IEfGenericRepository<T> where T : class
     {
         T GetById(object id);
 

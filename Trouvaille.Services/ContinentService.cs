@@ -8,10 +8,10 @@ namespace Trouvaille.Services
 {
     public class ContinentService : IContinentService
     {
-        private readonly IGenericRepository<Continent> continentRepository;
+        private readonly IEfGenericRepository<Continent> continentRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public ContinentService(IGenericRepository<Continent> continentRepository, IUnitOfWork unitOfWork)
+        public ContinentService(IEfGenericRepository<Continent> continentRepository, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(continentRepository, "continentRepository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();

@@ -22,25 +22,32 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         private readonly ICountryService countryService;
         private readonly IArticleService articleService;
         private readonly IPictureService pictureService;
+        private readonly IUserService userService;
+
+        private const string ArticlesFileLocation = "/Photos/Articles/";
+        private const string PicturesFileLocation = "/Photos/Pictures/";
 
         public ProfileController(
             IMappingService mappingService,
             IPlaceService placesService,
             ICountryService countryService,
             IArticleService articleService,
-            IPictureService pictureService)
+            IPictureService pictureService,
+            IUserService userService)
         {
             Guard.WhenArgument(mappingService, "mappingService").IsNull().Throw();
             Guard.WhenArgument(placesService, "placesService").IsNull().Throw();
             Guard.WhenArgument(countryService, "countryService").IsNull().Throw();
             Guard.WhenArgument(articleService, "articleService").IsNull().Throw();
             Guard.WhenArgument(pictureService, "pictureService").IsNull().Throw();
+            Guard.WhenArgument(userService, "userService").IsNull().Throw();
 
             this.mappingService = mappingService;
             this.placesService = placesService;
             this.countryService = countryService;
             this.articleService = articleService;
             this.pictureService = pictureService;
+            this.userService = userService;
         }
 
         // GET: Private/Profile
@@ -81,11 +88,17 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         [ValidateInput(false)]
         public ActionResult CreateArticle(AddArticleViewModel model)
         {
-            model.CreatorId = this.User.Identity.GetUserId();
+            string filePath = ArticlesFileLocation + model.Title.Replace(' ', '-');
+            string userId = this.User.Identity.GetUserId();
+
+            model.CreatorId = userId;
+            model.CreatorUsername = this.User.Identity.GetUserName();
             model.PrivacyType = "Public";
             model.CreatedOn = DateTime.Now;
+            model.ImagePath = this.SavePhotoToFileSystem(filePath);
 
             var article = this.mappingService.Map<AddArticleViewModel, Article>(model);
+            article.Creator = this.userService.GetUserById(userId);
 
             this.articleService.AddArticle(article);
 
@@ -109,6 +122,19 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             model.PrivacyType = "Public";
             model.CreatedOn = DateTime.Now;
 
+            string filePath = PicturesFileLocation + currentUserUsername;
+
+            model.Path = this.SavePhotoToFileSystem(filePath);
+
+            var picture = this.mappingService.Map<AddPictureViewModel, Picture>(model);
+
+            this.pictureService.AddPicture(picture);
+
+            return this.View("Index");
+        }
+
+        private string SavePhotoToFileSystem(string path)
+        {
             string filePath = "";
 
             if (this.Request.Files.Count > 0)
@@ -118,17 +144,12 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(file.FileName);
-                    filePath = "/Photos/Pictures/" + currentUserUsername + "-"+ fileName;
+                    filePath = path +  "-" + fileName;
                     file.SaveAs(this.Server.MapPath(filePath));
                 }
             }
 
-            model.Path = filePath;
-            var picture = this.mappingService.Map<AddPictureViewModel, Picture>(model);
-
-            this.pictureService.AddPicture(picture);
-
-            return this.View("Index");
+            return filePath;
         }
     }
 }

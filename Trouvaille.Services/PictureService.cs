@@ -8,10 +8,10 @@ namespace Trouvaille.Services
 {
     public class PictureService : IPictureService
     {
-        private readonly IGenericRepository<Picture> pictureRepository; 
+        private readonly IEfGenericRepository<Picture> pictureRepository; 
         private readonly IUnitOfWork unitOfWork;
         
-        public PictureService(IGenericRepository<Picture> pictureRepository, IUnitOfWork unitOfWork)
+        public PictureService(IEfGenericRepository<Picture> pictureRepository, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(pictureRepository, "pictureRepository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();

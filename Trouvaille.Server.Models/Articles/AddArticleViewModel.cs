@@ -27,6 +27,8 @@ namespace Trouvaille.Server.Models.Articles
 
         public string PrivacyType { get; set; }
 
+        public string ImagePath { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression congif)

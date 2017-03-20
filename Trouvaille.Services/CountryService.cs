@@ -8,10 +8,10 @@ namespace Trouvaille.Services
 {
     public class CountryService : ICountryService
     {
-        private readonly IGenericRepository<Country> countryRepository;
+        private readonly IEfGenericRepository<Country> countryRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public CountryService(IGenericRepository<Country> countryRepository, IUnitOfWork unitOfWork)
+        public CountryService(IEfGenericRepository<Country> countryRepository, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(countryRepository, "countryRepository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();

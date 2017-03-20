@@ -8,14 +8,14 @@
     <div class="col-md-12">
         <div class="product-wrapper">
             <div class="view overlay hm-white-light z-depth-1-half">
-                <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(109).jpg" class="img-fluid " alt="">
+                <img src=@Model.ImagePath class="img-fluid " alt="">
                 <div class="mask">
                 </div>
             </div>
 
             <br>
             <h2 class="h2-responsive">@Model.Title</h2>
-            <h5>by @Model.CreatorId</h5>
+            <h5>by @Model.CreatorUsername</h5>
             <hr>           
             @Html.Raw(Model.Content)
         </div>
