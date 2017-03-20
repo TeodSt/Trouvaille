@@ -54,7 +54,11 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         // GET: Private/Profile
         public ActionResult Index()
         {
-            return this.View();
+            var user = this.userService.GetUserById(this.User.Identity.GetUserId());
+
+            var mapped = this.mappingService.Map<UserViewModel>(user);
+
+            return this.View(mapped);
         }
 
         public ActionResult Place()

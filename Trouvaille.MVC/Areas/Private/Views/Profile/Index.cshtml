@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Trouvaille.Server.Models.UserViewModel
+@{
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,10 +8,10 @@
 <div class="jumbotron">
     <div class="row">
         <div class="col-md-3">
-            <img width="150" src="https://yt3.ggpht.com/-Kcd3KMxoqzw/AAAAAAAAAAI/AAAAAAAAAAA/EvhGpQ4rsh8/s900-c-k-no-mo-rj-c0xffffff/photo.jpg" class="rounded-circle" />
+            <img width="150" src=@Model.ImagePath class="rounded-circle" />
         </div>
         <div class="col-md-4">
-            <p>@User.Identity.Name</p>
+            <p>@Model.UserName</p>
             @*<p>
                 <button class="btn btn-cloud">Follow</button>
             </p>*@

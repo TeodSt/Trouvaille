@@ -15,6 +15,8 @@ namespace Trouvaille.Server.Models
 
         public string LastName { get; set; }
 
+        public string ImagePath { get; set; }
+
         public IEnumerable<AddArticleViewModel> Articles { get; set; }
     }
 }
