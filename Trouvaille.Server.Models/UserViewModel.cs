@@ -1,5 +1,7 @@
-﻿using Trouvaille.Models;
+﻿using System.Collections.Generic;
+using Trouvaille.Models;
 using Trouvaille.Server.Common;
+using Trouvaille.Server.Models.Articles;
 
 namespace Trouvaille.Server.Models
 {
@@ -12,5 +14,7 @@ namespace Trouvaille.Server.Models
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public IEnumerable<AddArticleViewModel> Articles { get; set; }
     }
 }

@@ -24,8 +24,8 @@ namespace Trouvaille.Services
         public IEnumerable<Article> GetAllArticles(int page, int maxRows)
         {
             IEnumerable<Article> articles = this.articleRepository.GetAll()
-                                                .Skip((page - 1) * maxRows)
-                                                .Take(maxRows);
+                                         .Skip((page - 1) * maxRows)
+                                         .Take(maxRows);
 
             return articles;
         }
@@ -60,6 +60,14 @@ namespace Trouvaille.Services
                 this.articleRepository.Delete(article);
                 this.unitOfWork.Commit();
             }
+        }
+
+        public IEnumerable<Article> GetArticlesByUserId(string userId)
+        {
+            Guid id = new Guid(userId);
+            IEnumerable<Article> articles = this.articleRepository.GetAll(x => x.CreatorId == id);
+
+            return articles;
         }
     }
 }

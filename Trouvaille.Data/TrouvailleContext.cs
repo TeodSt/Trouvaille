@@ -57,20 +57,26 @@ namespace Trouvaille.Data
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             base.OnModelCreating(modelBuilder);
-
-            //modelBuilder.Entity<Article>().HasRequired(x => x.Creator).WithMany().HasForeignKey(x => x.CreatorId);
-            //modelBuilder.Entity<Picture>().HasKey(x => x.CreatorId);
-            //modelBuilder.Entity<Place>().HasKey(x => x.FounderId);
         }
 
         private void InitializeIdentity()
         {
+            
+
             if (!this.Users.Any())
             {
                 var roleStore = new RoleStore<IdentityRole>(this);
                 var roleManager = new RoleManager<IdentityRole>(roleStore);
                 var userStore = new UserStore<User>(this);
                 var userManager = new UserManager<User>(userStore);
+
+                var userRole = roleManager.FindByName("User");
+
+                if (userRole == null)
+                {
+                    userRole = new IdentityRole("User");
+                    roleManager.Create(userRole);
+                }
 
                 // Add missing roles
                 var role = roleManager.FindByName("Admin");

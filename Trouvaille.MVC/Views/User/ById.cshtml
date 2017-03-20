@@ -1,5 +1,68 @@
-﻿@model Trouvaille.Models.User
+﻿@model Trouvaille.Server.Models.UserViewModel
 
-<h1>@Model.UserName</h1>
-<h1>@Model.FirstName</h1>
-<h1>@Model.LastName</h1>
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-3">
+            <img width="150" src="https://yt3.ggpht.com/-Kcd3KMxoqzw/AAAAAAAAAAI/AAAAAAAAAAA/EvhGpQ4rsh8/s900-c-k-no-mo-rj-c0xffffff/photo.jpg" class="rounded-circle" />
+        </div>
+        <div class="col-md-4">
+            <p>@Model.UserName</p>
+            @*<p>
+                    <button class="btn btn-cloud">Follow</button>
+                </p>*@
+        </div>
+    </div>
+
+    <div>
+        @foreach (var article in Model.Articles)
+        {
+            <h1>@article.Title</h1>
+            <h3>@article.Subheader</h3>
+        }
+    </div>
+    @*<div class="row">
+        <div class="col offset-2">
+            <ul class="nav nav-tabs md-pills pills-ins" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class="fa fa-user"></i> Personal info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#panel12" role="tab"><i class="fa fa-heart"></i> Followers</a>
+                </li>
+                <li class="nav-item">
+                    @Ajax.ActionLink("Articles", "CreateArticle", new { controller = "profile" },
+                       new AjaxOptions
+                       {
+                           UpdateTargetId = "profile-container",
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.Replace
+                       }, new { @class = "nav-link", data_toggle = "tab" })
+                </li>
+
+                <li class="nav-item">
+                    @Ajax.ActionLink("Photos", "UploadPicture", new { controller = "profile" },
+                       new AjaxOptions
+                       {
+                           UpdateTargetId = "profile-container",
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.Replace
+                       }, new { @class = "nav-link", data_toggle = "tab" })
+                </li>
+                <li class="nav-item">
+                    @Ajax.ActionLink("Trouvaille", "Place", new { controller = "profile" },
+                       new AjaxOptions
+                       {
+                           UpdateTargetId = "profile-container",
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.Replace
+                       }, new { @class = "nav-link", data_toggle = "tab" })
+                </li>
+            </ul>
+        </div>
+        <div id="profile-container" class="col-md-12"></div>
+    </div>
+</div>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

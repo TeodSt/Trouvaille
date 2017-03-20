@@ -7,6 +7,8 @@ namespace Trouvaille.Services.Contracts
     {
         IEnumerable<Article> GetAllArticles(int currentPage, int maxRows);
 
+        IEnumerable<Article> GetArticlesByUserId(string userId);
+
         Article GetArticleById(string id);
 
         void AddArticle(Article article);

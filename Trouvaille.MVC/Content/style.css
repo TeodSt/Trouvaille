@@ -77,6 +77,11 @@ button.dropdown-link {
     margin-bottom: 2rem;
 }
 
+.articles-img {
+    height: 300px;
+    width: 500px;
+}
+
 .editor {
     height: 500px;
 }
