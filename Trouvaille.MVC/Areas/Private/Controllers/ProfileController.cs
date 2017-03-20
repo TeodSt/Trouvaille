@@ -15,6 +15,7 @@ using Trouvaille.Services.Contracts;
 
 namespace Trouvaille.MVC.Areas.Private.Controllers
 {
+    [Authorize(Roles = "Admin, User")]
     public class ProfileController : Controller
     {
         private readonly IMappingService mappingService;

@@ -7,7 +7,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-  
+    @Scripts.Render("~/bundles/jquery")
 </head>
 
 <body>
@@ -24,12 +24,12 @@
                     <li class="nav-item">
                         @Html.ActionLink("Articles", "Index", new { controller = "Article", area = "" }, new { @class = "nav-link" })
                     </li>
-                    @*<li class="nav-item">
-                        @Html.ActionLink("Trouvailles", "Contact", new { controller = "Home", area = "" }, new { @class = "nav-link" })
-                    </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Destinations", "Contact", new { controller = "Home", area = "" }, new { @class = "nav-link" })
-                    </li>*@
+                        @Html.ActionLink("Places", "Index", new { controller = "Places", area = "" }, new { @class = "nav-link" })
+                    </li>
+                    @* <li class="nav-item">
+                            @Html.ActionLink("Destinations", "Contact", new { controller = "Home", area = "" }, new { @class = "nav-link" })
+                        </li>*@
                     <li class="nav-item">
                         @Html.ActionLink("Pictures", "Index", new { controller = "Pictures", area = "" }, new { @class = "nav-link" })
                     </li>
@@ -80,17 +80,16 @@
                         <li><a href="#!">Photos</a></li>
                         <li><a href="#!">Trouvaille</a></li>
                     </ul>
-                </div>               
+                </div>
             </div>
         </div>
         <hr>
         <div class="footer-copyright">
             <div class="container-fluid">
-                © ASP.NET MVC Course Project 
+                © ASP.NET MVC Course Project
             </div>
         </div>
     </footer>
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Trouvaille.Server.Models.Places.PlaceViewModel>
+
+@{  
+    ViewBag.Title = "Places";
+}
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrFFeTMMLaOj49X29A_qeVbsMDs97rAfQ">
+</script>
+<script>
+    function createMap(latitude, longitude, placeId) {
+        var map = new google.maps.Map(document.getElementById(placeId), {
+            zoom: 13,
+            center: new google.maps.LatLng(latitude, longitude),
+            mapTypeId: 'terrain'
+        });
+
+        var latLng = new google.maps.LatLng(latitude, longitude);
+        var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+        });
+    }
+</script>
+@foreach (var place in Model)
+{
+        <div class="divider-new">
+            <h2 class="h2-responsive wow fadeInUp">@place.Address</h2>
+        </div>
+        <div class="row">
+        <div class="col-md-8">
+            <div id=@place.Id class="z-depth-1 wow fadeInUp" style="height: 300px"></div>
+        </div>
+
+            <div class="col-md-4">
+                <ul class="text-center">
+                    <li class="wow fadeInUp">
+                        <h4>Address</h4>
+                        <p>@place.Address, @place.CountryId</p>
+                    </li>
+
+                    <li class="wow fadeInUp">
+                        <h4>Description</h4>
+                        <p>@place.Description</p>
+                    </li>
+
+                    <li class="wow fadeInUp">
+                        <h5>Who found it?</h5>
+                        <p>@place.FounderId</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                createMap(@place.Latitude, @place.Longtitude, @place.Id);
+            });
+        </script>
+}
+
+

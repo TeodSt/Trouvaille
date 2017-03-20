@@ -1,81 +1,61 @@
-﻿using System.Net;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Bytes2you.Validation;
-using Trouvaille.Data;
-using Trouvaille.Models;
 using Trouvaille.Services.Contracts;
+using Trouvaille.Services.Common.Contracts;
+using Trouvaille.Server.Models.Places;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Trouvaille.MVC.Controllers
 {
     public class PlacesController : Controller
     {
-        private TrouvailleContext db = new TrouvailleContext();
-
         private readonly IPlaceService placeService;
+        private readonly IMappingService mappingService;
 
-        public PlacesController(IPlaceService placeService)
+        public PlacesController(IMappingService mappingService, IPlaceService placeService)
         {
+            Guard.WhenArgument(mappingService, "mappingService").IsNull().Throw();
             Guard.WhenArgument(placeService, "placeService").IsNull().Throw();
+
+            this.mappingService = mappingService;
             this.placeService = placeService;
         }
-
-        // GET: Places/Create
-        public ActionResult Create()
+        
+        public ActionResult Index()
         {
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name");
-            return View();
+            var places = this.placeService.GetAllPlaces();
+
+            var model = this.mappingService.Map<IEnumerable<PlaceViewModel>>(places);
+
+            return View(model);
         }
+
+        [HttpGet]
+        public JsonResult GetPlaces()
+        {
+            var places = this.placeService.GetAllPlaces();
+
+            return Json(places, JsonRequestBehavior.AllowGet);
+        }
+
 
         // POST: Places/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FounderId,CountryId,Description,Address,Longtitude,Latitude")] Place place)
-        {
-            if (ModelState.IsValid)
-            {
-                this.placeService.AddPlace(place);
-                return RedirectToAction("Create");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "Id,FounderId,CountryId,Description,Address,Longtitude,Latitude")] Place place)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        this.placeService.AddPlace(place);
+        //        return RedirectToAction("Create");
+        //    }
 
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", place.CountryId);
-            return View(place);
-        }
+        //    ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", place.CountryId);
+        //    return View(place);    
 
-        // GET: Places/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Place place = db.Places.Find(id);
-            if (place == null)
-            {
-                return HttpNotFound();
-            }
-            return View(place);
-        }
-
-        // POST: Places/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Place place = db.Places.Find(id);
-            db.Places.Remove(place);
-            db.SaveChanges();
-            return RedirectToAction("Delete");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //}
     }
 }
