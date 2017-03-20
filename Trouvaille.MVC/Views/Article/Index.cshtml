@@ -11,14 +11,10 @@
         {
             <div class="post-wrapper">
                 <h1 class="h1-responsive">@article.Title <small class="text-muted"></small></h1>
-                @*<h5>Written by @Html.ActionLink(@article.CreatorUsername + "1", "ById", "User", new { id = @article.CreatorId }, new { }), @string.Format("{0:dd/MM/yyyy}", article.CreatedOn)</h5>*@
-                <h5>Written by @Html.ActionLink("admin", "ById", "User", new { id = @article.CreatorId }, new { }), @string.Format("{0:dd/MM/yyyy}", article.CreatedOn)</h5>
-
+               <h5>Written by @Html.ActionLink(@article.CreatorUsername + "1", "ById",  new { controller = "user", area = "", id = @article.CreatorId }, new { }), @string.Format("{0:dd/MM/yyyy}", article.CreatedOn)</h5>
                 <br>
-                <div class="view overlay hm-white-light z-depth-1-half">
-                    <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(116).jpg" class="img-fluid " alt="">
-                    <div class="mask">
-                    </div>
+                <div>
+                    <img src=@article.ImagePath class="articles-img" height="400" width="600" alt=@article.Id >
                 </div>
                 <br>
                 <p>@article.Subheader</p>

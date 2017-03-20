@@ -276,6 +276,7 @@
     <Content Include="App_Data\Images\white_wave_%402X.png" />
     <Content Include="App_Data\Trouvaille.png" />
     <Content Include="Content\article.css" />
+    <Content Include="Content\articles.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\materialize-v0.97.5\css\materialize.css" />

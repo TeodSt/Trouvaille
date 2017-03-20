@@ -10,8 +10,11 @@ namespace Trouvaille.Server.Models.Places
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Username is required.")]
+        [Required(ErrorMessage = "User id is required.")]
         public string FounderId { get; set; }
+
+        [Required(ErrorMessage = "Username is required.")]
+        public string FounderName { get; set; }
 
         [Required(ErrorMessage = "Longtitude is required.")]
         public double Longtitude { get; set; }
@@ -37,6 +40,7 @@ namespace Trouvaille.Server.Models.Places
         {
             congif.CreateMap<Place, AddPlaceViewModel>()
                 .ForMember(dest => dest.FounderId, opts => opts.MapFrom(src => src.FounderId.ToString()))
+                .ForMember(dest => dest.FounderName, opts => opts.MapFrom(src => src.Founder.UserName))
                 .ForMember(dest => dest.Countries, opts => opts.Ignore());            
         }
     }

@@ -15,7 +15,7 @@ using Trouvaille.Services.Contracts;
 
 namespace Trouvaille.MVC.Areas.Private.Controllers
 {
-    [Authorize(Roles = "Admin, User")]
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly IMappingService mappingService;
@@ -63,7 +63,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
             var dbCountries = this.countryService.GetAllCountries().ToList();
 
-          //  model.Countries = this.mappingService.Map<List<CountryViewModel>>(dbCountries);
+            //  model.Countries = this.mappingService.Map<List<CountryViewModel>>(dbCountries);
 
             return this.PartialView("_CreatePlace");
         }
@@ -71,12 +71,17 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         [HttpPost]
         public ActionResult CreatePlace(AddPlaceViewModel model)
         {
-            model.FounderId = this.User.Identity.GetUserId();
+            string userId = this.User.Identity.GetUserId();
+
+            model.FounderId = userId;
+            model.FounderName = this.User.Identity.GetUserName();
             model.CountryId = 3;
 
             var place = this.mappingService.Map<AddPlaceViewModel, Place>(model);
+            place.Founder = this.userService.GetUserById(userId);
 
             this.placesService.AddPlace(place);
+
             return this.View("Index");
         }
 
@@ -117,8 +122,8 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         public ActionResult UploadPicture(AddPictureViewModel model)
         {
             string currentUserUsername = this.User.Identity.GetUserName();
-
-            model.CreatorId = this.User.Identity.GetUserId();
+            string userId = this.User.Identity.GetUserId();
+            model.CreatorId = userId;
             model.CreatorUsername = currentUserUsername;
             model.PrivacyType = "Public";
             model.CreatedOn = DateTime.Now;
@@ -128,6 +133,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             model.Path = this.SavePhotoToFileSystem(filePath);
 
             var picture = this.mappingService.Map<AddPictureViewModel, Picture>(model);
+            picture.Creator = this.userService.GetUserById(userId);
 
             this.pictureService.AddPicture(picture);
 
@@ -145,7 +151,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(file.FileName);
-                    filePath = path +  "-" + fileName;
+                    filePath = path + "-" + fileName;
                     file.SaveAs(this.Server.MapPath(filePath));
                 }
             }

@@ -45,7 +45,7 @@
 
                     <li class="wow fadeInUp">
                         <h5>Who found it?</h5>
-                        <p>@place.FounderId</p>
+                        <p>@Html.ActionLink(place.FounderName + "1", "ById", new { controller = "User", area = "", @id = place.FounderId })</p>
                     </li>
                 </ul>
             </div>
