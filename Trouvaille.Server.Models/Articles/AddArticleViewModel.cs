@@ -3,6 +3,7 @@ using AutoMapper;
 using Trouvaille.Models;
 using Trouvaille.Server.Common;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace Trouvaille.Server.Models.Articles
 {
@@ -24,20 +25,21 @@ namespace Trouvaille.Server.Models.Articles
         public string CreatorId { get; set; }
 
         public string CreatorUsername { get; set; }
-
-        public string PrivacyType { get; set; }
-
+        
         public string ImagePath { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public int CountryId { get; set; }
+
+        public IEnumerable<CountryViewModel> Countries { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression congif)
         {
             congif.CreateMap<Article, AddArticleViewModel>()
                 .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.Id.ToString()))
                 .ForMember(dest => dest.CreatorId, opts => opts.MapFrom(src => src.CreatorId.ToString()))
-                .ForMember(dest => dest.CreatorUsername, opts => opts.MapFrom(src => src.Creator.UserName))
-                .ForMember(dest => dest.PrivacyType, opts => opts.MapFrom(src => src.PrivacyType.ToString()));
+                .ForMember(dest => dest.CreatorUsername, opts => opts.MapFrom(src => src.Creator.UserName));
         }
     }
 }

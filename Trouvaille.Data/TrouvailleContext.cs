@@ -49,6 +49,8 @@ namespace Trouvaille.Data
             this.SeedContinets();
             this.SeedCountries();
             this.SeedArticles();
+            this.SeedPictures();
+            this.SeedPlaces();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -61,7 +63,6 @@ namespace Trouvaille.Data
 
         private void InitializeIdentity()
         {
-            
 
             if (!this.Users.Any())
             {
@@ -96,12 +97,15 @@ namespace Trouvaille.Data
                         FirstName = "Admin",
                         LastName = "User",
                         Email = "xxx@xxx.net",
-                        PhoneNumber = "123456"
+                        PhoneNumber = "123456",
+                        ImagePath = "/Photos/Users/default-profile.png"
                     };
 
                     userManager.Create(newUser, "unicorn");
                     userManager.SetLockoutEnabled(newUser.Id, false);
                     userManager.AddToRole(newUser.Id, "Admin");
+
+                    this.SaveChanges();
                 }
             }
         }
@@ -158,7 +162,8 @@ namespace Trouvaille.Data
         {
             if (!this.Articles.Any())
             {
-                var creator = this.Users.FirstOrDefault();
+                var creator = this.Users.FirstOrDefault(x => x.UserName == "admin");
+                var country = this.Countries.FirstOrDefault(x => x.Name == "Spain");
 
                 var articleOne = new Article()
                 {
@@ -166,7 +171,10 @@ namespace Trouvaille.Data
                     Subheader = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
                     Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non risus quam. Aliquam eget dictum tortor. Nulla imperdiet elementum turpis vitae dapibus. Sed tempor lectus id facilisis molestie. Aenean dignissim vulputate tortor, sed imperdiet est aliquet dictum. Proin eu consectetur dui. Vestibulum ut auctor purus. Donec bibendum, turpis vitae dapibus consequat, magna nisl scelerisque justo, eget iaculis urna sem at lacus.",
                     CreatedOn = DateTime.Now,
-                    Creator = creator
+                    Creator = creator,
+                    CreatorId = creator.Id,
+                    ImagePath = "/Photos/Articles/Lorem-Ipsum.jpg",
+                    Country = country
                 };
 
                 var articleTwo = new Article()
@@ -175,11 +183,85 @@ namespace Trouvaille.Data
                     Subheader = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
                     Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non risus quam. Aliquam eget dictum tortor. Nulla imperdiet elementum turpis vitae dapibus. Sed tempor lectus id facilisis molestie. Aenean dignissim vulputate tortor, sed imperdiet est aliquet dictum. Proin eu consectetur dui. Vestibulum ut auctor purus. Donec bibendum, turpis vitae dapibus consequat, magna nisl scelerisque justo, eget iaculis urna sem at lacus.",
                     CreatedOn = DateTime.Now,
-                    Creator = creator
+                    Creator = creator,
+                    CreatorId = creator.Id,
+                    ImagePath = "/Photos/Articles/Lorem-Ipsum2.jpg",
+                    Country = country
                 };
 
                 this.Articles.Add(articleOne);
                 this.Articles.Add(articleTwo);
+
+                this.SaveChanges();
+            }
+        }
+
+        private void SeedPictures()
+        {
+            if (!this.Pictures.Any())
+            {
+                var creator = this.Users.FirstOrDefault(x => x.UserName == "admin");
+                var country = this.Countries.FirstOrDefault(x => x.Name == "Spain");
+
+                var pictureOne = new Picture()
+                {
+                    ImagePath = "/Photos/Pictures/december.jpg",
+                    CreatorId = creator.Id,
+                    Creator = creator,
+                    CreatedOn = DateTime.Now,
+                    Description = "Best month of the year",
+                    Country = country
+                };
+
+                var pictureTwo = new Picture()
+                {
+                    ImagePath = "/Photos/Pictures/sea.jpg",
+                    Creator = creator,
+                    CreatorId = creator.Id,
+                    CreatedOn = DateTime.Now,
+                    Description = "Athens love",
+                    Country = country
+                };
+
+                this.Pictures.Add(pictureOne);
+                this.Pictures.Add(pictureTwo);
+
+                this.SaveChanges();
+            }
+        }
+
+        private void SeedPlaces()
+        {
+            if (!this.Places.Any())
+            {
+                var kenya = this.Countries.FirstOrDefault(x => x.Name == "Kenya");
+                var bulgaria = this.Countries.FirstOrDefault(x => x.Name == "Bulgaria");
+                var creator = this.Users.FirstOrDefault(x => x.UserName == "admin");
+
+                var placeOne = new Place()
+                {
+                    Address = "Kenya by mistake",
+                    Country = kenya,
+                    Longtitude = 40.4168,
+                    Latitude = 3.7038,
+                    Description = "Madrid is a beautiful place!I wanted Spain coords, but got Kenya :)",
+                    Founder = creator,
+                    FounderId = creator.Id
+                };
+
+                var placeTwo = new Place()
+                {
+                    Address = "Saubi Arabia",
+                    Country = bulgaria,
+                    Longtitude = 42.6977,
+                    Latitude = 23.3219,
+                    Description = "Sofia is my most beautiful city",
+                    Founder = creator,
+                    FounderId = creator.Id
+                };
+
+                this.Places.Add(placeOne);
+                this.Places.Add(placeTwo);
 
                 this.SaveChanges();
             }

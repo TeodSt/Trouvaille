@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Bytes2you.Validation;
 using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
@@ -15,6 +16,7 @@ namespace Trouvaille.Services
         {
             Guard.WhenArgument(countryRepository, "countryRepository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
+
             this.countryRepository = countryRepository;
             this.unitOfWork = unitOfWork;
         }
@@ -22,6 +24,13 @@ namespace Trouvaille.Services
         public IEnumerable<Country> GetAllCountries()
         {
             IEnumerable<Country> countries = this.countryRepository.GetAll();
+
+            return countries;
+        }
+
+        public IEnumerable<Country> GetAllCountriesByContinent(int continentId)
+        {
+            IEnumerable<Country> countries = this.countryRepository.GetAll(x=>x.ContinentId == continentId);
 
             return countries;
         }

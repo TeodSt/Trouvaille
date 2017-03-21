@@ -7,6 +7,8 @@ namespace Trouvaille.Services.Contracts
     {
         IEnumerable<Picture> GetAllPictures();
 
+        IEnumerable<Picture> GetPicturesByContinent(string continentName);
+        
         Picture GetPictureById(int id);
 
         void AddPicture(Picture picture);

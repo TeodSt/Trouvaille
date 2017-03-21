@@ -20,19 +20,21 @@ namespace Trouvaille.Models
         public Guid Id { get; set; }
 
         [Required]
-        public Guid CreatorId { get; set; }
+        public string CreatorId { get; set; }
 
         public virtual User Creator { get; set; }
 
         [Required]
-        public string Path { get; set; }
+        public string ImagePath { get; set; }
 
         [Required]
         public string  Description { get; set; }
-
-        public PrivacyType PrivacyType { get; set; }
-
+        
         public DateTime CreatedOn { get; set; }
+
+        public int CountryId { get; set; }
+
+        public virtual Country Country { get; set; }
 
         public virtual ICollection<Tag> Tags
         {

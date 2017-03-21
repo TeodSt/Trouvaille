@@ -35,7 +35,7 @@
                 <ul class="text-center">
                     <li class="wow fadeInUp">
                         <h4>Address</h4>
-                        <p>@place.Address, @place.CountryId</p>
+                        <p>@place.Address, @place.CountryName</p>
                     </li>
 
                     <li class="wow fadeInUp">
@@ -45,7 +45,7 @@
 
                     <li class="wow fadeInUp">
                         <h5>Who found it?</h5>
-                        <p>@Html.ActionLink(place.FounderName + "1", "ById", new { controller = "User", area = "", @id = place.FounderId })</p>
+                        <p>@Html.ActionLink(place.FounderName, "ById", new { controller = "User", area = "", @id = place.FounderId })</p>
                     </li>
                 </ul>
             </div>

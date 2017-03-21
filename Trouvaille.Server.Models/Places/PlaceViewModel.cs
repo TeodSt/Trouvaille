@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Trouvaille.Models;
 using Trouvaille.Server.Common;
 
@@ -26,7 +21,9 @@ namespace Trouvaille.Server.Models.Places
         public string Description { get; set; }
 
         public int CountryId { get; set; }
-        
+
+        public string CountryName { get; set; }
+
         public void CreateMappings(IMapperConfigurationExpression congif)
         {
             congif.CreateMap<Place, PlaceViewModel>()

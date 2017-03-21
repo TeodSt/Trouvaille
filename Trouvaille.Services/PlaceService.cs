@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Bytes2you.Validation;
 using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
@@ -49,6 +50,13 @@ namespace Trouvaille.Services
                 this.placeRepository.Delete(place);
                 unitOfWork.Commit();
             }
+        }
+
+        public IEnumerable<Place> GetPlacesByContinent(string continentName)
+        {
+            IEnumerable<Place> places = this.placeRepository.GetAll(x=>x.Country.Continent.Name == continentName);
+
+            return places;
         }
     }
 }

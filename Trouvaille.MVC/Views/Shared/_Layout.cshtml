@@ -64,12 +64,14 @@
                 <div class="col-lg-2 col-md-4 offset-lg-1">
                     <h5 class="title">Continents</h5>
                     <ul>
-                        <li><a href="#!">Asia</a></li>
-                        <li><a href="#!">Africa</a></li>
-                        <li><a href="#!">Europe</a></li>
-                        <li><a href="#!">South America</a></li>
-                        <li><a href="#!">North America</a></li>
-                        <li><a href="#!">Australia</a></li>
+                        <li>
+                            @Html.ActionLink("Asia", "GetPostsByContinent", new { area = "", controller = "search", continentName = "Asia" }, new { })
+                        </li>
+                        <li>@Html.ActionLink("Africa", "GetPostsByContinent", new { area = "", controller = "search", continentName = "Africa" }, new { })</li>
+                        <li>@Html.ActionLink("Australia", "GetPostsByContinent", new { area = "", controller = "search", continentName = "Australia" }, new { })</li>
+                        <li>@Html.ActionLink("Europe", "GetPostsByContinent", new { area = "", controller = "search", continentName = "Europe" }, new { })</li>
+                        <li>@Html.ActionLink("North America", "GetPostsByContinent", new { area = "", controller = "search", continentName = "North America" }, new { })</li>
+                        <li>@Html.ActionLink("South America", "GetPostsByContinent", new { area = "", controller = "search", continentName = "South America" }, new { })</li>
                     </ul>
                 </div>
                 <hr class="hidden-md-up">

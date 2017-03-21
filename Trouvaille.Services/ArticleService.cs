@@ -64,8 +64,14 @@ namespace Trouvaille.Services
 
         public IEnumerable<Article> GetArticlesByUserId(string userId)
         {
-            Guid id = new Guid(userId);
-            IEnumerable<Article> articles = this.articleRepository.GetAll(x => x.CreatorId == id);
+            IEnumerable<Article> articles = this.articleRepository.GetAll(x => x.CreatorId == userId);
+
+            return articles;
+        }
+
+        public IEnumerable<Article> GetArticlesByContinent(string continentName)
+        {
+            IEnumerable<Article> articles = this.articleRepository.GetAll(x => x.Country.Continent.Name == continentName);
 
             return articles;
         }

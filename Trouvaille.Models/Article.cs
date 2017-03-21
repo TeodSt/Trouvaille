@@ -32,16 +32,18 @@ namespace Trouvaille.Models
         public string Subheader { get; set; }
 
         [Required]
-        public Guid CreatorId { get; set; }
+        public string CreatorId { get; set; }
 
         public virtual User Creator { get; set; }
-
-        public PrivacyType PrivacyType { get; set; }
-
+        
         public DateTime CreatedOn { get; set; }
 
-        public string ImagePath { get; set; }
+        public int CountryId { get; set; }
 
+        public virtual Country Country { get; set; }
+
+        public string ImagePath { get; set; }
+        
         public virtual ICollection<Tag> Tags
         {
             get { return this.tags; }

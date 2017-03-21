@@ -9,6 +9,8 @@ namespace Trouvaille.Services.Contracts
 
         IEnumerable<Article> GetArticlesByUserId(string userId);
 
+        IEnumerable<Article> GetArticlesByContinent(string continentName);
+
         Article GetArticleById(string id);
 
         void AddArticle(Article article);

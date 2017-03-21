@@ -1,8 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -20,7 +16,7 @@ namespace Trouvaille.MVC.Controllers
         private ApplicationSignInManager _signInManager;
         private UserManager _userManager;
 
-        private const string UsersFilePath = "/Photos/Users";
+        private const string UsersFilePath = "/Photos/Users/";
 
         public AccountController()
         {

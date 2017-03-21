@@ -4,21 +4,23 @@
     ViewBag.Title = "Pictures";
 }
 
-<h1>Pictures</h1>
+<div class="divider-new">
+    <h2 class="h2-responsive wow fadeInUp">Latest Pictures</h2>
+</div>
 <div class="row">
     @foreach (var picture in Model)
     {
         <div class="col-lg-6">
             <div class="card" style="width: 500px;">
                 <div class="view overlay hm-white-slight">
-                    <img src=@picture.Path  class="img-fluid" alt=@picture.Description>
+                    <img src=@picture.ImagePath  class="img-fluid" alt=@picture.Id>
                 </div>
                 <div class="card-block">
                     <!--Title-->
                     <h5 class="card-title">Uploaded: @string.Format("{0:dd/MM/yyyy}", picture.CreatedOn)</h5>
                     <!--Text-->
                     <p class="card-text">Caption: @picture.Description</p>
-                    <p class="card-text">@picture.CreatorUsername</p>
+                    <p>@Html.ActionLink(picture.CreatorUsername, "ById", new { controller = "User", area = "", @id = picture.CreatorId })</p>
                 </div>
             </div>
         </div>

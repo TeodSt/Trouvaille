@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using Trouvaille.Models;
 using Trouvaille.Server.Common;
@@ -20,24 +17,25 @@ namespace Trouvaille.Server.Models.Pictures
 
         public string CreatorUsername { get; set; }
 
-        public string Path { get; set; }
+        public string ImagePath { get; set; }
 
         [Required]
         [MinLength(5, ErrorMessage = "Minimum length must be 5 symbols")]
         [MaxLength(40, ErrorMessage = "Maximum length must be 40 symbols")]
         public string Description { get; set; }
-
-        public string PrivacyType { get; set; }
-
+        
         public DateTime CreatedOn { get; set; }
+
+        public int CountryId { get; set; }
+
+        public IEnumerable<CountryViewModel> Countries { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression congif)
         {
             congif.CreateMap<Picture, AddPictureViewModel>()
                 .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.Id.ToString()))
                 .ForMember(dest => dest.CreatorId, opts => opts.MapFrom(src => src.CreatorId.ToString()))
-                .ForMember(dest => dest.CreatorUsername, opts => opts.MapFrom(src => src.Creator.UserName))
-                .ForMember(dest => dest.PrivacyType, opts => opts.MapFrom(src => src.PrivacyType.ToString()));
+                .ForMember(dest => dest.CreatorUsername, opts => opts.MapFrom(src => src.Creator.UserName));
         }
     }
 }

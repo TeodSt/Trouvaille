@@ -1,6 +1,7 @@
 ﻿using Bytes2you.Validation;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -63,35 +64,38 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
         public ActionResult Place()
         {
-            AddPlaceViewModel model = new AddPlaceViewModel();
+            AddPlaceViewModel model = new AddPlaceViewModel();            
+            model.Countries = this.GetAllCountries();
 
-            var dbCountries = this.countryService.GetAllCountries().ToList();
-
-            //  model.Countries = this.mappingService.Map<List<CountryViewModel>>(dbCountries);
-
-            return this.PartialView("_CreatePlace");
+            return this.PartialView("_CreatePlace", model);
         }
 
         [HttpPost]
         public ActionResult CreatePlace(AddPlaceViewModel model)
         {
             string userId = this.User.Identity.GetUserId();
+            var user = this.userService.GetUserById(userId);
 
             model.FounderId = userId;
             model.FounderName = this.User.Identity.GetUserName();
-            model.CountryId = 3;
 
             var place = this.mappingService.Map<AddPlaceViewModel, Place>(model);
-            place.Founder = this.userService.GetUserById(userId);
+            place.Founder = user;
+            place.Country = this.countryService.GetCountryById(model.CountryId);
 
             this.placesService.AddPlace(place);
+            var userModel = this.mappingService.Map<UserViewModel>(user);
 
-            return this.View("Index");
+
+            return this.View("Index", userModel);
         }
 
         public ActionResult CreateArticle()
         {
-            return this.PartialView("_CreateArticle");
+            AddArticleViewModel model = new AddArticleViewModel();
+            model.Countries = this.GetAllCountries();
+
+            return this.PartialView("_CreateArticle", model);
         }
 
         [HttpPost]
@@ -100,25 +104,30 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         {
             string filePath = ArticlesFileLocation + model.Title.Replace(' ', '-');
             string userId = this.User.Identity.GetUserId();
+            var user = this.userService.GetUserById(userId);
 
             model.CreatorId = userId;
             model.CreatorUsername = this.User.Identity.GetUserName();
-            model.PrivacyType = "Public";
             model.CreatedOn = DateTime.Now;
             model.ImagePath = this.SavePhotoToFileSystem(filePath);
 
             var article = this.mappingService.Map<AddArticleViewModel, Article>(model);
-            article.Creator = this.userService.GetUserById(userId);
+            article.Creator = user;
 
             this.articleService.AddArticle(article);
 
-            return this.View("Index");
+            var userModel = this.mappingService.Map<UserViewModel>(user);
+
+            return this.View("Index", userModel);
         }
 
         [HttpGet]
         public ActionResult UploadPicture()
         {
-            return PartialView("_UploadPicture");
+            AddPictureViewModel model = new AddPictureViewModel();
+            model.Countries = this.GetAllCountries();
+
+            return PartialView("_UploadPicture", model);
         }
 
 
@@ -127,21 +136,33 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         {
             string currentUserUsername = this.User.Identity.GetUserName();
             string userId = this.User.Identity.GetUserId();
+            var user = this.userService.GetUserById(userId);
+
             model.CreatorId = userId;
             model.CreatorUsername = currentUserUsername;
-            model.PrivacyType = "Public";
             model.CreatedOn = DateTime.Now;
 
             string filePath = PicturesFileLocation + currentUserUsername;
 
-            model.Path = this.SavePhotoToFileSystem(filePath);
+            model.ImagePath = this.SavePhotoToFileSystem(filePath);
 
             var picture = this.mappingService.Map<AddPictureViewModel, Picture>(model);
-            picture.Creator = this.userService.GetUserById(userId);
+            picture.Creator = user;
 
             this.pictureService.AddPicture(picture);
 
-            return this.View("Index");
+            var userModel = this.mappingService.Map<UserViewModel>(user);
+
+            return this.View("Index", userModel);
+        }
+
+        [OutputCache]
+        private IEnumerable<CountryViewModel> GetAllCountries()
+        {
+            var dbCountries = this.countryService.GetAllCountries();
+            var mapped = this.mappingService.Map<IEnumerable<CountryViewModel>>(dbCountries);
+
+            return mapped;
         }
 
         private string SavePhotoToFileSystem(string path)

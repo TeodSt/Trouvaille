@@ -7,6 +7,8 @@ namespace Trouvaille.Services.Contracts
     {
         IEnumerable<Place> GetAllPlaces();
 
+        IEnumerable<Place> GetPlacesByContinent(string continentName);
+
         Place GetPlaceById(int id); 
 
         void AddPlace(Place place);

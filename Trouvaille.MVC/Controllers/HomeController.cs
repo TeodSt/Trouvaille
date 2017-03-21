@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,10 @@ namespace Trouvaille.MVC.Controllers
 
         public HomeController(IMappingService mappingService, IArticleService articleService, IPictureService pictureService)
         {
+            Guard.WhenArgument(mappingService, "mappingService").IsNull().Throw();
+            Guard.WhenArgument(articleService, "articleService").IsNull().Throw();
+            Guard.WhenArgument(pictureService, "pictureService").IsNull().Throw();
+
             this.mappingService = mappingService;
             this.articleService = articleService;
             this.pictureService = pictureService;

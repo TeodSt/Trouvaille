@@ -34,6 +34,7 @@ namespace Trouvaille.Server.Models.Places
         [Required]
         public int CountryId { get; set; }
 
+
         public IEnumerable<CountryViewModel> Countries { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression congif)
