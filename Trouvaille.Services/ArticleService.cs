@@ -75,5 +75,12 @@ namespace Trouvaille.Services
 
             return articles;
         }
+
+        public IEnumerable<Article> GetArticlesByTitle(string title)
+        {
+            IEnumerable<Article> articles = this.articleRepository.GetAll(x => x.Title.ToLower().Contains(title.ToLower()));
+
+            return articles;
+        }
     }
 }

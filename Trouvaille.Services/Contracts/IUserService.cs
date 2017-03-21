@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Trouvaille.Models;
 
 namespace Trouvaille.Services.Contracts
@@ -9,5 +8,7 @@ namespace Trouvaille.Services.Contracts
         User GetUserById(string id);
 
         IEnumerable<User> GetAllUsers();
+
+        IEnumerable<User> GetUserByUsername(string text);
     }
 }

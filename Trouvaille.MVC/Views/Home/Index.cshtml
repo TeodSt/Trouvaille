@@ -1,30 +1,11 @@
-﻿@model IEnumerable<Trouvaille.Server.Models.PostViewModel>
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="row justify-content-center">
-    <div class="col-md-8">
-        @using (Html.BeginForm("Search", "Search", new { SearchString = ViewBag.searchText},
-                FormMethod.Post, new { @class = "form-inline waves-effect waves-light" }))
-        {
-            @Html.TextBox("SearchString")
-            <input type="submit" value="Search" formmethod="post" class="btn sunset-color" />
-        }
-    </div>
+   @Html.Action("Search", "Search")
 </div>
 <hr />
-@*<div class="row justify-content-center">
-    <div class="col-md-8">
-        @foreach (var post in Model)
-        {
-            <h3>@post.Description</h3>
-            <h5><i>Posted by:</i> @Html.ActionLink(post.CreatorUsername, "ById", new { controller = "user", area = "", @id = post.CreatorId }, new { })</h5>
-            <img src="http://www.floridapolyretreat.com/wp-content/uploads/2017/01/travel2.jpg" height="300" />
-            <hr />
-        }
-    </div>
-</div>*@
 <div id="map-container" class="z-depth-1 wow fadeInUp" style="height: 300px"></div>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrFFeTMMLaOj49X29A_qeVbsMDs97rAfQ&callback=initMap">

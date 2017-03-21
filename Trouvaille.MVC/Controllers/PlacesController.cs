@@ -4,7 +4,6 @@ using Trouvaille.Services.Contracts;
 using Trouvaille.Services.Common.Contracts;
 using Trouvaille.Server.Models.Places;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Trouvaille.MVC.Controllers
 {

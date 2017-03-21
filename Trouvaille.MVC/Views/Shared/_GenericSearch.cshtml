@@ -1,0 +1,15 @@
+﻿@model GeneralSearchViewModel
+
+<div class="row">
+    @using (Html.BeginForm("SearchBy", "Search", new { controller = "search", area = "" },
+                                                FormMethod.Get, new { @class = "form-inline waves-effect waves-light" }))
+    {
+        <div class="md-form form-group">
+            @Html.TextBoxFor(model => model.Text, new { placeholder = "Search text" })
+        </div>
+
+        <div class="md-form form-group">
+            <input type="submit" value="Go" class="btn btn-cloud"/>
+        </div>
+    }
+</div>

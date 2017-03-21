@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using System.Collections.Generic;
 using Trouvaille.Models;
 using Trouvaille.Server.Common;
 using Trouvaille.Server.Models.Pictures;

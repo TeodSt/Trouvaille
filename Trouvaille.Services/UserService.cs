@@ -1,5 +1,4 @@
 ﻿using Bytes2you.Validation;
-using System;
 using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
 using Trouvaille.Services.Contracts;
@@ -30,6 +29,13 @@ namespace Trouvaille.Services
             User user = this.userRepository.GetById(id);
 
             return user;
+        }
+
+        public IEnumerable<User> GetUserByUsername(string text)
+        {
+            IEnumerable<User> users = this.userRepository.GetAll(x => x.UserName.ToLower().Contains(text.ToLower()));
+
+            return users;
         }
     }
 }

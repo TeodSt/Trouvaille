@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Bytes2you.Validation;
 using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
@@ -56,6 +55,13 @@ namespace Trouvaille.Services
         public IEnumerable<Picture> GetPicturesByContinent(string continentName)
         {
             IEnumerable<Picture> pictures = this.pictureRepository.GetAll(x => x.Country.Continent.Name == continentName);
+
+            return pictures;
+        }
+
+        public IEnumerable<Picture> GetPictureByDescription(string text)
+        {
+            IEnumerable<Picture> pictures = this.pictureRepository.GetAll(x => x.Description.ToLower().Contains(text.ToLower()));
 
             return pictures;
         }
