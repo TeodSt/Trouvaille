@@ -1,27 +1,44 @@
-﻿@model IEnumerable<UserViewModel>
+﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Admin panel";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Admin is here!</h2>
-<h5>Users</h5>
-<table class="table table-bordered table-responsive">
-    <tr>
-        <td>Id</td>
-        <td>Username</td>
-        <td>First name</td>
-        <td>Last name</td>
-    </tr>
-    @foreach (var user in Model)
-    {
-        <tr>
-            <td>@user.Id</td>
-            <td>
-                @Html.ActionLink(user.UserName, "ById", new { controller = "user", area = "", id = user.Id }, new { })
-            </td>
-            <td>@user.FirstName</td>
-            <td>@user.LastName</td>
-        </tr>
-    }
-</table>
+<div class="jumbotron">
+    <div class="row">
+        <div class="divider-new">
+            <h2 class="h2-responsive wow fadeInUp">Admin Panel</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul>
+                <li>
+                    @Ajax.ActionLink("Users", "GetUsers", new { controller = "panel" },
+                       new AjaxOptions
+                       {
+                           UpdateTargetId = "admin-container",
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.Replace
+                       }, new { @class = "btn sunset-color" })
+                </li>
+                <li>
+                    @Ajax.ActionLink("Articles", "GetArticles", new { controller = "panel" },
+                       new AjaxOptions
+                       {
+                           UpdateTargetId = "admin-container",
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.Replace
+                       }, new { @class = "btn sunset-color" })
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="admin-container">
+        
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

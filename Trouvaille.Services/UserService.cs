@@ -3,18 +3,32 @@ using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
 using Trouvaille.Services.Contracts;
 using System.Collections.Generic;
+using System;
 
 namespace Trouvaille.Services
 {
     public class UserService : IUserService
     {
         private readonly IEfGenericRepository<User> userRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public UserService(IEfGenericRepository<User> userRepository)
+        public UserService(IEfGenericRepository<User> userRepository, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(userRepository, "userRepository").IsNull().Throw();
+            Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
 
             this.userRepository = userRepository;
+            this.unitOfWork = unitOfWork;
+        }
+
+        public void DeleteUser(User user)
+        {
+
+            using (this.unitOfWork)
+            {
+                this.userRepository.Delete(user);
+                this.unitOfWork.Commit();
+            }
         }
 
         public IEnumerable<User> GetAllUsers()

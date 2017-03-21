@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Trouvaille.Server.Models.Articles.AddArticleViewModel>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<table class="table table-bordered table-responsive">
+    <tr>
+        <td>Id</td>
+        <td>Title</td>
+        <td>Creator</td>
+        <td>Created On</td>
+        <td>Country</td>
+        <td></td>
+    </tr>
+    @foreach (var article in Model)
+            {
+        <tr>
+            <td>@article.Id</td>
+            <td>
+                @Html.ActionLink(article.Title, "ById", new { controller = "articles", area = "", id = article.Id }, new { })
+            </td>
+            <td>@article.CreatorUsername</td>
+            <td>@article.CreatedOn</td>
+            <td>@article.CountryId</td>
+            <td>
+                @Ajax.ActionLink("Delete", "DeleteArticle", new { controller = "panel", area = "admin", id = article.Id },
+                       new AjaxOptions
+                       {
+                           UpdateTargetId = "admin-container",
+                           HttpMethod = "POST",
+                           InsertionMode = InsertionMode.Replace
+                       }, new { @class = "btn btn-danger btn-sm waves-effect" })
+            </td>
+        </tr>
+    }
+</table>

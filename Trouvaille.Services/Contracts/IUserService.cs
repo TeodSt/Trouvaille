@@ -10,5 +10,7 @@ namespace Trouvaille.Services.Contracts
         IEnumerable<User> GetAllUsers();
 
         IEnumerable<User> GetUserByUsername(string text);
+
+        void DeleteUser(User user);
     }
 }

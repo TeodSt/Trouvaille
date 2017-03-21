@@ -5,6 +5,8 @@ namespace Trouvaille.Services.Contracts
 {
     public interface IArticleService
     {
+        IEnumerable<Article> GetAllArticles();
+
         IEnumerable<Article> GetAllArticles(int currentPage, int maxRows);
 
         IEnumerable<Article> GetArticlesByUserId(string userId);

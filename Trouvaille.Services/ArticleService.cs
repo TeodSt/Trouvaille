@@ -82,5 +82,12 @@ namespace Trouvaille.Services
 
             return articles;
         }
+
+        public IEnumerable<Article> GetAllArticles()
+        {
+            IEnumerable<Article> articles = this.articleRepository.GetAll();
+
+            return articles;
+        }
     }
 }
