@@ -9,11 +9,9 @@ namespace Trouvaille.Server.Models.Places
     public class AddPlaceViewModel : IMapFrom<Place>, IHaveCustomMappings
     {
         public int Id { get; set; }
-
-        [Required(ErrorMessage = "User id is required.")]
+        
         public string FounderId { get; set; }
-
-        [Required(ErrorMessage = "Username is required.")]
+        
         public string FounderName { get; set; }
 
         [Required(ErrorMessage = "Longtitude is required.")]
@@ -31,7 +29,6 @@ namespace Trouvaille.Server.Models.Places
         [MinLength(3, ErrorMessage = "Minimun length must be 3 symbols")]
         public string Description { get; set; }
 
-        [Required]
         public int CountryId { get; set; }
 
 

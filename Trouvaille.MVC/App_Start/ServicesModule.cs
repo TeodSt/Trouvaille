@@ -13,7 +13,7 @@ namespace Trouvaille.MVC
     {
         public override void Load()
         {
-            this.Bind<ITrouvailleContext>().To<TrouvailleContext>().InSingletonScope();
+            this.Bind<ITrouvailleContext>().To<TrouvailleContext>().InRequestScope();
             this.Bind(typeof(IEfGenericRepository<>)).To(typeof(EfGenericRepository<>));
             this.Bind<IUnitOfWork>().To<UnitOfWork>();
 

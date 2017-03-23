@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Trouvaille.Server.Models.Articles.AddArticleViewModel>
+﻿@model IEnumerable<Trouvaille.Server.Models.Articles.ArticleByIdViewModel>
 
 @{
     ViewBag.Title = "Users";
@@ -18,11 +18,11 @@
         <tr>
             <td>@article.Id</td>
             <td>
-                @Html.ActionLink(article.Title, "ById", new { controller = "articles", area = "", id = article.Id }, new { })
+                @Html.ActionLink(article.Title, "ById", new { controller = "article", area = "", id = article.Id }, new { })
             </td>
             <td>@article.CreatorUsername</td>
             <td>@article.CreatedOn</td>
-            <td>@article.CountryId</td>
+            <td>@article.CountryName</td>
             <td>
                 @Ajax.ActionLink("Delete", "DeleteArticle", new { controller = "panel", area = "admin", id = article.Id },
                        new AjaxOptions

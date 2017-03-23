@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 using System.Web.Mvc;
 using Trouvaille.Models;
 using Trouvaille.Server.Models;
@@ -28,6 +29,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
         private const string ArticlesFileLocation = "/Photos/Articles/";
         private const string PicturesFileLocation = "/Photos/Pictures/";
+        private const string CountriesCache = "Countries";
 
         public ProfileController(
             IMappingService mappingService,
@@ -64,13 +66,14 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
         public ActionResult Place()
         {
-            AddPlaceViewModel model = new AddPlaceViewModel();            
+            AddPlaceViewModel model = new AddPlaceViewModel();
             model.Countries = this.GetAllCountries();
 
             return this.PartialView("_CreatePlace", model);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreatePlace(AddPlaceViewModel model)
         {
             string userId = this.User.Identity.GetUserId();
@@ -79,6 +82,13 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             model.FounderId = userId;
             model.FounderName = this.User.Identity.GetUserName();
 
+            if (!this.ModelState.IsValid)
+            {
+                model.Countries = this.GetAllCountries();
+                return this.PartialView("_CreatePlace", model);
+
+            }
+
             var place = this.mappingService.Map<AddPlaceViewModel, Place>(model);
             place.Founder = user;
             place.Country = this.countryService.GetCountryById(model.CountryId);
@@ -86,8 +96,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             this.placesService.AddPlace(place);
             var userModel = this.mappingService.Map<UserViewModel>(user);
 
-
-            return this.View("Index", userModel);
+            return Json(new { url = Url.Action("Index", new { controller = "Places", area = "" }) });
         }
 
         public ActionResult CreateArticle()
@@ -100,6 +109,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateArticle(AddArticleViewModel model)
         {
             string filePath = ArticlesFileLocation + model.Title.Replace(' ', '-');
@@ -111,14 +121,18 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             model.CreatedOn = DateTime.Now;
             model.ImagePath = this.SavePhotoToFileSystem(filePath);
 
+            if (!this.ModelState.IsValid)
+            {
+                model.Countries = this.GetAllCountries();
+                return this.PartialView("_CreateArticle", model);
+            }
+
             var article = this.mappingService.Map<AddArticleViewModel, Article>(model);
             article.Creator = user;
 
             this.articleService.AddArticle(article);
 
-            var userModel = this.mappingService.Map<UserViewModel>(user);
-
-            return this.View("Index", userModel);
+            return this.RedirectToAction("ById", new { controller = "Article", area = "", id = article.Id });
         }
 
         [HttpGet]
@@ -156,10 +170,24 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             return this.View("Index", userModel);
         }
 
-        [OutputCache]
         private IEnumerable<CountryViewModel> GetAllCountries()
         {
-            var dbCountries = this.countryService.GetAllCountries();
+
+            if (this.HttpContext.Cache[CountriesCache] == null)
+            {
+                var dependency = new SqlCacheDependency("Trouvaille", "Countries");
+
+                this.HttpContext.Cache.Insert(
+                    CountriesCache,                                     // key
+                    this.countryService.GetAllCountriesOrderedByName(), // value
+                    dependency,                                         // dependencies
+                    DateTime.Now.AddDays(5),                            // absolute exp.
+                    TimeSpan.Zero,                                      // sliding exp.
+                    CacheItemPriority.Default,                          // priority
+                    null);                                              // callback delegate            
+            }
+
+            var dbCountries = this.HttpContext.Cache[CountriesCache];
             var mapped = this.mappingService.Map<IEnumerable<CountryViewModel>>(dbCountries);
 
             return mapped;

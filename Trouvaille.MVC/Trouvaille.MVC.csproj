@@ -330,6 +330,9 @@
     <Content Include="Areas\Admin\Views\Panel\_GetUsers.cshtml" />
     <Content Include="Areas\Admin\Views\Panel\_GetArticles.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Custom\map.js" />
+    <Content Include="Scripts\Custom\redirect.js" />
+    <Content Include="Scripts\Custom\tinymce-config.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -558,6 +561,7 @@
     <Content Include="Views\Places\Index.cshtml" />
     <Content Include="Views\Search\GetPostsByContinent.cshtml" />
     <Content Include="Views\Shared\_GenericSearch.cshtml" />
+    <Content Include="Views\Shared\_PostsByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trouvaille.Data\Trouvaille.Data.csproj">

@@ -29,32 +29,5 @@ namespace Trouvaille.MVC.Controllers
 
             return View(model);
         }
-
-        [HttpGet]
-        public JsonResult GetPlaces()
-        {
-            var places = this.placeService.GetAllPlaces();
-
-            return Json(places, JsonRequestBehavior.AllowGet);
-        }
-
-
-        // POST: Places/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Id,FounderId,CountryId,Description,Address,Longtitude,Latitude")] Place place)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        this.placeService.AddPlace(place);
-        //        return RedirectToAction("Create");
-        //    }
-
-        //    ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", place.CountryId);
-        //    return View(place);    
-
-        //}
     }
 }

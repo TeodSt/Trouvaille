@@ -3,40 +3,40 @@
 }
 
 <div class="row justify-content-center">
-   @Html.Action("Search", "Search")
+    @Html.Action("Search", "Search")
 </div>
 <hr />
-<div id="map-container" class="z-depth-1 wow fadeInUp" style="height: 300px"></div>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrFFeTMMLaOj49X29A_qeVbsMDs97rAfQ&callback=initMap">
-</script>
-<script>
-    var map;
-    function initMap() {
-        map = new google.maps.Map(document.getElementById("map-container"), {
-            zoom: 2,
-            center: new google.maps.LatLng(2.8, -187.3),
-            mapTypeId: 'terrain'
-        });
+<div id="map-container" class="z-depth-1 wow fadeInUp" style="height: 350px"></div>
+@section Scripts{
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrFFeTMMLaOj49X29A_qeVbsMDs97rAfQ&callback=initHomeMap">
+    </script>
+    <script>
+        function initHomeMap() {
+            var map = new google.maps.Map(document.getElementById("map-container"), {
+                zoom: 2,
+                center: new google.maps.LatLng(42.6977, 23.3219),
+                mapTypeId: 'terrain'
+            });
 
-        $.ajax({
-            url: '/Places/GetPlaces',
-            type: 'GET',
-            success: function (places) {
-                for (var i = 0; i < places.length; i++) {
-                    var place = places[i];
-                    var latLng = new google.maps.LatLng(place.Latitude, place.Longtitude);
-                    var marker = new google.maps.Marker({
-                        position: latLng,
-                        map: map
-                    });
+            $.ajax({
+                url: '/Home/GetPlaces',
+                type: 'GET',
+                success: function (data) {
+                    for (var i = 0; i < data.places.length; i++) {
+                        var place = data.places[i];
+                        var latLng = new google.maps.LatLng(place.Latitude, place.Longtitude);
+                        var marker = new google.maps.Marker({
+                            position: latLng,
+                            map: map
+                        });
+                    }
+                },
+                error: function (error) {
+                    $(that).remove();
+                    DisplayError(error.statusText);
                 }
-            },
-            error: function (error) {
-                debugger;
-                $(that).remove();
-                DisplayError(error.statusText);
-            }
-        });
-    }
-</script>
+            });
+        }
+    </script>
+}

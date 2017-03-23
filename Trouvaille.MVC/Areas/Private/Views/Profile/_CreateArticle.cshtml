@@ -1,9 +1,9 @@
 ﻿@model Trouvaille.Server.Models.Articles.AddArticleViewModel
 
-
 @{
     ViewBag.Title = "Create";
 }
+
 <script src="~/Scripts/tinymce/tinymce.min.js"></script>
 <script>
     tinymce.init({
@@ -19,6 +19,8 @@
         min_width: 400
     });
 </script>
+
+<h2>Add new article</h2>
 <div class="row">
     <div class="col-md-12">
         @using (Html.BeginForm("CreateArticle", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))

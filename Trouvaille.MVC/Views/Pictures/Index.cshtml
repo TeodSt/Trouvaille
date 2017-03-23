@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AddPictureViewModel>
+﻿@model IEnumerable<PictureViewModel>
 
 @{
     ViewBag.Title = "Pictures";
@@ -17,10 +17,10 @@
                 </div>
                 <div class="card-block">
                     <!--Title-->
-                    <h5 class="card-title">Uploaded: @string.Format("{0:dd/MM/yyyy}", picture.CreatedOn)</h5>
+                    <h5 class="card-title">Uploaded: @string.Format("{0:dd/MM/yyyy}", picture.CreatedOn), Country: @picture.CountryName</h5>
                     <!--Text-->
                     <p class="card-text">Caption: @picture.Description</p>
-                    <p>@Html.ActionLink(picture.CreatorUsername, "ById", new { controller = "User", area = "", @id = picture.CreatorId })</p>
+                    <p>By: @Html.ActionLink(picture.CreatorUsername, "ById", new { controller = "User", area = "", @id = picture.CreatorId })</p>
                 </div>
             </div>
         </div>

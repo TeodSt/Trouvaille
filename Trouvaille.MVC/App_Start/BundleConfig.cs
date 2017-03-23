@@ -15,6 +15,15 @@ namespace Trouvaille.MVC
                         "~/Scripts/jquery.validate*",
                         "~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/redirect").Include(
+                        "~/Scripts/Custom/redirect.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/map").Include(
+                        "~/Scripts/Custom/map.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/tinymce-config").Include(
+                        "~/Scripts/Custom/tinymce-config.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

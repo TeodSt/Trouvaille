@@ -21,8 +21,14 @@ namespace Trouvaille.Services
             this.unitOfWork = unitOfWork;
         }
 
-        public void DeleteUser(User user)
+        public void DeleteUser(string id)
         {
+            var user = this.GetUserById(id);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException("User cannot be found");
+            }
 
             using (this.unitOfWork)
             {

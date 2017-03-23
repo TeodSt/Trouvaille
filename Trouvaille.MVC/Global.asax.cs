@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Web.Caching;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -18,6 +19,12 @@ namespace Trouvaille.MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoMapperConfig.Config(Assembly.Load(ServerModelsAssembly));
+
+            SqlCacheDependencyAdmin.EnableNotifications(@"Data Source=.\SQLEXPRESS;
+         Initial Catalog=Trouvaille;Integrated Security=True");
+
+            SqlCacheDependencyAdmin.EnableTableForNotifications(@"Data Source=.\SQLEXPRESS;
+         Initial Catalog=Trouvaille;Integrated Security=True", "Countries");
         }
     }
 }

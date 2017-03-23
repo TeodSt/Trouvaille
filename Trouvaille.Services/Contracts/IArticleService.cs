@@ -19,7 +19,7 @@ namespace Trouvaille.Services.Contracts
 
         void AddArticle(Article article);
 
-        void DeleteArticle(Article article);
+        void DeleteArticle(string id);
 
         int GetCountOfArticles();
     }

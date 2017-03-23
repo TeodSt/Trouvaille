@@ -4,7 +4,7 @@ namespace Trouvaille.Server.Models.Articles
 {
     public class ArticlesViewModel
     {
-        public IEnumerable<AddArticleViewModel> Articles { get; set; }
+        public IEnumerable<ArticleByIdViewModel> Articles { get; set; }
 
         public int CurrentPageIndex { get; set; }
 

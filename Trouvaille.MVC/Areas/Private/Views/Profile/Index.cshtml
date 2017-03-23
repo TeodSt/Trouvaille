@@ -30,7 +30,7 @@
                            InsertionMode = InsertionMode.Replace
                        }, new { @class = "nav-link", data_toggle = "tab" })
                 </li>
-               
+
                 <li class="nav-item">
                     @Ajax.ActionLink("Photos", "UploadPicture", new { controller = "profile" },
                        new AjaxOptions
@@ -39,9 +39,9 @@
                            HttpMethod = "GET",
                            InsertionMode = InsertionMode.Replace
                        }, new { @class = "nav-link", data_toggle = "tab" })
-                </li>    
+                </li>
                 <li class="nav-item">
-                    @Ajax.ActionLink("Trouvaille", "Place", new { controller = "profile"},
+                    @Ajax.ActionLink("Trouvaille", "Place", new { controller = "profile" },
                        new AjaxOptions
                        {
                            UpdateTargetId = "profile-container",
@@ -51,9 +51,19 @@
                 </li>
             </ul>
         </div>
-        <div id="profile-container" class="col-md-12"></div>
+        <div id="profile-container" class="col-md-12">
+            @Html.Partial("_PostsByUser")
+        </div>
     </div>
 </div>
+
 @section Scripts {
+    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrFFeTMMLaOj49X29A_qeVbsMDs97rAfQ&callback=initMap">
+    </script>
+
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/map")
+    @Scripts.Render("~/bundles/redirect")
 }

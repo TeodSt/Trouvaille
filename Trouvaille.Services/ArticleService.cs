@@ -53,8 +53,15 @@ namespace Trouvaille.Services
             }
         }
 
-        public void DeleteArticle(Article article)
+        public void DeleteArticle(string id)
         {
+            var article = this.GetArticleById(id);
+
+            if (article == null)
+            {
+                throw new ArgumentNullException("Article cannot be found");
+            }
+
             using (this.unitOfWork)
             {
                 this.articleRepository.Delete(article);

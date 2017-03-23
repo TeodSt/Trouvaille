@@ -20,6 +20,7 @@ namespace Trouvaille.Server.Models.Articles
         [MinLength(5, ErrorMessage = "Minimum length must be 5 symbols")]
         public string Content { get; set; }
 
+        [Required]
         public string Subheader { get; set; }
 
         public string CreatorId { get; set; }

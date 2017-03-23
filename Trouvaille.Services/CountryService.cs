@@ -4,6 +4,7 @@ using Bytes2you.Validation;
 using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
 using Trouvaille.Services.Contracts;
+using System.Linq;
 
 namespace Trouvaille.Services
 {
@@ -12,7 +13,9 @@ namespace Trouvaille.Services
         private readonly IEfGenericRepository<Country> countryRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public CountryService(IEfGenericRepository<Country> countryRepository, IUnitOfWork unitOfWork)
+        public CountryService(
+            IEfGenericRepository<Country> countryRepository,
+            IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(countryRepository, "countryRepository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
@@ -30,7 +33,14 @@ namespace Trouvaille.Services
 
         public IEnumerable<Country> GetAllCountriesByContinent(int continentId)
         {
-            IEnumerable<Country> countries = this.countryRepository.GetAll(x=>x.ContinentId == continentId);
+            IEnumerable<Country> countries = this.countryRepository.GetAll(x => x.ContinentId == continentId);
+
+            return countries;
+        }
+
+        public IEnumerable<Country> GetAllCountriesOrderedByName()
+        {
+            IEnumerable<Country> countries = this.countryRepository.GetAll().OrderBy(x => x.Name);
 
             return countries;
         }

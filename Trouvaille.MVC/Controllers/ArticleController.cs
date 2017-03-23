@@ -1,8 +1,6 @@
 ﻿using Bytes2you.Validation;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Trouvaille.Models;
 using Trouvaille.Server.Models.Articles;
@@ -32,7 +30,7 @@ namespace Trouvaille.MVC.Controllers
             var articles = this.articleService.GetAllArticles(page, MaxRows);
             int  countOfArticles = this.articleService.GetCountOfArticles();
 
-            var mappedModels = this.mappingService.Map<IEnumerable<AddArticleViewModel>>(articles);
+            var mappedModels = this.mappingService.Map<IEnumerable<ArticleByIdViewModel>>(articles);
             ArticlesViewModel model = new ArticlesViewModel();
             double pageCount = (double)(countOfArticles / Convert.ToDecimal(MaxRows));
 
@@ -46,7 +44,7 @@ namespace Trouvaille.MVC.Controllers
         public ActionResult ById(string id)
         {
             var articleFromDb = this.articleService.GetArticleById(id);
-            var model = this.mappingService.Map<Article, AddArticleViewModel>(articleFromDb);
+            var model = this.mappingService.Map<Article, ArticleByIdViewModel>(articleFromDb);
 
             return this.View(model);
         }

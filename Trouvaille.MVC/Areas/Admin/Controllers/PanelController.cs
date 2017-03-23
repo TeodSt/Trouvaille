@@ -49,7 +49,7 @@ namespace Trouvaille.MVC.Areas.Admin.Controllers
         {
             var articles = this.articleService.GetAllArticles();
 
-            var model = this.mappingService.Map<IEnumerable<AddArticleViewModel>>(articles);
+            var model = this.mappingService.Map<IEnumerable<ArticleByIdViewModel>>(articles);
 
             return this.PartialView("_GetArticles", model);
         }
@@ -62,18 +62,10 @@ namespace Trouvaille.MVC.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             
-            //TODO: Work with ViewModel
-            var article = this.articleService.GetArticleById(id);
-
-            if (article == null)
-            {
-                return HttpNotFound();
-            }
-
-            this.articleService.DeleteArticle(article);
+            this.articleService.DeleteArticle(id);
 
             var articles = this.articleService.GetAllArticles();
-            var model = this.mappingService.Map<IEnumerable<AddArticleViewModel>>(articles);
+            var model = this.mappingService.Map<IEnumerable<ArticleByIdViewModel>>(articles);
 
             return this.PartialView("_GetArticles", model);
         }
@@ -86,15 +78,7 @@ namespace Trouvaille.MVC.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //TODO: Work with ViewModel
-            var user = this.userService.GetUserById(id);
-
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-
-            this.userService.DeleteUser(user);
+            this.userService.DeleteUser(id);
 
             var users = this.userService.GetAllUsers();
             var mappedUsers = this.mappingService.Map<IEnumerable<UserViewModel>>(users);
