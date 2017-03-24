@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.Server.Common", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.Server.Models", "Trouvaille.Server.Models\Trouvaille.Server.Models.csproj", "{04EC1652-B005-40B5-89A0-503F8B5E9AEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.UnitTests.Services", "Trouvaille.UnitTests.Services\Trouvaille.UnitTests.Services.csproj", "{1BB2834A-00F4-4EE0-8A75-94FA8FBBF0A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{04EC1652-B005-40B5-89A0-503F8B5E9AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04EC1652-B005-40B5-89A0-503F8B5E9AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04EC1652-B005-40B5-89A0-503F8B5E9AEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BB2834A-00F4-4EE0-8A75-94FA8FBBF0A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BB2834A-00F4-4EE0-8A75-94FA8FBBF0A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BB2834A-00F4-4EE0-8A75-94FA8FBBF0A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BB2834A-00F4-4EE0-8A75-94FA8FBBF0A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,5 +84,6 @@ Global
 		{DAFE5655-198E-4E41-8D82-210B4305EE2E} = {1ED0FA86-0C9F-46E6-AC46-993AA3825D81}
 		{4D67AA4C-6492-40E1-B49E-16B318B21994} = {251B6E01-8299-4C41-9A76-70FC98070EFE}
 		{04EC1652-B005-40B5-89A0-503F8B5E9AEF} = {251B6E01-8299-4C41-9A76-70FC98070EFE}
+		{1BB2834A-00F4-4EE0-8A75-94FA8FBBF0A1} = {15D35D7D-7FBF-4A30-9FFC-5FB4DEA6A62C}
 	EndGlobalSection
 EndGlobal

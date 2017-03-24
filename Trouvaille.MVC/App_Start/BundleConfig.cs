@@ -40,6 +40,8 @@ namespace Trouvaille.MVC
                       "~/Content/mdb.css",
                       "~/Content/style.css",
                       "~/Content/article.css"));
+
+            //BundleTable.EnableOptimizations = true;
         }
     }
 }

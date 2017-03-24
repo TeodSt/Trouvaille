@@ -4,6 +4,7 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
 using Trouvaille.MVC;
+using Trouvaille.MVC.App_Start.NinjectModules;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
@@ -60,7 +61,11 @@ namespace Trouvaille.MVC
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Load(new TrouvailleNinjectModule());
+            kernel.Load(
+                new TrouvailleModule(),
+                new DataModule(),
+                new ProviderModule(),
+                new ServicesModule());
         }        
     }
 }

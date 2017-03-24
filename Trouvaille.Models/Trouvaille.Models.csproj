@@ -61,7 +61,6 @@
     <Compile Include="Continent.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Picture.cs" />
-    <Compile Include="Enums\PrivacyType.cs" />
     <Compile Include="Place.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

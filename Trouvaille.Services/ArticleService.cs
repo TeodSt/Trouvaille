@@ -17,6 +17,7 @@ namespace Trouvaille.Services
         {
             Guard.WhenArgument(articleRepository, "articleRepository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
+
             this.articleRepository = articleRepository;
             this.unitOfWork = unitOfWork;
         }
