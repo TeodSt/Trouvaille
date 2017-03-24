@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Trouvaille.Models;
-using Trouvaille.Server.Common;
+using Trouvaille.Server.Common.Contracts;
 
 namespace Trouvaille.Server.Models.Places
 {

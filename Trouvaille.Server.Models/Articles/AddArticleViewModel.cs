@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using Trouvaille.Models;
-using Trouvaille.Server.Common;
+using Trouvaille.Server.Common.Contracts;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 

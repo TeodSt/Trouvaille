@@ -13,6 +13,8 @@ namespace Trouvaille.Services.Contracts
 
         IEnumerable<Picture> GetPicturesByUserId(string id);
 
+        IEnumerable<Picture> GetPicturesByUsername(string username);
+
         Picture GetPictureById(int id);
 
         void AddPicture(Picture picture);

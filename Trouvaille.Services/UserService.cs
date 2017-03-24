@@ -4,6 +4,7 @@ using Trouvaille.Models;
 using Trouvaille.Services.Contracts;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace Trouvaille.Services
 {
@@ -51,11 +52,10 @@ namespace Trouvaille.Services
             return user;
         }
 
-        public IEnumerable<User> GetUserByUsername(string text)
+        public User GetUserByUsername(string text)
         {
-            IEnumerable<User> users = this.userRepository.GetAll(x => x.UserName.ToLower().Contains(text.ToLower()));
-
-            return users;
+            User user = this.userRepository.All.SingleOrDefault(x => x.UserName == text);
+            return user;
         }
     }
 }

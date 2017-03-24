@@ -11,8 +11,7 @@
                 @if (this.User.IsInRole("Admin"))
                 {
                     @Html.ActionLink("Admin panel", "Index", new { controller = "panel", area = "admin" }, new { @class = "nav-link" })
-                }
-                @Html.ActionLink("Manage your account", "Index", new { controller = "manage", area = "" }, new { title = "Manage", @class = "dropdown-item nav-link" })
+                }             
                 <div class="dropdown-divider"></div>
                 <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-item dropdown-item">Log off</a>
             </div>

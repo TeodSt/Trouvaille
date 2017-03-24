@@ -26,8 +26,6 @@ namespace Trouvaille.Data
 
         public IDbSet<Place> Places { get; set; }
 
-        public IDbSet<Tag> Tags { get; set; }
-
         public static TrouvailleContext Create()
         {
             return new TrouvailleContext();

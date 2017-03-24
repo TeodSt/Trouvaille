@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using AutoMapper.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
-using Trouvaille.Server.Common;
+using Trouvaille.Server.Common.Contracts;
 
 namespace Trouvaille.MVC.App_Start
 {

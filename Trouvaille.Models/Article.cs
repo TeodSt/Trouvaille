@@ -8,13 +8,6 @@ namespace Trouvaille.Models
 {
     public class Article
     {
-        private ICollection<Tag> tags;
-
-        public Article()
-        {
-            this.tags = new HashSet<Tag>();
-        }
-
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -31,7 +24,6 @@ namespace Trouvaille.Models
 
         public string Subheader { get; set; }
 
-        [Required]
         public string CreatorId { get; set; }
 
         public virtual User Creator { get; set; }
@@ -43,11 +35,5 @@ namespace Trouvaille.Models
         public virtual Country Country { get; set; }
 
         public string ImagePath { get; set; }
-        
-        public virtual ICollection<Tag> Tags
-        {
-            get { return this.tags; }
-            set { this.tags = value; }
-        }
     }
 }

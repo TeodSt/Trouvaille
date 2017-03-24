@@ -73,5 +73,12 @@ namespace Trouvaille.Services
 
             return pictures;
         }
+
+        public IEnumerable<Picture> GetPicturesByUsername(string username)
+        {
+            IEnumerable<Picture> pictures = this.pictureRepository.GetAll(x => x.Creator.UserName == username);
+
+            return pictures;
+        }
     }
 }

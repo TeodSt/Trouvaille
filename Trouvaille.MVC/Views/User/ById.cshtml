@@ -15,8 +15,9 @@
             <p>@Model.UserName - @Model.FirstName @Model.LastName</p>
         </div>
     </div>
+    @Html.Partial("_PostsByUser", Model)
 
-    @if (Model.Articles.Any())
+    @*@if (Model.Articles.Any())
     {
         <div class="divider-new">
             <h2 class="h2-responsive wow fadeInUp">Articles</h2>
@@ -57,7 +58,7 @@
             </div>
         }
     }
-    </div>
+    </div>*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -1,7 +1,6 @@
 ﻿using Bytes2you.Validation;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using Trouvaille.Server.Models;
 using Trouvaille.Server.Models.Articles;
 using Trouvaille.Server.Models.Pictures;
 using Trouvaille.Server.Models.Users;

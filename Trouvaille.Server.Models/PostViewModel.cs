@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Trouvaille.Models;
-using Trouvaille.Server.Common;
+using Trouvaille.Server.Common.Contracts;
 using Trouvaille.Server.Models.Pictures;
 using Trouvaille.Server.Models.Articles;
 

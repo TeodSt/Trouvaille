@@ -9,7 +9,7 @@ namespace Trouvaille.Services.Contracts
 
         IEnumerable<User> GetAllUsers();
 
-        IEnumerable<User> GetUserByUsername(string text);
+        User GetUserByUsername(string text);
 
         void DeleteUser(string id);
     }

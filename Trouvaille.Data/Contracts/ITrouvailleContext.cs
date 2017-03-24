@@ -16,8 +16,6 @@ namespace Trouvaille.Data.Contracts
 
         IDbSet<Place> Places { get; set; }
         
-        IDbSet<Tag> Tags { get; set; }
-
         IDbSet<T> Set<T>() where T : class;
 
         DbEntityEntry<T> Entry<T>(T entity) where T : class;

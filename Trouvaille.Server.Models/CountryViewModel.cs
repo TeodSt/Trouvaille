@@ -1,5 +1,6 @@
-﻿using Trouvaille.Models;
-using Trouvaille.Server.Common;
+﻿using System.Web;
+using Trouvaille.Models;
+using Trouvaille.Server.Common.Contracts;
 
 namespace Trouvaille.Server.Models
 {
@@ -8,5 +9,7 @@ namespace Trouvaille.Server.Models
         public int Id { get; set; }
 
         public string Name { get; set; }
+
+        
     }
 }

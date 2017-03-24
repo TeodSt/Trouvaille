@@ -8,13 +8,6 @@ namespace Trouvaille.Models
 {
     public class Picture
     {
-        private ICollection<Tag> tags;
-
-        public Picture()
-        {
-            this.tags = new HashSet<Tag>();
-        }
-
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -35,11 +28,5 @@ namespace Trouvaille.Models
         public int CountryId { get; set; }
 
         public virtual Country Country { get; set; }
-
-        public virtual ICollection<Tag> Tags
-        {
-            get { return this.tags; }
-            set { this.tags = value; }
-        }
     }
 }

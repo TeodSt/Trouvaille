@@ -10,6 +10,9 @@ namespace Trouvaille.MVC
     public class MvcApplication : System.Web.HttpApplication
     {
         private const string ServerModelsAssembly = "Trouvaille.Server.Models";
+        private const string ConnectionString = @"Data Source=.\SQLEXPRESS;
+         Initial Catalog=Trouvaille;Integrated Security=True";
+        private const string CountriesTable = "Countries";
 
         protected void Application_Start()
         {
@@ -20,11 +23,8 @@ namespace Trouvaille.MVC
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoMapperConfig.Config(Assembly.Load(ServerModelsAssembly));
 
-            SqlCacheDependencyAdmin.EnableNotifications(@"Data Source=.\SQLEXPRESS;
-         Initial Catalog=Trouvaille;Integrated Security=True");
-
-            SqlCacheDependencyAdmin.EnableTableForNotifications(@"Data Source=.\SQLEXPRESS;
-         Initial Catalog=Trouvaille;Integrated Security=True", "Countries");
+            SqlCacheDependencyAdmin.EnableNotifications(ConnectionString);
+            SqlCacheDependencyAdmin.EnableTableForNotifications(ConnectionString, CountriesTable);
         }
     }
 }

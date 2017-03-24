@@ -1,4 +1,4 @@
-﻿namespace Trouvaille.Server.Common
+﻿namespace Trouvaille.Server.Common.Contracts
 {
     public interface IMapFrom<T>
     {

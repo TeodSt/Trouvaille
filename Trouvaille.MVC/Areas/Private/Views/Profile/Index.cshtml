@@ -1,4 +1,4 @@
-﻿@model Trouvaille.Server.Models.UserViewModel
+﻿@model Trouvaille.Server.Models.Users.UserProfileViewModel
 @{
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -52,7 +52,7 @@
             </ul>
         </div>
         <div id="profile-container" class="col-md-12">
-            @Html.Partial("_PostsByUser")
+            @Html.Partial("_PostsByUser", Model)
         </div>
     </div>
 </div>

@@ -11,6 +11,8 @@ namespace Trouvaille.Services.Contracts
 
         IEnumerable<Article> GetArticlesByUserId(string userId);
 
+        IEnumerable<Article> GetArticlesByUsername(string username);
+
         IEnumerable<Article> GetArticlesByContinent(string continentName);
 
         IEnumerable<Article> GetArticlesByTitle(string title);

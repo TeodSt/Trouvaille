@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Trouvaille.Server.Common
+namespace Trouvaille.Server.Common.Contracts
 {
     public interface IHaveCustomMappings
     {

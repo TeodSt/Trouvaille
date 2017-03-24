@@ -1,6 +1,6 @@
 ﻿using System;
 using Trouvaille.Models;
-using Trouvaille.Server.Common;
+using Trouvaille.Server.Common.Contracts;
 
 namespace Trouvaille.Server.Models.Pictures
 {

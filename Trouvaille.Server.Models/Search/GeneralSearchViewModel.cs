@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Trouvaille.Server.Models.Articles;
 using Trouvaille.Server.Models.Pictures;
+using Trouvaille.Server.Models.Users;
 
 namespace Trouvaille.Server.Models.Search
 {

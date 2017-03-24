@@ -3,15 +3,15 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
 using Trouvaille.Models;
+using Trouvaille.Server.Common.Contracts;
 using Trouvaille.Server.Models;
 using Trouvaille.Server.Models.Articles;
 using Trouvaille.Server.Models.Pictures;
 using Trouvaille.Server.Models.Places;
+using Trouvaille.Server.Models.Users;
 using Trouvaille.Services.Common.Contracts;
 using Trouvaille.Services.Contracts;
 
@@ -26,10 +26,13 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         private readonly IArticleService articleService;
         private readonly IPictureService pictureService;
         private readonly IUserService userService;
+        private readonly ICacheProvider cacheProvider;
+        private readonly IUserProvider userProvider;
 
         private const string ArticlesFileLocation = "/Photos/Articles/";
         private const string PicturesFileLocation = "/Photos/Pictures/";
         private const string CountriesCache = "Countries";
+        private const string DatabaseEntryName = "Trouvaille";
 
         public ProfileController(
             IMappingService mappingService,
@@ -37,7 +40,9 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             ICountryService countryService,
             IArticleService articleService,
             IPictureService pictureService,
-            IUserService userService)
+            IUserService userService,
+            ICacheProvider cacheProvider,
+            IUserProvider userProvider)
         {
             Guard.WhenArgument(mappingService, "mappingService").IsNull().Throw();
             Guard.WhenArgument(placesService, "placesService").IsNull().Throw();
@@ -45,6 +50,8 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             Guard.WhenArgument(articleService, "articleService").IsNull().Throw();
             Guard.WhenArgument(pictureService, "pictureService").IsNull().Throw();
             Guard.WhenArgument(userService, "userService").IsNull().Throw();
+            Guard.WhenArgument(cacheProvider, "cacheProvider").IsNull().Throw();
+            Guard.WhenArgument(userProvider, "userProvider").IsNull().Throw();
 
             this.mappingService = mappingService;
             this.placesService = placesService;
@@ -52,16 +59,26 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             this.articleService = articleService;
             this.pictureService = pictureService;
             this.userService = userService;
+            this.cacheProvider = cacheProvider;
+            this.userProvider = userProvider;
         }
-
-        // GET: Private/Profile
+        
         public ActionResult Index()
         {
-            var user = this.userService.GetUserById(this.User.Identity.GetUserId());
+            var username = this.userProvider.Username;
 
-            var mapped = this.mappingService.Map<UserViewModel>(user);
+            var user = this.userService.GetUserByUsername(username);
+            var articles = this.articleService.GetArticlesByUsername(username);
+            var pictures = this.pictureService.GetPicturesByUsername(username);
 
-            return this.View(mapped);
+            var model = this.mappingService.Map<UserProfileViewModel>(user);
+            var mappedArticles = this.mappingService.Map<IEnumerable<ArticleByIdViewModel>>(articles);
+            var mappedPictures = this.mappingService.Map<IEnumerable<PictureViewModel>>(pictures);
+
+            model.Articles = mappedArticles;
+            model.Pictures = mappedPictures;
+
+            return this.View(model);
         }
 
         public ActionResult Place()
@@ -76,17 +93,18 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreatePlace(AddPlaceViewModel model)
         {
-            string userId = this.User.Identity.GetUserId();
-            var user = this.userService.GetUserById(userId);
+            string userId = this.userProvider.UserId;
+            string username = this.userProvider.Username;
+
+            var user = this.userService.GetUserByUsername(username);
 
             model.FounderId = userId;
-            model.FounderName = this.User.Identity.GetUserName();
+            model.FounderName = username;
 
             if (!this.ModelState.IsValid)
             {
                 model.Countries = this.GetAllCountries();
                 return this.PartialView("_CreatePlace", model);
-
             }
 
             var place = this.mappingService.Map<AddPlaceViewModel, Place>(model);
@@ -94,7 +112,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             place.Country = this.countryService.GetCountryById(model.CountryId);
 
             this.placesService.AddPlace(place);
-            var userModel = this.mappingService.Map<UserViewModel>(user);
+            var userModel = this.mappingService.Map<UserProfileViewModel>(user);
 
             return Json(new { url = Url.Action("Index", new { controller = "Places", area = "" }) });
         }
@@ -113,11 +131,11 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         public ActionResult CreateArticle(AddArticleViewModel model)
         {
             string filePath = ArticlesFileLocation + model.Title.Replace(' ', '-');
-            string userId = this.User.Identity.GetUserId();
+            string userId = this.userProvider.UserId;
             var user = this.userService.GetUserById(userId);
 
             model.CreatorId = userId;
-            model.CreatorUsername = this.User.Identity.GetUserName();
+            model.CreatorUsername = this.userProvider.Username;
             model.CreatedOn = DateTime.Now;
             model.ImagePath = this.SavePhotoToFileSystem(filePath);
 
@@ -148,46 +166,44 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         [HttpPost]
         public ActionResult UploadPicture(AddPictureViewModel model)
         {
-            string currentUserUsername = this.User.Identity.GetUserName();
-            string userId = this.User.Identity.GetUserId();
+            string currentUserUsername = this.userProvider.Username;
+            string userId = this.userProvider.UserId;
             var user = this.userService.GetUserById(userId);
+            string filePath = PicturesFileLocation + currentUserUsername;
 
+            model.ImagePath = this.SavePhotoToFileSystem(filePath);
             model.CreatorId = userId;
             model.CreatorUsername = currentUserUsername;
             model.CreatedOn = DateTime.Now;
 
-            string filePath = PicturesFileLocation + currentUserUsername;
-
-            model.ImagePath = this.SavePhotoToFileSystem(filePath);
+            if (!this.ModelState.IsValid)
+            {
+                return this.PartialView("_UploadPicture");
+            }
 
             var picture = this.mappingService.Map<AddPictureViewModel, Picture>(model);
             picture.Creator = user;
 
             this.pictureService.AddPicture(picture);
 
-            var userModel = this.mappingService.Map<UserViewModel>(user);
+            var userModel = this.mappingService.Map<UserProfileViewModel>(user);
 
             return this.View("Index", userModel);
         }
 
         private IEnumerable<CountryViewModel> GetAllCountries()
         {
+            var cacheContent = this.cacheProvider.GetValueOfCache(CountriesCache);
 
-            if (this.HttpContext.Cache[CountriesCache] == null)
+            if (cacheContent == null)
             {
-                var dependency = new SqlCacheDependency("Trouvaille", "Countries");
+                var dependency = new SqlCacheDependency(DatabaseEntryName, CountriesCache);
+                var value = this.countryService.GetAllCountriesOrderedByName();
 
-                this.HttpContext.Cache.Insert(
-                    CountriesCache,                                     // key
-                    this.countryService.GetAllCountriesOrderedByName(), // value
-                    dependency,                                         // dependencies
-                    DateTime.Now.AddDays(5),                            // absolute exp.
-                    TimeSpan.Zero,                                      // sliding exp.
-                    CacheItemPriority.Default,                          // priority
-                    null);                                              // callback delegate            
+                this.cacheProvider.InsertWithSqlDependency(CountriesCache, value, dependency);
             }
-
-            var dbCountries = this.HttpContext.Cache[CountriesCache];
+            
+            var dbCountries = cacheContent;
             var mapped = this.mappingService.Map<IEnumerable<CountryViewModel>>(dbCountries);
 
             return mapped;

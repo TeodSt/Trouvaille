@@ -96,5 +96,12 @@ namespace Trouvaille.Services
 
             return articles;
         }
+
+        public IEnumerable<Article> GetArticlesByUsername(string username)
+        {
+            IEnumerable<Article> articles = this.articleRepository.GetAll(x=>x.Creator.UserName == username);
+
+            return articles;
+        }
     }
 }
