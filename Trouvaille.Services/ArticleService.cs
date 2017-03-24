@@ -31,6 +31,13 @@ namespace Trouvaille.Services
             return articles;
         }
 
+        public IEnumerable<Article> GetAllArticles()
+        {
+            IEnumerable<Article> articles = this.articleRepository.GetAll();
+
+            return articles;
+        }
+
         public int GetCountOfArticles()
         {
             int count = this.articleRepository.GetAll().Count();
@@ -89,14 +96,7 @@ namespace Trouvaille.Services
             IEnumerable<Article> articles = this.articleRepository.GetAll(x => x.Title.ToLower().Contains(title.ToLower()));
 
             return articles;
-        }
-
-        public IEnumerable<Article> GetAllArticles()
-        {
-            IEnumerable<Article> articles = this.articleRepository.GetAll();
-
-            return articles;
-        }
+        }        
 
         public IEnumerable<Article> GetArticlesByUsername(string username)
         {

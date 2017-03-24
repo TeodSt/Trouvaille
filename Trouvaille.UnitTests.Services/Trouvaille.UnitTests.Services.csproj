@@ -63,11 +63,16 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ArticleServiceTests\Constructor_Should.cs" />
+    <Compile Include="ArticleServiceTests\GetAllArticles_Should.cs" />
     <Compile Include="CountryServiceTests\Constructor_Should.cs" />
+    <Compile Include="CountryServiceTests\GetAllCountries_Should.cs" />
     <Compile Include="PicturesServiceTests\Constructor_Should.cs" />
+    <Compile Include="PicturesServiceTests\GetAllPictures_Should.cs" />
     <Compile Include="PlacesServiceTests\Constructor_Should.cs" />
+    <Compile Include="PlacesServiceTests\GetAllPlaces_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersServiceTests\Constructor_Should.cs" />
+    <Compile Include="UsersServiceTests\GetAllUsers_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
