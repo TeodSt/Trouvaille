@@ -55,6 +55,8 @@ namespace Trouvaille.Services
 
         public IEnumerable<Picture> GetPicturesByContinent(string continentName)
         {
+            Guard.WhenArgument(continentName, "continentName").IsNull().Throw();
+
             IEnumerable<Picture> pictures = this.pictureRepository.GetAll(x => x.Country.Continent.Name == continentName);
 
             return pictures;
@@ -62,20 +64,26 @@ namespace Trouvaille.Services
 
         public IEnumerable<Picture> GetPictureByDescription(string text)
         {
+            Guard.WhenArgument(text, "text").IsNull().Throw();
+            
             IEnumerable<Picture> pictures = this.pictureRepository.GetAll(x => x.Description.ToLower().Contains(text.ToLower()));
 
             return pictures;
         }
 
-        public IEnumerable<Picture> GetPicturesByUserId(string id)
+        public IEnumerable<Picture> GetPicturesByUserId(string userId)
         {
-            IEnumerable<Picture> pictures = this.pictureRepository.GetAll(x => x.CreatorId == id);
+            Guard.WhenArgument(userId, "userId").IsNull().Throw();
+            
+            IEnumerable<Picture> pictures = this.pictureRepository.GetAll(x => x.CreatorId == userId);
 
             return pictures;
         }
 
         public IEnumerable<Picture> GetPicturesByUsername(string username)
         {
+            Guard.WhenArgument(username, "username").IsNull().Throw();
+            
             IEnumerable<Picture> pictures = this.pictureRepository.GetAll(x => x.Creator.UserName == username);
 
             return pictures;
