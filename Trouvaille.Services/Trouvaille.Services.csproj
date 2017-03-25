@@ -62,9 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticleService.cs" />
-    <Compile Include="ContinentService.cs" />
     <Compile Include="Contracts\IArticleService.cs" />
-    <Compile Include="Contracts\IContinentService.cs" />
     <Compile Include="Contracts\ICountryService.cs" />
     <Compile Include="Contracts\IPictureService.cs" />
     <Compile Include="Contracts\IPlaceService.cs" />
