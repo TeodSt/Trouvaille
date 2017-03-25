@@ -14,7 +14,6 @@ namespace Trouvaille.UnitTests.Server.Controllers.ArticleControllerTests
     [TestFixture]
     public class Constructor_Should
     {
-        //ArticleController(IMappingService mappingService, IArticleService articleService)
         [Test]
         public void ThrowArgumentNullException_WhenMappingServiceIsNull()
         {

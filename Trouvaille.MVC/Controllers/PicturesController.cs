@@ -27,9 +27,9 @@ namespace Trouvaille.MVC.Controllers
         {
             var picturesFromDb = this.pictureService.GetAllPictures();
 
-            var mappedPictures = this.mappingService.Map<IEnumerable<PictureViewModel>>(picturesFromDb);
+            var model = this.mappingService.Map<IEnumerable<PictureViewModel>>(picturesFromDb);
 
-            return View(mappedPictures);
+            return View(model);
         }
     }
 }

@@ -98,7 +98,8 @@
     <Compile Include="ArticleControllerTests\ById_Should.cs" />
     <Compile Include="ArticleControllerTests\Constructor_Should.cs" />
     <Compile Include="ArticleControllerTests\Index_Should.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="PicturesControllerTests\Constructor_Should.cs" />
+    <Compile Include="PicturesControllerTests\Index_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +128,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
