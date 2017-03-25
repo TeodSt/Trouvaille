@@ -62,8 +62,10 @@ namespace Trouvaille.UnitTests.Services.PicturesServiceTests
             var mockedRepository = new Mock<IEfGenericRepository<Picture>>();
             var service = new PictureService(mockedRepository.Object, mockedUnitOfWork.Object);
 
+            var description = "description";
+
             // Act 
-            var actualPictures = service.GetPictureByDescription(It.IsAny<string>());
+            var actualPictures = service.GetPictureByDescription(description);
 
             // Assert
             mockedRepository.Verify(x => x.GetAll(It.IsAny<Expression<Func<Picture, bool>>>()), Times.Once);
