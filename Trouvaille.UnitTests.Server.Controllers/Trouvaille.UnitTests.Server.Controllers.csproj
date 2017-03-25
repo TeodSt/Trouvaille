@@ -107,6 +107,9 @@
     <Compile Include="PlacesControllerTests\Constructor_Should.cs" />
     <Compile Include="PlacesControllerTests\Index_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchControllerTests\Constructor_Should.cs" />
+    <Compile Include="SearchControllerTests\SearchBy_Should.cs" />
+    <Compile Include="SearchControllerTests\Search_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trouvaille.Models\Trouvaille.Models.csproj">

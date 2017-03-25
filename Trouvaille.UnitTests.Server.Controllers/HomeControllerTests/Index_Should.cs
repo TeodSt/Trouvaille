@@ -20,7 +20,6 @@ namespace Trouvaille.UnitTests.Server.Controllers.HomeControllerTests
             var controller = new HomeController(mockedMappingService.Object, mockedPlaceService.Object);
 
             // Act & Assert
-
             controller.WithCallTo(x => x.Index())
                 .ShouldRenderDefaultView();
         }

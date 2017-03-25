@@ -26,6 +26,7 @@ namespace Trouvaille.MVC.Controllers
             IUserService userService)
         {
             Guard.WhenArgument(mappingService, "mappingService").IsNull().Throw();
+            Guard.WhenArgument(placeService, "placeService").IsNull().Throw();
             Guard.WhenArgument(articleService, "articleService").IsNull().Throw();
             Guard.WhenArgument(pictureService, "pictureService").IsNull().Throw();
             Guard.WhenArgument(userService, "userService").IsNull().Throw();
@@ -47,12 +48,12 @@ namespace Trouvaille.MVC.Controllers
         public ActionResult SearchBy(string text)
         {
             var articles = this.articleService.GetArticlesByTitle(text);
-            var users = this.userService.GetUserByUsername(text);
+            var users = this.userService.GetAllUsersByUsername(text);
             var pictures = this.pictureService.GetPictureByDescription(text);
 
-            var mappedArticles = this.mappingService.Map<IEnumerable<AddArticleViewModel>>(articles);
+            var mappedArticles = this.mappingService.Map<IEnumerable<ArticleByIdViewModel>>(articles);
             var mappedUsers = this.mappingService.Map<IEnumerable<UserViewModel>>(users);
-            var mappedPictures = this.mappingService.Map<IEnumerable<AddPictureViewModel>>(pictures);
+            var mappedPictures = this.mappingService.Map<IEnumerable<PictureViewModel>>(pictures);
 
             var model = new GeneralSearchViewModel()
             {

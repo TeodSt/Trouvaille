@@ -1,10 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Trouvaille.MVC.Controllers;
 using Trouvaille.Services.Common.Contracts;
 using Trouvaille.Services.Contracts;
@@ -14,8 +10,6 @@ namespace Trouvaille.UnitTests.Server.Controllers.PlacesControllerTests
     [TestFixture]
     public class Constructor_Should
     {
-
-        //  public PlacesController(IMappingService mappingService, IPlaceService placeService)
         [Test]
         public void ThrowArgumentNullException_WhenIMappingServiceIsNull()
         {
