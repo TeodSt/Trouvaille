@@ -22,14 +22,12 @@ namespace Trouvaille.Services
             this.unitOfWork = unitOfWork;
         }
 
-        public void DeleteUser(string id)
+        public void DeleteUser(string userId)
         {
-            var user = this.GetUserById(id);
+            Guard.WhenArgument(userId, "userId").IsNull().Throw();
 
-            if (user == null)
-            {
-                throw new ArgumentNullException("User cannot be found");
-            }
+            var user = this.GetUserById(userId);
+            Guard.WhenArgument(user, "User cannot be found").IsNull().Throw();
 
             using (this.unitOfWork)
             {
