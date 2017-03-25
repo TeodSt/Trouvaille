@@ -46,6 +46,7 @@ namespace Trouvaille.Services
 
         public Article GetArticleById(string id)
         {
+            //TODO: Think of a better way to make this!
             Guid guid = new Guid(id);
             Article article = this.articleRepository.GetById(guid);
 

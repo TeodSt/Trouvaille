@@ -8,7 +8,7 @@ namespace Trouvaille.Services.Contracts
         IEnumerable<Country> GetAllCountries();
 
         IEnumerable<Country> GetAllCountriesOrderedByName();
-
+        
         Country GetCountryById(int id);
     }
 }

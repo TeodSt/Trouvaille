@@ -31,13 +31,6 @@ namespace Trouvaille.Services
             return countries;
         }
 
-        public IEnumerable<Country> GetAllCountriesByContinent(int continentId)
-        {
-            IEnumerable<Country> countries = this.countryRepository.GetAll(x => x.ContinentId == continentId);
-
-            return countries;
-        }
-
         public IEnumerable<Country> GetAllCountriesOrderedByName()
         {
             IEnumerable<Country> countries = this.countryRepository.GetAll().OrderBy(x => x.Name);

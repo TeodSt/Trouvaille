@@ -1,10 +1,4 @@
 ﻿using Ninject.Modules;
-using Ninject.Web.Common;
-using System.Web;
-using Trouvaille.Data;
-using Trouvaille.Data.Contracts;
-using Trouvaille.Server.Common.Contracts;
-using Trouvaille.Server.Common;
 using Trouvaille.Services;
 using Trouvaille.Services.Common;
 using Trouvaille.Services.Common.Contracts;
@@ -22,7 +16,6 @@ namespace Trouvaille.MVC.App_Start.NinjectModules
             this.Bind<IPictureService>().To<PictureService>();
             this.Bind<IUserService>().To<UserService>();
             this.Bind<IMappingService>().To<MappingService>();
-
         }
     }
 }
