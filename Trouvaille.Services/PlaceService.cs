@@ -15,6 +15,7 @@ namespace Trouvaille.Services
         {
             Guard.WhenArgument(placeRepository, "placeRepository").IsNull().Throw();
             Guard.WhenArgument(unitOfWork, "unitOfWork").IsNull().Throw();
+
             this.placeRepository = placeRepository;
             this.unitOfWork = unitOfWork;
         }
@@ -28,19 +29,12 @@ namespace Trouvaille.Services
 
         public void AddPlace(Place place)
         {
+            Guard.WhenArgument(place, "place").IsNull().Throw();
+            
             using (this.unitOfWork)
             {
                 this.placeRepository.Add(place);
-                unitOfWork.Commit();
-            }
-        }
-
-        public void DeletePlace(Place place)
-        {
-            using (this.unitOfWork)
-            {
-                this.placeRepository.Delete(place);
-                unitOfWork.Commit();
+                this.unitOfWork.Commit();
             }
         }
     }

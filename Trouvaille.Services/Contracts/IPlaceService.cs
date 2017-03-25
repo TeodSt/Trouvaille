@@ -7,8 +7,6 @@ namespace Trouvaille.Services.Contracts
     {
         IEnumerable<Place> GetAllPlaces();
 
-        void AddPlace(Place place);
-
-        void DeletePlace(Place place);
+        void AddPlace(Place place);        
     }
 }

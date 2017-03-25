@@ -76,6 +76,7 @@
     <Compile Include="PicturesServiceTests\GetPicturesByContinent_Should.cs" />
     <Compile Include="PicturesServiceTests\GetPicturesByUserId_Should.cs" />
     <Compile Include="PicturesServiceTests\GetPicturesByUsername_Should.cs" />
+    <Compile Include="PlacesServiceTests\AddPlace_Should.cs" />
     <Compile Include="PlacesServiceTests\Constructor_Should.cs" />
     <Compile Include="PlacesServiceTests\GetAllPlaces_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
