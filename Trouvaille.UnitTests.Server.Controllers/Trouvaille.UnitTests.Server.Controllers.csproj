@@ -96,6 +96,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Admin.PanelControllerTests\Constructor_Should.cs" />
+    <Compile Include="Admin.PanelControllerTests\DeleteArticle_Should.cs" />
+    <Compile Include="Admin.PanelControllerTests\DeleteUser_Should.cs" />
+    <Compile Include="Admin.PanelControllerTests\GetArticles_Should.cs" />
+    <Compile Include="Admin.PanelControllerTests\GetUsers_Should.cs" />
+    <Compile Include="Admin.PanelControllerTests\Index_Should.cs" />
     <Compile Include="ArticleControllerTests\ById_Should.cs" />
     <Compile Include="ArticleControllerTests\Constructor_Should.cs" />
     <Compile Include="ArticleControllerTests\Index_Should.cs" />

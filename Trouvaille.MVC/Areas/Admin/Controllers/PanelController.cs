@@ -30,7 +30,6 @@ namespace Trouvaille.MVC.Areas.Admin.Controllers
             this.articleService = articleService;
         }
 
-        // GET: Admin/Panel
         public ActionResult Index()
         {
             return this.View();
@@ -40,15 +39,14 @@ namespace Trouvaille.MVC.Areas.Admin.Controllers
         {
             var users = this.userService.GetAllUsers();
 
-            var mappedUsers = this.mappingService.Map<IEnumerable<UserViewModel>>(users);
+            var model = this.mappingService.Map<IEnumerable<UserViewModel>>(users);
 
-            return this.PartialView("_GetUsers", mappedUsers);
+            return this.PartialView("_GetUsers", model);
         }
 
         public ActionResult GetArticles()
         {
             var articles = this.articleService.GetAllArticles();
-
             var model = this.mappingService.Map<IEnumerable<ArticleByIdViewModel>>(articles);
 
             return this.PartialView("_GetArticles", model);
