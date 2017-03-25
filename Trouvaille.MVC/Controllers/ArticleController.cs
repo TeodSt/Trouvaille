@@ -1,6 +1,7 @@
 ﻿using Bytes2you.Validation;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Web.Mvc;
 using Trouvaille.Models;
 using Trouvaille.Server.Models.Articles;
@@ -43,6 +44,11 @@ namespace Trouvaille.MVC.Controllers
 
         public ActionResult ById(string id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var articleFromDb = this.articleService.GetArticleById(id);
             var model = this.mappingService.Map<Article, ArticleByIdViewModel>(articleFromDb);
 
