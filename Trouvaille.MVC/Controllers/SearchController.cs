@@ -73,8 +73,8 @@ namespace Trouvaille.MVC.Controllers
             var articles = this.articleService.GetArticlesByContinent(continentName);
             var pictures = this.pictureService.GetPicturesByContinent(continentName);
 
-            var articlesMapped = this.mappingService.Map<IEnumerable<AddArticleViewModel>>(articles);
-            var picturesMapped = this.mappingService.Map<IEnumerable<AddPictureViewModel>>(pictures);
+            var articlesMapped = this.mappingService.Map<IEnumerable<ArticleByIdViewModel>>(articles);
+            var picturesMapped = this.mappingService.Map<IEnumerable<PictureViewModel>>(pictures);
 
             model.Articles = articlesMapped;
             model.Pictures = picturesMapped;

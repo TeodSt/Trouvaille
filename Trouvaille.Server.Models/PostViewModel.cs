@@ -8,8 +8,8 @@ namespace Trouvaille.Server.Models
 {
     public class PostViewModel : IMapFrom<Article>, IMapFrom<Picture>
     {
-        public IEnumerable<AddPictureViewModel> Pictures { get; set; }
+        public IEnumerable<PictureViewModel> Pictures { get; set; }
 
-        public IEnumerable<AddArticleViewModel> Articles { get; set; }     
+        public IEnumerable<ArticleByIdViewModel> Articles { get; set; }     
     }
 }
