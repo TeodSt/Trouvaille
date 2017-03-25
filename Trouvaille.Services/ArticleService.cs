@@ -40,7 +40,7 @@ namespace Trouvaille.Services
 
         public int GetCountOfArticles()
         {
-            int count = this.articleRepository.GetAll().Count();
+            int count = this.articleRepository.All.Count();
             return count;
         }
 
@@ -56,7 +56,7 @@ namespace Trouvaille.Services
         public void AddArticle(Article article)
         {
             Guard.WhenArgument(article, "article").IsNull().Throw();
-            
+
             using (this.unitOfWork)
             {
                 this.articleRepository.Add(article);
@@ -64,14 +64,12 @@ namespace Trouvaille.Services
             }
         }
 
-        public void DeleteArticle(string id)
+        public void DeleteArticle(string articleId)
         {
-            var article = this.GetArticleById(id);
+            Guard.WhenArgument(articleId, "articleId").IsNull().Throw();
 
-            if (article == null)
-            {
-                throw new ArgumentNullException("Article cannot be found");
-            }
+            var article = this.GetArticleById(articleId);
+            Guard.WhenArgument(article, "article").IsNull().Throw();
 
             using (this.unitOfWork)
             {
@@ -82,6 +80,7 @@ namespace Trouvaille.Services
 
         public IEnumerable<Article> GetArticlesByUserId(string userId)
         {
+            Guard.WhenArgument(userId, "userId").IsNull().Throw();
             IEnumerable<Article> articles = this.articleRepository.GetAll(x => x.CreatorId == userId);
 
             return articles;
@@ -89,6 +88,7 @@ namespace Trouvaille.Services
 
         public IEnumerable<Article> GetArticlesByContinent(string continentName)
         {
+            Guard.WhenArgument(continentName, "continentName").IsNull().Throw();
             IEnumerable<Article> articles = this.articleRepository.GetAll(x => x.Country.Continent.Name == continentName);
 
             return articles;
@@ -96,14 +96,16 @@ namespace Trouvaille.Services
 
         public IEnumerable<Article> GetArticlesByTitle(string title)
         {
+            Guard.WhenArgument(title, "title").IsNull().Throw();
             IEnumerable<Article> articles = this.articleRepository.GetAll(x => x.Title.ToLower().Contains(title.ToLower()));
 
             return articles;
-        }        
+        }
 
         public IEnumerable<Article> GetArticlesByUsername(string username)
         {
-            IEnumerable<Article> articles = this.articleRepository.GetAll(x=>x.Creator.UserName == username);
+            Guard.WhenArgument(username, "username").IsNull().Throw();
+            IEnumerable<Article> articles = this.articleRepository.GetAll(x => x.Creator.UserName == username);
 
             return articles;
         }

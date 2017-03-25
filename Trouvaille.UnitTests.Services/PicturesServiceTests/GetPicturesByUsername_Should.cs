@@ -10,7 +10,7 @@ using Trouvaille.Services;
 namespace Trouvaille.UnitTests.Services.PicturesServiceTests
 {
     [TestFixture]
-    class GetPicturesByUsername_Should
+    public class GetPicturesByUsername_Should
     {
         [Test]
         public void ReturnAllPicturesOfUserWithPassedUsername()
