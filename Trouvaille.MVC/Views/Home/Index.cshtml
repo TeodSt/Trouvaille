@@ -23,8 +23,8 @@
                 url: '/Home/GetPlaces',
                 type: 'GET',
                 success: function (data) {
-                    for (var i = 0; i < data.places.length; i++) {
-                        var place = data.places[i];
+                    for (var i = 0; i < data.length; i++) {
+                        var place = data[i];
                         var latLng = new google.maps.LatLng(place.Latitude, place.Longtitude);
                         var marker = new google.maps.Marker({
                             position: latLng,

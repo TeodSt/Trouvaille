@@ -13,9 +13,7 @@ namespace Trouvaille.MVC.Controllers
         private readonly IMappingService mappingService;
         private readonly IPlaceService placeService;
 
-        public HomeController(
-            IMappingService mappingService,
-            IPlaceService placeService)
+        public HomeController(IMappingService mappingService, IPlaceService placeService)
         {
             Guard.WhenArgument(mappingService, "mappingService").IsNull().Throw();
             Guard.WhenArgument(placeService, "placeService").IsNull().Throw();
@@ -36,7 +34,7 @@ namespace Trouvaille.MVC.Controllers
             var places = this.placeService.GetAllPlaces().ToList();
             var model = this.mappingService.Map<IEnumerable<PlaceViewModel>>(places);
 
-            return Json(new { places = model }, JsonRequestBehavior.AllowGet);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 }

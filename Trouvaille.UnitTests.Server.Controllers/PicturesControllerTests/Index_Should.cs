@@ -14,7 +14,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.PicturesControllerTests
     public class Index_Should
     {
         [Test]
-        public void ReturnViewWithModelWithCorrectProperties()
+        public void ReturnViewWithModelWithCorrectCollection()
         {
             // Arrange
             var mockedMappingService = new Mock<IMappingService>();
