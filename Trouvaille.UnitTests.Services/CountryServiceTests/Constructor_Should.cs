@@ -30,7 +30,6 @@ namespace Trouvaille.UnitTests.Services.CountryServiceTests
             Assert.Throws<ArgumentNullException>(() => new CountryService(mockedRepository.Object, null));
         }
 
-
         [Test]
         public void ReturnInstance_WhenArgumentsAreValid()
         {

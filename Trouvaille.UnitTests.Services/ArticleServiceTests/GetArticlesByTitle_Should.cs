@@ -2,10 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
 using Trouvaille.Services;
@@ -15,9 +12,6 @@ namespace Trouvaille.UnitTests.Services.ArticleServiceTests
     [TestFixture]
     public class GetArticlesByTitle_Should
     {
-
-        // IEnumerable<Article> articles = this.articleRepository.GetAll(x => x.Title.ToLower().Contains(title.ToLower()));
-
         [Test]
         public void ReturnArticles_WhenPassedStringMatchesPartOfArticlesTitleWithSameCasing()
         {

@@ -15,7 +15,7 @@ namespace Trouvaille.UnitTests.Services.ArticleServiceTests
     public class GetArticleById_Should
     {
 
-        //TODO: Test it correctly!
+        // TODO: Test it correctly!
 
        // [Test]
         //public void ReturnCorrectArticle_WhenIdIsValid()

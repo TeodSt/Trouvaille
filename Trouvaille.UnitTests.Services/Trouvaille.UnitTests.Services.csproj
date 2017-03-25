@@ -92,6 +92,8 @@
     <Compile Include="UsersServiceTests\Constructor_Should.cs" />
     <Compile Include="UsersServiceTests\DeleteUser_Should.cs" />
     <Compile Include="UsersServiceTests\GetAllUsers_Should.cs" />
+    <Compile Include="UsersServiceTests\GetUserById_Should.cs" />
+    <Compile Include="UsersServiceTests\GetUserByUsername_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

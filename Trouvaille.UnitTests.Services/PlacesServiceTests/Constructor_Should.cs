@@ -30,7 +30,6 @@ namespace Trouvaille.UnitTests.Services.PlacesServiceTests
             Assert.Throws<ArgumentNullException>(() => new PlaceService(mockedRepository.Object, null));
         }
 
-
         [Test]
         public void ReturnInstance_WhenArgumentsAreValid()
         {

@@ -3,7 +3,6 @@ using Trouvaille.Data.Contracts;
 using Trouvaille.Models;
 using Trouvaille.Services.Contracts;
 using System.Collections.Generic;
-using System;
 using System.Linq;
 
 namespace Trouvaille.Services
@@ -45,14 +44,17 @@ namespace Trouvaille.Services
 
         public User GetUserById(string id)
         {
+            Guard.WhenArgument(id, "id").IsNull().Throw();
             User user = this.userRepository.GetById(id);
 
             return user;
         }
 
-        public User GetUserByUsername(string text)
+        public User GetUserByUsername(string username)
         {
-            User user = this.userRepository.All.SingleOrDefault(x => x.UserName == text);
+            Guard.WhenArgument(username, "username").IsNull().Throw();
+            User user = this.userRepository.All.SingleOrDefault(x => x.UserName == username);
+
             return user;
         }
     }
