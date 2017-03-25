@@ -37,22 +37,15 @@ namespace Trouvaille.Services
 
         public void AddPicture(Picture picture)
         {
+            Guard.WhenArgument(picture, "picture").IsNull().Throw();
+            
             using (this.unitOfWork)
             {
                 this.pictureRepository.Add(picture);
                 this.unitOfWork.Commit();
             }
         }
-
-        public void DeletePicture(Picture picture)
-        {
-            using (this.unitOfWork)
-            {
-                this.pictureRepository.Delete(picture);
-                this.unitOfWork.Commit();
-            }
-        }
-
+        
         public IEnumerable<Picture> GetPicturesByContinent(string continentName)
         {
             Guard.WhenArgument(continentName, "continentName").IsNull().Throw();

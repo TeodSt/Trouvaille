@@ -62,6 +62,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ArticleServiceTests\AddArticle_Should.cs" />
     <Compile Include="ArticleServiceTests\Constructor_Should.cs" />
     <Compile Include="ArticleServiceTests\GetAllArticles_Should.cs" />
     <Compile Include="ArticleServiceTests\GetArticleById_Should.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="CountryServiceTests\GetAllCountriesOrderedByName_Should.cs" />
     <Compile Include="CountryServiceTests\GetAllCountries_Should.cs" />
     <Compile Include="CountryServiceTests\GetCountryById_Should.cs" />
+    <Compile Include="PicturesServiceTests\AddPicture_Should.cs" />
     <Compile Include="PicturesServiceTests\Constructor_Should.cs" />
     <Compile Include="PicturesServiceTests\GetAllPictures_Should.cs" />
     <Compile Include="PicturesServiceTests\GetPictureByDescription_Should.cs" />

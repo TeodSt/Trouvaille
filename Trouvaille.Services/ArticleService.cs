@@ -55,6 +55,8 @@ namespace Trouvaille.Services
 
         public void AddArticle(Article article)
         {
+            Guard.WhenArgument(article, "article").IsNull().Throw();
+            
             using (this.unitOfWork)
             {
                 this.articleRepository.Add(article);

@@ -17,8 +17,6 @@ namespace Trouvaille.Services.Contracts
 
         Picture GetPictureById(int id);
 
-        void AddPicture(Picture picture);
-
-        void DeletePicture(Picture picture);
+        void AddPicture(Picture picture);        
     }
 }
