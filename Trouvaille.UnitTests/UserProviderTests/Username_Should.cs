@@ -27,5 +27,22 @@ namespace Trouvaille.UnitTests.UserProviderTests
             // Assert
             Assert.AreEqual(name, provider.Username);
         }
+
+        [Test]
+        public void CallContextOnce()
+        {
+            // Arrange
+            var mockedContext = new Mock<HttpContextBase>();
+            string name = "name";
+            mockedContext.Setup(x => x.User.Identity.Name).Returns(name);
+
+            var provider = new UserProvider(mockedContext.Object);
+
+            // Act 
+            string username = provider.Username;
+
+            // Assert
+            mockedContext.Verify(x => x.User, Times.Once);
+        }
     }
 }
