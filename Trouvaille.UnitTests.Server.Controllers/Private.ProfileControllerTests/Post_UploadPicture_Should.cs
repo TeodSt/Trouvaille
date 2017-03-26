@@ -1,21 +1,23 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using TestStack.FluentMVCTesting;
 using Trouvaille.Models;
 using Trouvaille.MVC.Areas.Private.Controllers;
 using Trouvaille.Server.Common.Contracts;
-using Trouvaille.Server.Models.Articles;
+using Trouvaille.Server.Models;
+using Trouvaille.Server.Models.Pictures;
 using Trouvaille.Services.Common.Contracts;
 using Trouvaille.Services.Contracts;
-using Moq.Language.Flow;
-using System.Collections.Generic;
-using Trouvaille.Server.Models;
 
 namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
 {
     [TestFixture]
-    public class Post_CreateArticle_Should
+    public class Post_UploadPicture_Should
     {
         private Mock<IMappingService> mockedMappingService;
         private Mock<IPlaceService> mockedPlacesService;
@@ -26,8 +28,9 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
         private Mock<IUserProvider> mockedUserProvider;
         private Mock<ICacheProvider> mockedCacheProvider;
         private Mock<IFileProvider> mockedFileProvider;
+
         private ProfileController controller;
-        
+
         [SetUp]
         public void SetUp()
         {
@@ -51,42 +54,33 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 mockedCacheProvider.Object,
                 mockedUserProvider.Object,
                 mockedFileProvider.Object);
-        }              
+        }
 
         [Test]
         public void ReturnReditectToPictures_WhenModelStateIsValid()
         {
             // Arrange
-            string username = "username";
-            string userId = "some-id";
-            string path = "some=path"; 
-
-            AddArticleViewModel viewModel = new AddArticleViewModel()
+            AddPictureViewModel viewModel = new AddPictureViewModel()
             {
-                Title = "title",
-                Subheader = "Subheader",
-                CountryId = 3
+                Description = "description"
             };
 
-            Article article = new Article()
+            Picture picture = new Picture()
             {
-                Title = "title",
-                Subheader = "Subheader",
-                CountryId = 3,
-                Id = Guid.NewGuid()
+                Description = "description"
             };
 
-            string redirectPage = "/article/byid/" + article.Id;
+            string redirectPage = "/pictures";
 
             //this.mockedUserProvider.Setup(x => x.Username).Returns(username);
             //this.mockedUserProvider.Setup(x => x.UserId).Returns(userId);
             //this.mockedFileProvider.Setup(x => x.SavePhotoToFileSystem(It.IsAny<string>(), It.IsAny<string>())).Returns(path);
             //this.mockedUserService.Setup(x => x.GetUserByUsername(username)).Returns(new User());
 
-            this.mockedMappingService.Setup(x => x.Map<AddArticleViewModel, Article>(viewModel)).Returns(article);
+            this.mockedMappingService.Setup(x => x.Map<AddPictureViewModel, Picture>(viewModel)).Returns(picture);
 
             // Act & Assert
-            this.controller.WithCallTo(x => x.CreateArticle(viewModel))
+            this.controller.WithCallTo(x => x.UploadPicture(viewModel))
                 .ShouldRedirectTo(redirectPage);
         }
 
@@ -94,11 +88,11 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
         public void ReturnViewWithCorrectProperties_WhenModelStateIsNotValid()
         {
             // Arrange
-            AddArticleViewModel viewModel = new AddArticleViewModel()
+            AddPictureViewModel viewModel = new AddPictureViewModel()
             {
-                Title = "title"
+                Description = "description"
             };
-
+            
             IEnumerable<CountryViewModel> countries = new List<CountryViewModel>();
             this.mockedCountryService.Setup(x => x.GetAllCountriesOrderedByName()).Returns(new List<Country>());
             this.mockedMappingService.Setup(x => x.Map<IEnumerable<CountryViewModel>>(It.IsAny<IEnumerable<Country>>())).Returns(countries);
@@ -106,12 +100,13 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.controller.ModelState.AddModelError("test", "error");
 
             // Act & Assert
-            this.controller.WithCallTo(x => x.CreateArticle(viewModel))
+            this.controller.WithCallTo(x => x.UploadPicture(viewModel))
                 .ShouldRenderDefaultView()
-                .WithModel<AddArticleViewModel>(model =>
+                .WithModel<AddPictureViewModel>(model =>
                 {
                     CollectionAssert.AreEquivalent(countries, model.Countries);
                 });
         }
-    }
+    
+}
 }

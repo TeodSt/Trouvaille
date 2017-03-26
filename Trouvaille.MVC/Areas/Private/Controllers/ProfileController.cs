@@ -1,8 +1,6 @@
 ﻿using Bytes2you.Validation;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Web.Mvc;
 using Trouvaille.Models;
 using Trouvaille.Server.Common.Contracts;
@@ -35,7 +33,10 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
         private const string CountriesCache = "Countries";
         private const string DatabaseEntryName = "Trouvaille";
+
         private const string PlacesRedirect = "/places";
+        private const string PicturesRedirect = "/pictures";
+        private const string ArticleRedirect = "/article/byid/";
 
         public ProfileController(
             IMappingService mappingService,
@@ -154,7 +155,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
             this.articleService.AddArticle(article);
 
-            return this.RedirectToAction("ById", new { controller = "Article", area = "", id = article.Id });
+            return this.Redirect(ArticleRedirect + article.Id);
         }
 
         [HttpGet]
@@ -165,7 +166,6 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
             return this.View(model);
         }
-
 
         [HttpPost]
         public ActionResult UploadPicture(AddPictureViewModel model)
@@ -193,7 +193,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
             var userModel = this.mappingService.Map<UserProfileViewModel>(user);
 
-            return this.RedirectToAction("Index", new { controller = "Pictures", area = "" });
+            return this.Redirect(PicturesRedirect);
         }
 
         private IEnumerable<CountryViewModel> GetAllCountries()
@@ -214,24 +214,5 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
             return mapped;
         }
-
-        //private string SavePhotoToFileSystem(string path)
-        //{
-        //    string filePath = "";
-
-        //    if (this.Request.Files.Count > 0)
-        //    {
-        //        var file = Request.Files[0];
-
-        //        if (file != null && file.ContentLength > 0)
-        //        {
-        //            var fileName = Path.GetFileName(file.FileName);
-        //            filePath = path + "-" + fileName;
-        //            file.SaveAs(this.Server.MapPath(filePath));
-        //        }
-        //    }
-
-        //    return filePath;
-        //}
     }
 }
