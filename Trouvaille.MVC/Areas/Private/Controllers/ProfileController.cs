@@ -27,9 +27,12 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         private readonly IUserService userService;
         private readonly ICacheProvider cacheProvider;
         private readonly IUserProvider userProvider;
+        private readonly IFileProvider fileProvider;
 
         private const string ArticlesFileLocation = "/Photos/Articles/";
         private const string PicturesFileLocation = "/Photos/Pictures/";
+        private const string DefaultUserPhoto = "Users/default-profile.png";
+
         private const string CountriesCache = "Countries";
         private const string DatabaseEntryName = "Trouvaille";
         private const string PlacesRedirect = "/places";
@@ -42,7 +45,8 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             IPictureService pictureService,
             IUserService userService,
             ICacheProvider cacheProvider,
-            IUserProvider userProvider)
+            IUserProvider userProvider,
+            IFileProvider fileProvider)
         {
             Guard.WhenArgument(mappingService, "mappingService").IsNull().Throw();
             Guard.WhenArgument(placesService, "placesService").IsNull().Throw();
@@ -52,6 +56,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             Guard.WhenArgument(userService, "userService").IsNull().Throw();
             Guard.WhenArgument(cacheProvider, "cacheProvider").IsNull().Throw();
             Guard.WhenArgument(userProvider, "userProvider").IsNull().Throw();
+            Guard.WhenArgument(fileProvider, "fileProvider").IsNull().Throw();
 
             this.mappingService = mappingService;
             this.placesService = placesService;
@@ -61,6 +66,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             this.userService = userService;
             this.cacheProvider = cacheProvider;
             this.userProvider = userProvider;
+            this.fileProvider = fileProvider;
         }
 
         public ActionResult Index()
@@ -101,7 +107,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
             if (!this.ModelState.IsValid)
             {
-                model.Countries = this.GetAllCountries();              
+                model.Countries = this.GetAllCountries();
                 return this.View(model);
             }
 
@@ -135,7 +141,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             model.CreatorId = userId;
             model.CreatorUsername = this.userProvider.Username;
             model.CreatedOn = DateTime.Now;
-            model.ImagePath = this.SavePhotoToFileSystem(filePath);
+            model.ImagePath = this.fileProvider.SavePhotoToFileSystem(DefaultUserPhoto, filePath);
 
             if (!this.ModelState.IsValid)
             {
@@ -169,7 +175,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             var user = this.userService.GetUserById(userId);
             string filePath = PicturesFileLocation + currentUserUsername;
 
-            model.ImagePath = this.SavePhotoToFileSystem(filePath);
+            model.ImagePath = this.fileProvider.SavePhotoToFileSystem(DefaultUserPhoto, filePath);
             model.CreatorId = userId;
             model.CreatorUsername = currentUserUsername;
             model.CreatedOn = DateTime.Now;
@@ -209,23 +215,23 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             return mapped;
         }
 
-        private string SavePhotoToFileSystem(string path)
-        {
-            string filePath = "";
+        //private string SavePhotoToFileSystem(string path)
+        //{
+        //    string filePath = "";
 
-            if (this.Request.Files.Count > 0)
-            {
-                var file = Request.Files[0];
+        //    if (this.Request.Files.Count > 0)
+        //    {
+        //        var file = Request.Files[0];
 
-                if (file != null && file.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(file.FileName);
-                    filePath = path + "-" + fileName;
-                    file.SaveAs(this.Server.MapPath(filePath));
-                }
-            }
+        //        if (file != null && file.ContentLength > 0)
+        //        {
+        //            var fileName = Path.GetFileName(file.FileName);
+        //            filePath = path + "-" + fileName;
+        //            file.SaveAs(this.Server.MapPath(filePath));
+        //        }
+        //    }
 
-            return filePath;
-        }
+        //    return filePath;
+        //}
     }
 }

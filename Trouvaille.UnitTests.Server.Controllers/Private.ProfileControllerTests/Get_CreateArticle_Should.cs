@@ -11,14 +11,14 @@ using Trouvaille.Models;
 using Trouvaille.MVC.Areas.Private.Controllers;
 using Trouvaille.Server.Common.Contracts;
 using Trouvaille.Server.Models;
-using Trouvaille.Server.Models.Pictures;
+using Trouvaille.Server.Models.Articles;
 using Trouvaille.Services.Common.Contracts;
 using Trouvaille.Services.Contracts;
 
 namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
 {
     [TestFixture]
-    public class UploadPicture_Should
+    public class Get_CreateArticle_Should
     {
         private Mock<IMappingService> mockedMappingService;
         private Mock<IPlaceService> mockedPlacesService;
@@ -68,9 +68,9 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.mockedCacheProvider.Setup(x => x.SqlCacheDependency(It.IsAny<string>(), It.IsAny<string>())).Returns(mockedCacheDependency.Object);
 
             // Act & Assert
-            this.controller.WithCallTo(x => x.UploadPicture())
+            this.controller.WithCallTo(x => x.CreateArticle())
                 .ShouldRenderDefaultView()
-                .WithModel<AddPictureViewModel>(viewModel =>
+                .WithModel<AddArticleViewModel>(viewModel =>
                 {
                     CollectionAssert.AreEquivalent(countries, viewModel.Countries);
                 });
@@ -87,7 +87,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.mockedCacheProvider.Setup(x => x.SqlCacheDependency(It.IsAny<string>(), It.IsAny<string>())).Returns(mockedCacheDependency.Object);
 
             // Act 
-            this.controller.UploadPicture();
+            this.controller.CreateArticle();
 
             // Assert
             this.mockedCacheProvider.Verify(x => x.GetValueOfCache(It.IsAny<string>()), Times.Once);
@@ -104,7 +104,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.mockedCacheProvider.Setup(x => x.SqlCacheDependency(It.IsAny<string>(), It.IsAny<string>())).Returns(mockedCacheDependency.Object);
 
             // Act 
-            this.controller.UploadPicture();
+            this.controller.CreateArticle();
 
             // Assert
             this.mockedCacheProvider.Verify(x => x.SqlCacheDependency(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
@@ -122,7 +122,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.mockedCacheProvider.Setup(x => x.GetValueOfCache(It.IsAny<string>())).Returns(countries);
 
             // Act 
-            this.controller.UploadPicture();
+            this.controller.CreateArticle();
 
             // Assert
             this.mockedCacheProvider.Verify(x => x.SqlCacheDependency(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
@@ -140,7 +140,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.mockedCacheProvider.Setup(x => x.GetValueOfCache(It.IsAny<string>())).Returns(countries);
 
             // Act 
-            this.controller.UploadPicture();
+            this.controller.CreateArticle();
 
             // Assert
             this.mockedCountryService.Verify(x => x.GetAllCountriesOrderedByName(), Times.Never);
@@ -157,7 +157,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.mockedMappingService.Setup(x => x.Map<IEnumerable<CountryViewModel>>(It.IsAny<IEnumerable<Country>>())).Returns(countries);
 
             // Act 
-            this.controller.UploadPicture();
+            this.controller.CreateArticle();
 
             // Assert
             this.mockedCountryService.Verify(x => x.GetAllCountriesOrderedByName(), Times.Once);
@@ -175,7 +175,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.mockedCacheProvider.Setup(x => x.GetValueOfCache(It.IsAny<string>())).Returns(countries);
 
             // Act 
-            this.controller.UploadPicture();
+            this.controller.CreateArticle();
 
             // Assert
             this.mockedCacheProvider.Verify(x => x.InsertWithSqlDependency(It.IsAny<string>(), It.IsAny<object>(), It.IsAny<CacheDependency>()), Times.Never);
@@ -191,7 +191,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.mockedMappingService.Setup(x => x.Map<IEnumerable<CountryViewModel>>(It.IsAny<IEnumerable<Country>>())).Returns(countries);
 
             // Act 
-            this.controller.UploadPicture();
+            this.controller.CreateArticle();
 
             // Assert
             this.mockedCacheProvider.Verify(x => x.InsertWithSqlDependency(It.IsAny<string>(), It.IsAny<object>(), It.IsAny<CacheDependency>()), Times.Once);
@@ -207,7 +207,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.mockedMappingService.Setup(x => x.Map<IEnumerable<CountryViewModel>>(It.IsAny<IEnumerable<Country>>())).Returns(countries);
             this.mockedCacheProvider.Setup(x => x.GetValueOfCache(It.IsAny<string>())).Returns(null);
             // Act 
-            this.controller.UploadPicture();
+            this.controller.CreateArticle();
 
             // Assert
             this.mockedMappingService.Verify(x => x.Map<IEnumerable<CountryViewModel>>(It.IsAny<IEnumerable<Country>>()), Times.Once);

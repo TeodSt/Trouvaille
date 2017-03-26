@@ -23,6 +23,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             var mockedUserService = new Mock<IUserService>();
             var mockedCacheProvider = new Mock<ICacheProvider>();
             var userProvider = new Mock<IUserProvider>();
+            var mockedFileProvider = new Mock<IFileProvider>();
 
             // Act 
             var controller = new ProfileController(
@@ -33,14 +34,15 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 mockedPictureService.Object,
                 mockedUserService.Object,
                 mockedCacheProvider.Object,
-                userProvider.Object);
+                userProvider.Object,
+                mockedFileProvider.Object);
 
             // Assert
             Assert.IsInstanceOf<ProfileController>(controller);
         }
 
         [Test]
-        public void ReturnCorrectInstance_WhenIMappingServiceIsNull()
+        public void ThrowArgumentNullException_WhenIMappingServiceIsNull()
         {
             // Arrange
             var mockedPlacesService = new Mock<IPlaceService>();
@@ -50,6 +52,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             var mockedUserService = new Mock<IUserService>();
             var mockedCacheProvider = new Mock<ICacheProvider>();
             var userProvider = new Mock<IUserProvider>();
+            var mockedFileProvider = new Mock<IFileProvider>();
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => new ProfileController(
@@ -60,11 +63,12 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 mockedPictureService.Object,
                 mockedUserService.Object,
                 mockedCacheProvider.Object,
-                userProvider.Object));
+                userProvider.Object,
+                 mockedFileProvider.Object));
         }
 
         [Test]
-        public void ReturnCorrectInstance_WhenIPlaceServiceIsNull()
+        public void ThrowArgumentNullException_WhenIPlaceServiceIsNull()
         {
             // Arrange
             var mockedMappingService = new Mock<IMappingService>();
@@ -74,6 +78,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             var mockedUserService = new Mock<IUserService>();
             var mockedCacheProvider = new Mock<ICacheProvider>();
             var userProvider = new Mock<IUserProvider>();
+            var mockedFileProvider = new Mock<IFileProvider>();
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => new ProfileController(
@@ -84,11 +89,12 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 mockedPictureService.Object,
                 mockedUserService.Object,
                 mockedCacheProvider.Object,
-                userProvider.Object));
+                userProvider.Object,
+                 mockedFileProvider.Object));
         }
 
         [Test]
-        public void ReturnCorrectInstance_WhenICountryServiceIsNull()
+        public void ThrowArgumentNullException_WhenICountryServiceIsNull()
         {
             // Arrange
             var mockedMappingService = new Mock<IMappingService>();
@@ -98,6 +104,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             var mockedUserService = new Mock<IUserService>();
             var mockedCacheProvider = new Mock<ICacheProvider>();
             var userProvider = new Mock<IUserProvider>();
+            var mockedFileProvider = new Mock<IFileProvider>();
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => new ProfileController(
@@ -108,11 +115,12 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 mockedPictureService.Object,
                 mockedUserService.Object,
                 mockedCacheProvider.Object,
-                userProvider.Object));
+                userProvider.Object,
+                 mockedFileProvider.Object));
         }
-        
+
         [Test]
-        public void ReturnCorrectInstance_WhenArticleServiceIsNull()
+        public void ThrowArgumentNullException_WhenArticleServiceIsNull()
         {
             // Arrange
             var mockedMappingService = new Mock<IMappingService>();
@@ -122,6 +130,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             var mockedUserService = new Mock<IUserService>();
             var mockedCacheProvider = new Mock<ICacheProvider>();
             var userProvider = new Mock<IUserProvider>();
+            var mockedFileProvider = new Mock<IFileProvider>();
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => new ProfileController(
@@ -132,11 +141,12 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 mockedPictureService.Object,
                 mockedUserService.Object,
                 mockedCacheProvider.Object,
-                userProvider.Object));
+                userProvider.Object,
+                 mockedFileProvider.Object));
         }
 
         [Test]
-        public void ReturnCorrectInstance_WhenPictureServiceIsNull()
+        public void ThrowArgumentNullException_WhenPictureServiceIsNull()
         {
             // Arrange
             var mockedMappingService = new Mock<IMappingService>();
@@ -146,6 +156,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             var mockedUserService = new Mock<IUserService>();
             var mockedCacheProvider = new Mock<ICacheProvider>();
             var userProvider = new Mock<IUserProvider>();
+            var mockedFileProvider = new Mock<IFileProvider>();
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => new ProfileController(
@@ -156,11 +167,12 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 null,
                 mockedUserService.Object,
                 mockedCacheProvider.Object,
-                userProvider.Object));
+                userProvider.Object,
+                 mockedFileProvider.Object));
         }
 
         [Test]
-        public void ReturnCorrectInstance_WhenUserServiceIsNull()
+        public void ThrowArgumentNullException_WhenUserServiceIsNull()
         {
             // Arrange
             var mockedMappingService = new Mock<IMappingService>();
@@ -170,6 +182,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             var mockedPictureService = new Mock<IPictureService>();
             var mockedCacheProvider = new Mock<ICacheProvider>();
             var userProvider = new Mock<IUserProvider>();
+            var mockedFileProvider = new Mock<IFileProvider>();
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => new ProfileController(
@@ -180,11 +193,12 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 mockedPictureService.Object,
                 null,
                 mockedCacheProvider.Object,
-                userProvider.Object));
+                userProvider.Object,
+                 mockedFileProvider.Object));
         }
 
         [Test]
-        public void ReturnCorrectInstance_WhenCacheProviderIsNull()
+        public void ThrowArgumentNullException_WhenCacheProviderIsNull()
         {
             // Arrange
             var mockedMappingService = new Mock<IMappingService>();
@@ -194,6 +208,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             var mockedPictureService = new Mock<IPictureService>();
             var mockedUserService = new Mock<IUserService>();
             var userProvider = new Mock<IUserProvider>();
+            var mockedFileProvider = new Mock<IFileProvider>();
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => new ProfileController(
@@ -204,11 +219,12 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 mockedPictureService.Object,
                 mockedUserService.Object,
                 null,
-                userProvider.Object));
+                userProvider.Object,
+                 mockedFileProvider.Object));
         }
 
         [Test]
-        public void ReturnCorrectInstance_WhenUserProviderIsNull()
+        public void ThrowArgumentNullException_WhenUserProviderIsNull()
         {
             // Arrange
             var mockedMappingService = new Mock<IMappingService>();
@@ -218,6 +234,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             var mockedPictureService = new Mock<IPictureService>();
             var mockedUserService = new Mock<IUserService>();
             var mockedCacheProvider = new Mock<ICacheProvider>();
+            var mockedFileProvider = new Mock<IFileProvider>();
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => new ProfileController(
@@ -228,7 +245,8 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 mockedPictureService.Object,
                 mockedUserService.Object,
                 mockedCacheProvider.Object,
-                null));
+                null,
+                mockedFileProvider.Object));
         }
     }
 }

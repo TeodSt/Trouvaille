@@ -10,6 +10,7 @@ namespace Trouvaille.MVC.App_Start.NinjectModules
         {
             this.Bind<ICacheProvider>().To<CacheProvider>();
             this.Bind<IUserProvider>().To<UserProvider>();
+            this.Bind<IFileProvider>().To<FileProvider>();
         }
     }
 }

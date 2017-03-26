@@ -24,6 +24,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
         private Mock<IUserService> mockedUserService;
         private Mock<IUserProvider> mockedUserProvider;
         private Mock<ICacheProvider> mockedCacheProvider;
+        private Mock<IFileProvider> mockedFileProvider;
 
         private ProfileController controller;
 
@@ -38,6 +39,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.mockedCountryService = new Mock<ICountryService>();
             this.mockedCacheProvider = new Mock<ICacheProvider>();
             this.mockedUserProvider = new Mock<IUserProvider>();
+            this.mockedFileProvider = new Mock<IFileProvider>();
 
             this.controller = new ProfileController(
                 mockedMappingService.Object,
@@ -47,7 +49,8 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 mockedPictureService.Object,
                 mockedUserService.Object,
                 mockedCacheProvider.Object,
-                mockedUserProvider.Object);
+                mockedUserProvider.Object,
+                mockedFileProvider.Object);
         }
 
         [Test]

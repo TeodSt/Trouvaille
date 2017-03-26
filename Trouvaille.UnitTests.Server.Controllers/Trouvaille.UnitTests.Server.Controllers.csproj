@@ -114,10 +114,11 @@
     <Compile Include="PlacesControllerTests\Constructor_Should.cs" />
     <Compile Include="PlacesControllerTests\Index_Should.cs" />
     <Compile Include="Private.ProfileControllerTests\Constructor_Should.cs" />
-    <Compile Include="Private.ProfileControllerTests\CreateArticle_Should.cs" />
-    <Compile Include="Private.ProfileControllerTests\CreatePlace_Should.cs" />
+    <Compile Include="Private.ProfileControllerTests\Get_CreateArticle_Should.cs" />
+    <Compile Include="Private.ProfileControllerTests\Post_CreateArticle_Should.cs" />
+    <Compile Include="Private.ProfileControllerTests\Post_CreatePlace_Should.cs" />
     <Compile Include="Private.ProfileControllerTests\Index_Should.cs" />
-    <Compile Include="Private.ProfileControllerTests\Place_Should.cs" />
+    <Compile Include="Private.ProfileControllerTests\Get_CreatePlace_Should.cs" />
     <Compile Include="Private.ProfileControllerTests\UploadPicture_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchControllerTests\Constructor_Should.cs" />
