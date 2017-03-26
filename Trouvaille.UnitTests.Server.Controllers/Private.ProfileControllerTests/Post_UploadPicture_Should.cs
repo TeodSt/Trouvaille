@@ -92,7 +92,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             {
                 Description = "description"
             };
-            
+
             IEnumerable<CountryViewModel> countries = new List<CountryViewModel>();
             this.mockedCountryService.Setup(x => x.GetAllCountriesOrderedByName()).Returns(new List<Country>());
             this.mockedMappingService.Setup(x => x.Map<IEnumerable<CountryViewModel>>(It.IsAny<IEnumerable<Country>>())).Returns(countries);
@@ -107,6 +107,6 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                     CollectionAssert.AreEquivalent(countries, model.Countries);
                 });
         }
-    
-}
+
+    }
 }

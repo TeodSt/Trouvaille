@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.Services", "Trou
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Trouvaille.Tests", "Trouvaille.Tests", "{15D35D7D-7FBF-4A30-9FFC-5FB4DEA6A62C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.UnitTests", "Trouvaille.UnitTests\Trouvaille.UnitTests.csproj", "{CCC4A026-FF7A-4DDB-9322-C0082323CABF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.UnitTests.Common", "Trouvaille.UnitTests\Trouvaille.UnitTests.Common.csproj", "{CCC4A026-FF7A-4DDB-9322-C0082323CABF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.Services.Common", "Trouvaille.Services.Common\Trouvaille.Services.Common.csproj", "{DAFE5655-198E-4E41-8D82-210B4305EE2E}"
 EndProject

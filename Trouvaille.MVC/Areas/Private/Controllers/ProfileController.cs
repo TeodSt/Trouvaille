@@ -191,8 +191,6 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
             this.pictureService.AddPicture(picture);
 
-            var userModel = this.mappingService.Map<UserProfileViewModel>(user);
-
             return this.Redirect(PicturesRedirect);
         }
 

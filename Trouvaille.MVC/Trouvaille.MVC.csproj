@@ -314,8 +314,6 @@
     <Content Include="Areas\Private\Views\Profile\Index.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Panel\Index.cshtml" />
-    <Content Include="Areas\Private\Views\Profile\_CreatePlace.cshtml" />
-    <Content Include="Areas\Private\Views\Profile\_UploadPicture.cshtml" />
     <Content Include="Areas\Private\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Private\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />

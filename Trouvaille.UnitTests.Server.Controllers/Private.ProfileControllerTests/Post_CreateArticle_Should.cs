@@ -27,7 +27,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
         private Mock<ICacheProvider> mockedCacheProvider;
         private Mock<IFileProvider> mockedFileProvider;
         private ProfileController controller;
-        
+
         [SetUp]
         public void SetUp()
         {
@@ -51,7 +51,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 mockedCacheProvider.Object,
                 mockedUserProvider.Object,
                 mockedFileProvider.Object);
-        }              
+        }
 
         [Test]
         public void ReturnReditectToPictures_WhenModelStateIsValid()
@@ -59,7 +59,7 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             // Arrange
             string username = "username";
             string userId = "some-id";
-            string path = "some=path"; 
+            string path = "some=path";
 
             AddArticleViewModel viewModel = new AddArticleViewModel()
             {
@@ -112,6 +112,177 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
                 {
                     CollectionAssert.AreEquivalent(countries, model.Countries);
                 });
+        }
+
+
+        [Test]
+        public void CallGetUserByIdOnce()
+        {
+            // Arrange
+            string username = "username";
+            string userId = "some-id";
+
+            AddArticleViewModel viewModel = new AddArticleViewModel()
+            {
+                Title = "title",
+                Subheader = "Subheader",
+                CountryId = 3
+            };
+
+            Article article = new Article()
+            {
+                Title = "title",
+                Subheader = "Subheader",
+                CountryId = 3,
+                Id = Guid.NewGuid()
+            };
+
+            this.mockedUserProvider.Setup(x => x.Username).Returns(username);
+            this.mockedUserProvider.Setup(x => x.UserId).Returns(userId);
+            this.mockedUserService.Setup(x => x.GetUserByUsername(username)).Returns(new User());
+            this.mockedMappingService.Setup(x => x.Map<AddArticleViewModel, Article>(viewModel)).Returns(article);
+
+            // Act
+            this.controller.CreateArticle(viewModel);
+
+            // Assert
+            this.mockedUserService.Verify(x => x.GetUserById(userId), Times.Once);
+        }
+
+        [Test]
+        public void CallUserProviderUsernameOnce()
+        {
+            // Arrange
+            string username = "username";
+            string userId = "some-id";
+
+            AddArticleViewModel viewModel = new AddArticleViewModel()
+            {
+                Title = "title",
+                Subheader = "Subheader",
+                CountryId = 3
+            };
+
+            Article article = new Article()
+            {
+                Title = "title",
+                Subheader = "Subheader",
+                CountryId = 3,
+                Id = Guid.NewGuid()
+            };
+
+            this.mockedUserProvider.Setup(x => x.Username).Returns(username);
+            this.mockedUserProvider.Setup(x => x.UserId).Returns(userId);
+            this.mockedUserService.Setup(x => x.GetUserByUsername(username)).Returns(new User());
+            this.mockedMappingService.Setup(x => x.Map<AddArticleViewModel, Article>(viewModel)).Returns(article);
+
+            // Act 
+            this.controller.CreateArticle(viewModel);
+
+            // Assert
+            this.mockedUserProvider.Verify(x => x.Username, Times.Once);
+        }
+
+        [Test]
+        public void CallFileProviderSavePhotoToFileSystemOnce()
+        {
+            // Arrange
+            string username = "username";
+            string userId = "some-id";
+
+            AddArticleViewModel viewModel = new AddArticleViewModel()
+            {
+                Title = "title",
+                Subheader = "Subheader",
+                CountryId = 3
+            };
+
+            Article article = new Article()
+            {
+                Title = "title",
+                Subheader = "Subheader",
+                CountryId = 3,
+                Id = Guid.NewGuid()
+            };
+
+            this.mockedUserProvider.Setup(x => x.Username).Returns(username);
+            this.mockedUserProvider.Setup(x => x.UserId).Returns(userId);
+            this.mockedUserService.Setup(x => x.GetUserByUsername(username)).Returns(new User());
+            this.mockedMappingService.Setup(x => x.Map<AddArticleViewModel, Article>(viewModel)).Returns(article);
+
+            // Act 
+            this.controller.CreateArticle(viewModel);
+
+            // Assert
+            this.mockedFileProvider.Verify(x => x.SavePhotoToFileSystem(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+        }
+
+        [Test]
+        public void CallMappingServiceMapOnce()
+        {
+            // Arrange
+            string username = "username";
+            string userId = "some-id";
+
+            AddArticleViewModel viewModel = new AddArticleViewModel()
+            {
+                Title = "title",
+                Subheader = "Subheader",
+                CountryId = 3
+            };
+
+            Article article = new Article()
+            {
+                Title = "title",
+                Subheader = "Subheader",
+                CountryId = 3,
+                Id = Guid.NewGuid()
+            };
+
+            this.mockedUserProvider.Setup(x => x.Username).Returns(username);
+            this.mockedUserProvider.Setup(x => x.UserId).Returns(userId);
+            this.mockedUserService.Setup(x => x.GetUserByUsername(username)).Returns(new User());
+            this.mockedMappingService.Setup(x => x.Map<AddArticleViewModel, Article>(viewModel)).Returns(article);
+
+            // Act
+            this.controller.CreateArticle(viewModel);
+
+            // Assert
+            this.mockedMappingService.Verify(x => x.Map<AddArticleViewModel, Article>(viewModel), Times.Once);
+        }
+
+        [Test]
+        public void CallPlacesServiceAddPlaceOnce()
+        {
+            // Arrange
+            string username = "username";
+            string userId = "some-id";
+
+            AddArticleViewModel viewModel = new AddArticleViewModel()
+            {
+                Title = "title",
+                Subheader = "Subheader",
+                CountryId = 3
+            };
+
+            Article article = new Article()
+            {
+                Title = "title",
+                Subheader = "Subheader",
+                CountryId = 3,
+                Id = Guid.NewGuid()
+            };
+
+            this.mockedUserProvider.Setup(x => x.Username).Returns(username);
+            this.mockedUserProvider.Setup(x => x.UserId).Returns(userId);
+            this.mockedUserService.Setup(x => x.GetUserByUsername(username)).Returns(new User());
+            this.mockedMappingService.Setup(x => x.Map<AddArticleViewModel, Article>(viewModel)).Returns(article);
+
+            // Act
+            this.controller.CreateArticle(viewModel);
+
+            // Assert
+            this.mockedArticlesService.Verify(x => x.AddArticle(article), Times.Once);
         }
     }
 }
