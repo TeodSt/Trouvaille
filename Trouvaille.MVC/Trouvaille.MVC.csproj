@@ -258,11 +258,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="400.html" />
+    <Content Include="403.html" />
     <Content Include="404.html" />
-    <Content Include="App_Data\Images\Preloader_2.gif" />
-    <Content Include="App_Data\Images\white_wave.png" />
-    <Content Include="App_Data\Images\white_wave_%402X.png" />
-    <Content Include="App_Data\Trouvaille.png" />
+    <Content Include="500.html" />
     <Content Include="Content\article.css" />
     <Content Include="Content\articles.css" />
     <Content Include="Content\bootstrap.css" />
@@ -324,6 +323,8 @@
     <Content Include="Areas\Private\Views\Profile\CreateArticle.cshtml" />
     <Content Include="Areas\Private\Views\Profile\CreatePlace.cshtml" />
     <Content Include="Areas\Private\Views\Profile\UploadPicture.cshtml" />
+    <None Include="Properties\PublishProfiles\trouvaille - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\trouvaille - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\map.js" />
     <Content Include="Scripts\Custom\redirect.js" />
@@ -581,6 +582,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\Images\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Private\Models\" />
     <Folder Include="Common\" />

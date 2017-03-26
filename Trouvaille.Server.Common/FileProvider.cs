@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Bytes2you.Validation;
+using System.IO;
 using System.Web;
 using Trouvaille.Server.Common.Contracts;
 
@@ -11,6 +12,9 @@ namespace Trouvaille.Server.Common
 
         public FileProvider(HttpRequestBase request, HttpServerUtilityBase server)
         {
+            Guard.WhenArgument(request, "request").IsNull().Throw();
+            Guard.WhenArgument(server, "server").IsNull().Throw();
+
             this.request = request;
             this.server = server;
         }
@@ -19,7 +23,7 @@ namespace Trouvaille.Server.Common
         {
             if (this.request.Files.Count > 0)
             {
-                var file = request.Files[0];
+                var file = this.request.Files[0];
 
                 if (file != null && file.ContentLength > 0)
                 {

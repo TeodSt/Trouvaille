@@ -87,6 +87,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="FileProviderTests\Constructor_Should.cs" />
+    <Compile Include="FileProviderTests\SavePhotoToFileSystem_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserProviderTests\Constructor_Should.cs" />
     <Compile Include="UserProviderTests\Username_Should.cs" />
