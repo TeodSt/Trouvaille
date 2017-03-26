@@ -126,6 +126,9 @@
     <Compile Include="SearchControllerTests\GetPostsByContinent_Should.cs" />
     <Compile Include="SearchControllerTests\SearchBy_Should.cs" />
     <Compile Include="SearchControllerTests\Search_Should.cs" />
+    <Compile Include="UserControllerTests\ById_Should.cs" />
+    <Compile Include="UserControllerTests\Constructor_Should.cs" />
+    <Compile Include="UserControllerTests\Index_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trouvaille.Models\Trouvaille.Models.csproj">
