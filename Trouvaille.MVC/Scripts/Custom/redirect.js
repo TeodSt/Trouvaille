@@ -1,5 +1,5 @@
 ﻿function redirect(result) {
-    if (result.url) {
-        window.location.href = result.url;
+    if (result) {
+        window.location.href = result;
     }
 }

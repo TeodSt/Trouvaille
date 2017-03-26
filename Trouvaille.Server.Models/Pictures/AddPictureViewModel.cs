@@ -9,10 +9,8 @@ namespace Trouvaille.Server.Models.Pictures
 {
     public class AddPictureViewModel : IMapFrom<Picture>, IHaveCustomMappings
     {
-        [Required]
         public string Id { get; set; }
-
-        [Required]
+        
         public string CreatorId { get; set; }
 
         public string CreatorUsername { get; set; }

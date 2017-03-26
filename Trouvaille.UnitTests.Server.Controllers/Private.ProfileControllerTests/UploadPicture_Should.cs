@@ -64,11 +64,9 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
             this.mockedMappingService.Setup(x => x.Map<IEnumerable<CountryViewModel>>(It.IsAny<IEnumerable<Country>>())).Returns(countries);
             this.mockedCacheProvider.Setup(x => x.SqlCacheDependency(It.IsAny<string>(), It.IsAny<string>())).Returns(mockedCacheDependency.Object);
 
-            string partialView = "_UploadPicture";
-
             // Act & Assert
             this.controller.WithCallTo(x => x.UploadPicture())
-                .ShouldRenderPartialView(partialView)
+                .ShouldRenderDefaultView()
                 .WithModel<AddPictureViewModel>(viewModel =>
                 {
                     CollectionAssert.AreEquivalent(countries, viewModel.Countries);

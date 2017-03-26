@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Web.Mvc;
 using Trouvaille.Models;
 using Trouvaille.Server.Common.Contracts;
@@ -31,6 +32,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
         private const string PicturesFileLocation = "/Photos/Pictures/";
         private const string CountriesCache = "Countries";
         private const string DatabaseEntryName = "Trouvaille";
+        private const string PlacesRedirect = "/places";
 
         public ProfileController(
             IMappingService mappingService,
@@ -60,7 +62,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             this.cacheProvider = cacheProvider;
             this.userProvider = userProvider;
         }
-        
+
         public ActionResult Index()
         {
             var username = this.userProvider.Username;
@@ -79,12 +81,12 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             return this.View(model);
         }
 
-        public ActionResult Place()
+        public ActionResult CreatePlace()
         {
             AddPlaceViewModel model = new AddPlaceViewModel();
             model.Countries = this.GetAllCountries();
 
-            return this.PartialView("_CreatePlace", model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -94,25 +96,23 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             string userId = this.userProvider.UserId;
             string username = this.userProvider.Username;
 
-            var user = this.userService.GetUserByUsername(username);
-
             model.FounderId = userId;
             model.FounderName = username;
 
             if (!this.ModelState.IsValid)
             {
-                model.Countries = this.GetAllCountries();
-                return this.PartialView("_CreatePlace", model);
+                model.Countries = this.GetAllCountries();              
+                return this.View(model);
             }
 
+            var user = this.userService.GetUserByUsername(username);
             var place = this.mappingService.Map<AddPlaceViewModel, Place>(model);
             place.Founder = user;
             place.Country = this.countryService.GetCountryById(model.CountryId);
 
             this.placesService.AddPlace(place);
-            var userModel = this.mappingService.Map<UserProfileViewModel>(user);
 
-            return Json(new { url = Url.Action("Index", new { controller = "Places", area = "" }) });
+            return this.Redirect(PlacesRedirect);
         }
 
         public ActionResult CreateArticle()
@@ -120,7 +120,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             AddArticleViewModel model = new AddArticleViewModel();
             model.Countries = this.GetAllCountries();
 
-            return this.PartialView("_CreateArticle", model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -140,7 +140,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             if (!this.ModelState.IsValid)
             {
                 model.Countries = this.GetAllCountries();
-                return this.PartialView("_CreateArticle", model);
+                return this.View(model);
             }
 
             var article = this.mappingService.Map<AddArticleViewModel, Article>(model);
@@ -157,7 +157,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             AddPictureViewModel model = new AddPictureViewModel();
             model.Countries = this.GetAllCountries();
 
-            return PartialView("_UploadPicture", model);
+            return this.View(model);
         }
 
 
@@ -176,7 +176,8 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
             if (!this.ModelState.IsValid)
             {
-                return this.PartialView("_UploadPicture");
+                model.Countries = this.GetAllCountries();
+                return this.View(model);
             }
 
             var picture = this.mappingService.Map<AddPictureViewModel, Picture>(model);
@@ -186,7 +187,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
             var userModel = this.mappingService.Map<UserProfileViewModel>(user);
 
-            return this.View("Index", userModel);
+            return this.RedirectToAction("Index", new { controller = "Pictures", area = "" });
         }
 
         private IEnumerable<CountryViewModel> GetAllCountries()
@@ -199,8 +200,9 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
                 var value = this.countryService.GetAllCountriesOrderedByName();
 
                 this.cacheProvider.InsertWithSqlDependency(CountriesCache, value, dependency);
+                cacheContent = value;
             }
-            
+
             var dbCountries = cacheContent;
             var mapped = this.mappingService.Map<IEnumerable<CountryViewModel>>(dbCountries);
 

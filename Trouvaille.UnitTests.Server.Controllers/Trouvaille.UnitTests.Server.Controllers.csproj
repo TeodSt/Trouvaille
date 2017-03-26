@@ -115,6 +115,7 @@
     <Compile Include="PlacesControllerTests\Index_Should.cs" />
     <Compile Include="Private.ProfileControllerTests\Constructor_Should.cs" />
     <Compile Include="Private.ProfileControllerTests\CreateArticle_Should.cs" />
+    <Compile Include="Private.ProfileControllerTests\CreatePlace_Should.cs" />
     <Compile Include="Private.ProfileControllerTests\Index_Should.cs" />
     <Compile Include="Private.ProfileControllerTests\Place_Should.cs" />
     <Compile Include="Private.ProfileControllerTests\UploadPicture_Should.cs" />

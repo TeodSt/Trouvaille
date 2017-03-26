@@ -1,6 +1,8 @@
 ﻿using Ninject.Modules;
 using Ninject.Web.Common;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Trouvaille.MVC.App_Start.NinjectModules
 {

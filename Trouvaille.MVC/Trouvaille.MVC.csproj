@@ -318,11 +318,13 @@
     <Content Include="Areas\Private\Views\Profile\_UploadPicture.cshtml" />
     <Content Include="Areas\Private\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Private\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Private\Views\Profile\_CreateArticle.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Panel\_GetUsers.cshtml" />
     <Content Include="Areas\Admin\Views\Panel\_GetArticles.cshtml" />
+    <Content Include="Areas\Private\Views\Profile\CreateArticle.cshtml" />
+    <Content Include="Areas\Private\Views\Profile\CreatePlace.cshtml" />
+    <Content Include="Areas\Private\Views\Profile\UploadPicture.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\map.js" />
     <Content Include="Scripts\Custom\redirect.js" />
