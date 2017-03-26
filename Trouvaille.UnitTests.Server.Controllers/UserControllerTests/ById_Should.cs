@@ -99,7 +99,6 @@ namespace Trouvaille.UnitTests.Server.Controllers.UserControllerTests
         public void CallGetPicturesByUsernameOnce()
         {
             // Arrange
-            int id = 8;
             string userId = "some-id";
 
             this.mockedMappingService.Setup(x => x.Map<UserProfileViewModel>(It.IsAny<User>())).Returns(new UserProfileViewModel());

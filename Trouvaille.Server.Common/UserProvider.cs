@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Bytes2you.Validation;
+using Microsoft.AspNet.Identity;
 using System.Web;
 using Trouvaille.Server.Common.Contracts;
 
@@ -10,6 +11,8 @@ namespace Trouvaille.Server.Common
 
         public UserProvider(HttpContextBase context)
         {
+            Guard.WhenArgument(context, "context").IsNull().Throw();
+
             this.context = context;
         }
 

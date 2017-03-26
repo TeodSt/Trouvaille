@@ -57,10 +57,6 @@ namespace Trouvaille.UnitTests.Server.Controllers.Private.ProfileControllerTests
         public void ReturnReditectToPictures_WhenModelStateIsValid()
         {
             // Arrange
-            string username = "username";
-            string userId = "some-id";
-            string path = "some=path";
-
             AddArticleViewModel viewModel = new AddArticleViewModel()
             {
                 Title = "title",
