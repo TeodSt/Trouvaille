@@ -1,15 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>@ViewBag.Title | Trouvaille</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/Content/bootstrap.css" />
+    <link rel="stylesheet" href="/Content/mdb.css" />
+    <link rel="stylesheet" href="/Content/style.css" />
 </head>
-
 <body>
     <nav class="navbar navbar-toggleable-md navbar-dark fixed-top scrolling-navbar">
         <div class="container">
@@ -19,35 +16,37 @@
             <div class="collapse navbar-collapse" id="navbarNav1">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        @Html.ActionLink("Home", "Index", new { controller = "Home", area = "" }, new { @class = "nav-link" })
+                        <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Articles", "Index", new { controller = "Article", area = "" }, new { @class = "nav-link" })
+                        <a href="/Articles" class="nav-link">Articles</a>
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Places", "Index", new { controller = "Places", area = "" }, new { @class = "nav-link" })
+                        <a href="/Places" class="nav-link">Places</a>
                     </li>
-                    @* <li class="nav-item">
-                            @Html.ActionLink("Destinations", "Contact", new { controller = "Home", area = "" }, new { @class = "nav-link" })
-                        </li>*@
                     <li class="nav-item">
-                        @Html.ActionLink("Pictures", "Index", new { controller = "Pictures", area = "" }, new { @class = "nav-link" })
+                        <a href="/Pictures" class="nav-link">Pictures</a>
                     </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>
     <div class="view hm-black-strong">
         <div class="full-bg-img flex-center">
             <div class="center">
-                <img src="~/Trouvaille.png" />             
+                <img src="/Trouvaille.png" />
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        <hr />
+        <div class="row  justify-content-center">
+            <div style="font-size: 90px;">400</div>
+        </div>
+        <div class="row  justify-content-center">
+            <h1>Oops, bad request! Try again!</h1>
+            <br />
+            <a href="/" class="btn sunset-color">Go to home page</a>
+        </div>
     </div>
     <footer class="page-footer center-on-small-only">
         <div class="container-fluid">
@@ -63,13 +62,23 @@
                     <h5 class="title">Continents</h5>
                     <ul>
                         <li>
-                            @Html.ActionLink("Asia", "GetPostsByContinent", new { area = "", controller = "search", continentName = "Asia" }, new { })
+                            <a href="/search/GetPostsByContinent?continentName=Asia" class="nav-link">Asia</a>
                         </li>
-                        <li>@Html.ActionLink("Africa", "GetPostsByContinent", new { area = "", controller = "search", continentName = "Africa" }, new { })</li>
-                        <li>@Html.ActionLink("Australia", "GetPostsByContinent", new { area = "", controller = "search", continentName = "Australia" }, new { })</li>
-                        <li>@Html.ActionLink("Europe", "GetPostsByContinent", new { area = "", controller = "search", continentName = "Europe" }, new { })</li>
-                        <li>@Html.ActionLink("North America", "GetPostsByContinent", new { area = "", controller = "search", continentName = "North America" }, new { })</li>
-                        <li>@Html.ActionLink("South America", "GetPostsByContinent", new { area = "", controller = "search", continentName = "South America" }, new { })</li>
+                        <li>
+                            <a href="/search/GetPostsByContinent?continentName=Africa" class="nav-link">Africa</a>
+                        </li>
+                        <li>
+                            <a href="/search/GetPostsByContinent?continentName=Europe" class="nav-link">Europe</a>
+                        </li>
+                        <li>
+                            <a href="/search/GetPostsByContinent?continentName=Europe" class="nav-link">Europe</a>
+                        </li>
+                        <li>
+                            <a href="/search/GetPostsByContinent?continentName=North America" class="nav-link">North America</a>
+                        </li>
+                        <li>
+                            <a href="/search/GetPostsByContinent?continentName=South America" class="nav-link">South America</a>
+                        </li>
                     </ul>
                 </div>
                 <hr class="hidden-md-up">
@@ -90,7 +99,5 @@
             </div>
         </div>
     </footer>
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

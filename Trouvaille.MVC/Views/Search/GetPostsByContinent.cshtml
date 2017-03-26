@@ -7,7 +7,7 @@
 <div class="divider-new">
     <h2 class="h2-responsive wow fadeInUp">Search results</h2>
 </div>
-@if (!Model.Articles.Any() || !Model.Pictures.Any())
+@if (!Model.Articles.Any() && !Model.Pictures.Any())
 {
     <div class="container">
         <h3>No results were found!</h3>
@@ -15,37 +15,41 @@
 }
 else
 {
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            @foreach (var post in Model.Articles)
-            {
-                <div class="post-wrapper">
-                    <h1 class="h1-responsive">@post.Title <small class="text-muted"></small></h1>
-                    <h5>Created by @Html.ActionLink(@post.CreatorUsername, "ById", new { controller = "user", area = "", id = @post.CreatorId }, new { }), @string.Format("{0:dd/MM/yyyy}", post.CreatedOn)</h5>
-                    <br>
-                    <div>
-                        <img src=@post.ImagePath class="articles-img" height="400" width="600" alt=@post.Id>
-                    </div>
-                    <br>
-                    @Html.ActionLink("See more", "ById", "Article", new { id = @post.Id }, new { @class = "btn sunset-color" })
+    if (Model.Articles.Any())
+    {
+        foreach (var article in Model.Articles)
+        {
+            <div class="media mb-1">
+                <a class="media-left waves-light">
+                    <img class="rounded-circle" height="100" src=@article.ImagePath alt=@article.ImagePath>
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        @Html.ActionLink(@article.Title, "ById", new { controller = "Article", area = "", id = @article.Id })
+                    </h4>
+                    <p>By user: @Html.ActionLink(@article.CreatorUsername, "ById", new { controller = "user", area = "", id = @article.CreatorId })</p>
                 </div>
-                <hr>
-            }
+            </div>
+        }
+    }
 
-            @foreach (var post in Model.Pictures)
-            {
-                <div class="post-wrapper">
-                    <h1 class="h1-responsive">@post.Description <small class="text-muted"></small></h1>
-                    <h5>Created by @Html.ActionLink(@post.CreatorUsername, "ById", new { controller = "user", area = "", id = @post.CreatorId }, new { }), @string.Format("{0:dd/MM/yyyy}", post.CreatedOn)</h5>
-                    <br>
-                    <div>
-                        <img src=@post.ImagePath class="articles-img" height="400" width="600" alt=@post.Id>
-                    </div>
-                    <br>
+    if (Model.Pictures.Any())
+    {
+        foreach (var picture in Model.Pictures)
+        {
+            <div class="media mb-1">
+                <a class="media-left waves-light">
+                    <img class="rounded-circle" height="100" src=@picture.ImagePath alt=@picture.ImagePath>
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        @picture.Description
+                    </h4>
+                    <p>
+                        By user: @Html.ActionLink(@picture.CreatorUsername, "ById", new { controller = "user", area = "", id = @picture.CreatorId })
+                    </p>
                 </div>
-                <hr>
-            }
-
-        </div>
-    </div>
+            </div>
+        }
+    }
 }

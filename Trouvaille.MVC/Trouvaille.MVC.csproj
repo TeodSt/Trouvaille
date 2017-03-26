@@ -258,6 +258,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
     <Content Include="App_Data\Images\Preloader_2.gif" />
     <Content Include="App_Data\Images\white_wave.png" />
     <Content Include="App_Data\Images\white_wave_%402X.png" />
