@@ -5,6 +5,7 @@ using Ninject;
 using Ninject.Web.Common;
 using Trouvaille.MVC;
 using Trouvaille.MVC.App_Start.NinjectModules;
+using Trouvaille.MVC.App_Start.Bindings;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
@@ -65,7 +66,8 @@ namespace Trouvaille.MVC
                 new TrouvailleModule(),
                 new DataModule(),
                 new ProviderModule(),
-                new ServicesModule());
+                new ServicesModule(),
+                new IdentityModule());
         }        
     }
 }

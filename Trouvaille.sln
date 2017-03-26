@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.UnitTests.Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.UnitTests.Server.Controllers", "Trouvaille.UnitTests.Server.Controllers\Trouvaille.UnitTests.Server.Controllers.csproj", "{1E3B6FC9-5C8E-4A19-B4EF-71FE75349DEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trouvaille.Server.Identity", "Trouvaille.Server.Identity\Trouvaille.Server.Identity.csproj", "{FE78C631-9AEE-4FB4-B1D4-72D5F51E25B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{1E3B6FC9-5C8E-4A19-B4EF-71FE75349DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E3B6FC9-5C8E-4A19-B4EF-71FE75349DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E3B6FC9-5C8E-4A19-B4EF-71FE75349DEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE78C631-9AEE-4FB4-B1D4-72D5F51E25B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE78C631-9AEE-4FB4-B1D4-72D5F51E25B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE78C631-9AEE-4FB4-B1D4-72D5F51E25B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE78C631-9AEE-4FB4-B1D4-72D5F51E25B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +98,6 @@ Global
 		{04EC1652-B005-40B5-89A0-503F8B5E9AEF} = {251B6E01-8299-4C41-9A76-70FC98070EFE}
 		{1BB2834A-00F4-4EE0-8A75-94FA8FBBF0A1} = {15D35D7D-7FBF-4A30-9FFC-5FB4DEA6A62C}
 		{1E3B6FC9-5C8E-4A19-B4EF-71FE75349DEE} = {15D35D7D-7FBF-4A30-9FFC-5FB4DEA6A62C}
+		{FE78C631-9AEE-4FB4-B1D4-72D5F51E25B6} = {251B6E01-8299-4C41-9A76-70FC98070EFE}
 	EndGlobalSection
 EndGlobal

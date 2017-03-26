@@ -228,13 +228,13 @@
   <ItemGroup>
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\Bindings\DataModule.cs" />
+    <Compile Include="App_Start\Bindings\IdentityModule.cs" />
     <Compile Include="App_Start\Bindings\ProviderModule.cs" />
     <Compile Include="App_Start\Bindings\ServicesModule.cs" />
     <Compile Include="App_Start\Bindings\TrouvailleModule.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DbConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -553,6 +553,10 @@
     <ProjectReference Include="..\Trouvaille.Server.Common\Trouvaille.Server.Common.csproj">
       <Project>{4d67aa4c-6492-40e1-b49e-16b318b21994}</Project>
       <Name>Trouvaille.Server.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trouvaille.Server.Identity\Trouvaille.Server.Identity.csproj">
+      <Project>{fe78c631-9aee-4fb4-b1d4-72d5f51e25b6}</Project>
+      <Name>Trouvaille.Server.Identity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Trouvaille.Server.Models\Trouvaille.Server.Models.csproj">
       <Project>{04ec1652-b005-40b5-89a0-503f8b5e9aef}</Project>

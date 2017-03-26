@@ -7,51 +7,28 @@ using Microsoft.Owin.Security;
 using Trouvaille.Models;
 using Trouvaille.MVC.Models.AccountViewModels;
 using System.IO;
+using Trouvaille.Server.Identity.Contracts;
+using Trouvaille.Server.Common.Contracts;
 
 namespace Trouvaille.MVC.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private UserManager _userManager;
+        private readonly IApplicationSignInManager signInManager;
+        private readonly IApplicationUserManager userManager;
+        private readonly IFileProvider fileProvider;
 
         private const string UsersFilePath = "/Photos/Users/";
+        private const string DefaultUserPicture = "/Photos/Users/default-profile.png";
 
-        public AccountController()
+        public AccountController(IApplicationUserManager userManager, IApplicationSignInManager signInManager, IFileProvider fileProvider)
         {
+            this.signInManager = signInManager;
+            this.userManager = userManager;
+            this.fileProvider = fileProvider;
         }
-
-        public AccountController(UserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
-        }
-
-        public UserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<UserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
+        
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -72,10 +49,8 @@ namespace Trouvaille.MVC.Controllers
             {
                 return View(model);
             }
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
+            
+            var result = await this.signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -109,19 +84,22 @@ namespace Trouvaille.MVC.Controllers
             if (ModelState.IsValid)
             {
                 string filePath = UsersFilePath + model.Username;
-                string path = this.SavePhotoToFileSystem(filePath);
+                string path = this.fileProvider.SavePhotoToFileSystem(DefaultUserPicture, filePath);
 
-                var user = new User { UserName = model.Username, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, ImagePath = path };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new User
+                {
+                    UserName = model.Username,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    ImagePath = path
+                };
+
+                var result = await this.userManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    await this.signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -131,14 +109,7 @@ namespace Trouvaille.MVC.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        // GET: /Account/ForgotPassword
-        [AllowAnonymous]
-        public ActionResult ForgotPassword()
-        {
-            return View();
-        }
-
+        
 
         //
         // POST: /Account/LogOff
@@ -154,39 +125,18 @@ namespace Trouvaille.MVC.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (this.userManager != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    this.userManager.Dispose();
                 }
 
-                if (_signInManager != null)
+                if (this.userManager != null)
                 {
-                    _signInManager.Dispose();
-                    _signInManager = null;
+                    this.userManager.Dispose();
                 }
             }
 
             base.Dispose(disposing);
-        }
-
-        private string SavePhotoToFileSystem(string path)
-        {
-            string filePath = "";
-
-            if (this.Request.Files.Count > 0)
-            {
-                var file = Request.Files[0];
-
-                if (file != null && file.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(file.FileName);
-                    filePath = path + "-" + fileName;
-                    file.SaveAs(this.Server.MapPath(filePath));
-                }
-            }
-
-            return filePath;
         }
 
         #region Helpers
