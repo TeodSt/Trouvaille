@@ -1,5 +1,4 @@
 ﻿using Bytes2you.Validation;
-using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.IO;

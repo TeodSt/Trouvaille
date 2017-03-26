@@ -39,6 +39,7 @@
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -112,6 +113,8 @@
     <Compile Include="PicturesControllerTests\Index_Should.cs" />
     <Compile Include="PlacesControllerTests\Constructor_Should.cs" />
     <Compile Include="PlacesControllerTests\Index_Should.cs" />
+    <Compile Include="Private.ProfileControllerTests\Constructor_Should.cs" />
+    <Compile Include="Private.ProfileControllerTests\Index_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchControllerTests\Constructor_Should.cs" />
     <Compile Include="SearchControllerTests\GetPostsByContinent_Should.cs" />
@@ -126,6 +129,10 @@
     <ProjectReference Include="..\Trouvaille.MVC\Trouvaille.MVC.csproj">
       <Project>{831bc403-60a1-4e8f-a852-2e2deb56c544}</Project>
       <Name>Trouvaille.MVC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trouvaille.Server.Common\Trouvaille.Server.Common.csproj">
+      <Project>{4D67AA4C-6492-40E1-B49E-16B318B21994}</Project>
+      <Name>Trouvaille.Server.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Trouvaille.Server.Models\Trouvaille.Server.Models.csproj">
       <Project>{04ec1652-b005-40b5-89a0-503f8b5e9aef}</Project>
