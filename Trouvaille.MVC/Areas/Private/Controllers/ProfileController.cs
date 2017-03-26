@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Web.Caching;
 using System.Web.Mvc;
 using Trouvaille.Models;
 using Trouvaille.Server.Common.Contracts;
@@ -196,7 +195,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
             if (cacheContent == null)
             {
-                var dependency = new SqlCacheDependency(DatabaseEntryName, CountriesCache);
+                var dependency = this.cacheProvider.SqlCacheDependency(DatabaseEntryName, CountriesCache);
                 var value = this.countryService.GetAllCountriesOrderedByName();
 
                 this.cacheProvider.InsertWithSqlDependency(CountriesCache, value, dependency);

@@ -7,5 +7,7 @@ namespace Trouvaille.Server.Common.Contracts
         void InsertWithSqlDependency(string key, object value, CacheDependency dependency);
 
         object GetValueOfCache(string key);
+
+        CacheDependency SqlCacheDependency(string databaseEntryName, string tableName);
     }
 }

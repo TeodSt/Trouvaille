@@ -5,7 +5,7 @@ using Trouvaille.Server.Common.Contracts;
 
 namespace Trouvaille.Server.Common
 {
-   public class CacheProvider : ICacheProvider
+    public class CacheProvider : ICacheProvider
     {
         private readonly HttpContextBase context;
 
@@ -17,6 +17,11 @@ namespace Trouvaille.Server.Common
         public object GetValueOfCache(string key)
         {
             return this.context.Cache[key];
+        }
+
+        public CacheDependency SqlCacheDependency(string databaseEntryName, string tableName)
+        {
+            return new SqlCacheDependency(databaseEntryName, tableName);
         }
 
         public void InsertWithSqlDependency(string key, object value, CacheDependency dependency)
