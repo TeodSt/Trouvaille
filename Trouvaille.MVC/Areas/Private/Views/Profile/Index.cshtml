@@ -17,44 +17,11 @@
         <div class="col-md-4">
             @Html.ActionLink("Add new article", "CreateArticle", new { controller = "profile" }, new { @class = "btn sunset-color" })
             @Html.ActionLink("Add new picture", "UploadPicture", new { controller = "profile" }, new { @class = "btn sunset-color" })
-            @Html.ActionLink("Add new place", "CreatePlace", new { controller = "profile" }, new { @class = "btn sunset-color" })
+            @Html.ActionLink("Add new trouvaille", "CreatePlace", new { controller = "profile" }, new { @class = "btn sunset-color" })
         </div>
     </div>
     <div class="row">
-        <div class="col offset-2">
-            @*<ul class="nav nav-tabs md-pills pills-ins" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#panel11" role="tab"><i class="fa fa-user"></i> Personal info</a>
-                </li>
-                <li class="nav-item">
-                    @Ajax.ActionLink("Articles", "CreateArticle", new { controller = "profile" },
-                       new AjaxOptions
-                       {
-                           UpdateTargetId = "profile-container",
-                           HttpMethod = "GET",
-                           InsertionMode = InsertionMode.Replace
-                       }, new { @class = "nav-link", data_toggle = "tab" })
-                </li>
-
-                <li class="nav-item">
-                    @Ajax.ActionLink("Photos", "UploadPicture", new { controller = "profile" },
-                       new AjaxOptions
-                       {
-                           UpdateTargetId = "profile-container",
-                           HttpMethod = "GET",
-                           InsertionMode = InsertionMode.Replace
-                       }, new { @class = "nav-link", data_toggle = "tab" })
-                </li>
-                <li class="nav-item">
-                    @Ajax.ActionLink("Trouvaille", "Place", new { controller = "profile" },
-                       new AjaxOptions
-                       {
-                           UpdateTargetId = "profile-container",
-                           HttpMethod = "GET",
-                           InsertionMode = InsertionMode.Replace
-                       }, new { @class = "nav-link", data_toggle = "tab" })
-                </li>
-            </ul>*@
+        <div class="col offset-2">           
         </div>
         <div id="profile-container" class="col-md-12">
             @Html.Partial("_PostsByUser", Model)

@@ -65,7 +65,6 @@
     <Compile Include="ImageTests\CreatorId_Should.cs" />
     <Compile Include="ImageTests\Id_Should.cs" />
     <Compile Include="ImageTests\ImagePath_Should.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

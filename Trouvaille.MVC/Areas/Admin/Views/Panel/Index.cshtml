@@ -12,31 +12,26 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <ul>
-                <li>
-                    @Ajax.ActionLink("Users", "GetUsers", new { controller = "panel" },
+            @Ajax.ActionLink("Users", "GetUsers", new { controller = "panel" },
                        new AjaxOptions
                        {
                            UpdateTargetId = "admin-container",
                            HttpMethod = "GET",
                            InsertionMode = InsertionMode.Replace
                        }, new { @class = "btn sunset-color" })
-                </li>
-                <li>
-                    @Ajax.ActionLink("Articles", "GetArticles", new { controller = "panel" },
+
+            @Ajax.ActionLink("Articles", "GetArticles", new { controller = "panel" },
                        new AjaxOptions
                        {
                            UpdateTargetId = "admin-container",
                            HttpMethod = "GET",
                            InsertionMode = InsertionMode.Replace
                        }, new { @class = "btn sunset-color" })
-                </li>
-            </ul>
         </div>
     </div>
 
     <div id="admin-container">
-        
+
     </div>
 </div>
 @section Scripts {

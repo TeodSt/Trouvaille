@@ -585,7 +585,6 @@
     <Folder Include="App_Data\Images\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Private\Models\" />
-    <Folder Include="Common\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

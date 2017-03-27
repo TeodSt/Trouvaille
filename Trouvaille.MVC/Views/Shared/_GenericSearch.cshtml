@@ -1,15 +1,22 @@
 ﻿@model GeneralSearchViewModel
 
-<div class="row">
-    @using (Html.BeginForm("SearchBy", "Search", new { controller = "search", area = "" },
-                                                FormMethod.Get, new { @class = "form-inline waves-effect waves-light" }))
-    {
-        <div class="md-form form-group">
-            @Html.TextBoxFor(model => model.Text, new { placeholder = "Search text" })
-        </div>
-
-        <div class="md-form form-group">
-            <input type="submit" value="Go" class="btn btn-cloud"/>
-        </div>
-    }
+<div>
+    <br />
+    <div>
+        <h4>Search article by title, picture by description, user by username</h4>
+    </div>
+    <div class="col-md-12">
+        @using (Html.BeginForm("SearchBy", "Search", new { controller = "search", area = "" },
+                                                                        FormMethod.Get, new { }))
+        {
+            <div class="row">
+                @Html.TextBoxFor(model => model.Text, new { })
+            </div>
+            <div class="row justify-content-center">
+                <div class="md-form form-group">
+                    <input type="submit" value="Go" class="btn btn-cloud" />
+                </div>
+            </div>
+        }
+    </div>
 </div>

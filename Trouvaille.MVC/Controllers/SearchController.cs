@@ -38,6 +38,7 @@ namespace Trouvaille.MVC.Controllers
             this.userService = userService;
         }
 
+        [ChildActionOnly]
         public ActionResult Search()
         {
             var searchModel = new GeneralSearchViewModel();

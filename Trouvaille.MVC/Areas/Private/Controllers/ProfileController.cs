@@ -29,7 +29,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
 
         private const string ArticlesFileLocation = "/Photos/Articles/";
         private const string PicturesFileLocation = "/Photos/Pictures/";
-        private const string DefaultUserPhoto = "Users/default-profile.png";
+        private const string DefaultArticlePhoto = "/Photos/Articles/default-article.jpg";
 
         private const string CountriesCache = "Countries";
         private const string DatabaseEntryName = "Trouvaille";
@@ -142,7 +142,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             model.CreatorId = userId;
             model.CreatorUsername = this.userProvider.Username;
             model.CreatedOn = DateTime.Now;
-            model.ImagePath = this.fileProvider.SavePhotoToFileSystem(DefaultUserPhoto, filePath);
+            model.ImagePath = this.fileProvider.SavePhotoToFileSystem(DefaultArticlePhoto, filePath);
 
             if (!this.ModelState.IsValid)
             {
@@ -175,7 +175,7 @@ namespace Trouvaille.MVC.Areas.Private.Controllers
             var user = this.userService.GetUserById(userId);
             string filePath = PicturesFileLocation + currentUserUsername;
 
-            model.ImagePath = this.fileProvider.SavePhotoToFileSystem(DefaultUserPhoto, filePath);
+            model.ImagePath = this.fileProvider.SavePhotoToFileSystem(DefaultArticlePhoto, filePath);
             model.CreatorId = userId;
             model.CreatorUsername = currentUserUsername;
             model.CreatedOn = DateTime.Now;

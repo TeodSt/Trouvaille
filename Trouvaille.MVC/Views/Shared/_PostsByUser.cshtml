@@ -10,12 +10,14 @@
     {
         <div class="media mb-1">
             <a class="media-left waves-light">
-                <img class="rounded-circle" height="100" src=@article.ImagePath alt=@article.ImagePath>
+                <img class="img-thumbnail" width="180" src="@article.ImagePath" alt=@article.ImagePath>
             </a>
             <div class="media-body">
                 <h4 class="media-heading">
                     @Html.ActionLink(@article.Title, "ById", new { controller = "Article", area = "", id = @article.Id })
                 </h4>
+                <p>@article.Subheader</p>
+                <p>@article.CountryName</p>
             </div>
         </div>
     }
@@ -31,14 +33,14 @@
     {
         <div class="media mb-1">
             <a class="media-left waves-light">
-                <img class="rounded-circle" height="100" src=@picture.ImagePath alt=@picture.ImagePath>
+                <img class="img-thumbnail" width="180" src="@picture.ImagePath" alt=@picture.ImagePath>
             </a>
             <div class="media-body">
                 <h4 class="media-heading">
                     @picture.Description
                 </h4>
+                <p>@picture.CountryName</p>
             </div>
         </div>
     }
 }
-    </div>
