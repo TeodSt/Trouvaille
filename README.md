@@ -3,6 +3,7 @@
 
 Trouvaille
 ----------
+![home-page](https://github.com/TeodSt/Trouvaille/blob/master/Trouvaille.MVC/App_Data/Photos/home-page.png)
 
 Trouvaille is an individual course project for the course of **ASP.NET MVC** in Telerik Academy. 
 
@@ -18,3 +19,4 @@ Also there are many unit tests, which will ensure the correctness of the code.
 Pull and get lost in the world of travel! :) 
 
 *P.S. don't miss the cute page-not-found page!*
+![not-found-page](https://github.com/TeodSt/Trouvaille/blob/master/Trouvaille.MVC/App_Data/Photos/not-found-page.png)
